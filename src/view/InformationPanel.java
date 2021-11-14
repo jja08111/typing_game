@@ -12,6 +12,7 @@ import javax.swing.JPanel;
 import javax.swing.JSplitPane;
 
 import constants.ColorScheme;
+import constants.TextStyle;
 
 /**
  * {@link GameFrame} 오른쪽에 위치할 패널이다. 
@@ -203,8 +204,7 @@ class ScoreLabelPanel extends LabelPanel {
 		scoreLabel = new JLabel();
 		scoreLabel.setText(Integer.toString(score));	
 		scoreLabel.setHorizontalAlignment(JLabel.CENTER);
-		// 폰트 사이즈를 30으로 변경한다.
-		scoreLabel.setFont(scoreLabel.getFont().deriveFont(34.0f));
+		scoreLabel.setFont(TextStyle.headline4);
 		return scoreLabel;
 	}
 	
@@ -228,7 +228,7 @@ abstract class LabelPanel extends JPanel {
 		titleLabel.setHorizontalAlignment(JLabel.CENTER);
 		titleLabel.setForeground(Color.gray);
 		// 폰트 사이즈를 변경한다.
-		titleLabel.setFont(titleLabel.getFont().deriveFont(20.0f));
+		titleLabel.setFont(TextStyle.headline6);
 		
 		setLayout(new BorderLayout(0, 12));
 		add(titleLabel, BorderLayout.NORTH);
