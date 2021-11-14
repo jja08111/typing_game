@@ -15,7 +15,7 @@ import javax.swing.border.LineBorder;
 
 import constant.ColorScheme;
 import constant.TextStyle;
-import util.TextSource;
+import handler.TextSource;
 
 public class GamePanel extends JPanel {
 	
@@ -61,7 +61,7 @@ public class GamePanel extends JPanel {
 	
 	public void startGame() {
 		// 단어 한 개를 선택한다.
-		String word = textSource.get();
+		String word = textSource.getRandom();
 		text.setText(word);
 		text.setBackground(Color.GREEN);
 		text.setOpaque(true);

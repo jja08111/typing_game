@@ -1,4 +1,4 @@
-package util;
+package handler;
 import java.util.Vector;
 
 public class TextSource {
@@ -18,7 +18,7 @@ public class TextSource {
 		v.add("Raspberry");
 	}
 	
-	public String get() {
+	public String getRandom() {
 		int index = (int)(Math.random() * v.size());
 		
 		return v.get(index);
