@@ -23,7 +23,7 @@ public final class EnemyHandler {
 	/**
 	 * 새로운 랜덤 단어를 만드는 변수이다.
 	 */
-	private static final TextSourceHandler textSource = new TextSourceHandler();
+	private static final TextSourceHandler textSource = TextSourceHandler.getInstance();
 	
 	
 	private final HashMap<String, EnemyPanel> enemyMap = new HashMap<String, EnemyPanel>();
