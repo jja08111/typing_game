@@ -12,7 +12,7 @@ import javax.swing.JPanel;
 import javax.swing.JSplitPane;
 import javax.swing.JToolBar;
 
-import constants.Icons;
+import constant.Icons;
 
 import java.awt.BorderLayout;
 

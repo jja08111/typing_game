@@ -11,8 +11,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSplitPane;
 
-import constants.ColorScheme;
-import constants.TextStyle;
+import constant.ColorScheme;
+import constant.TextStyle;
 
 /**
  * {@link GameFrame} 오른쪽에 위치할 패널이다. 

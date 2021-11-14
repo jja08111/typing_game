@@ -6,15 +6,20 @@ import java.awt.event.ActionEvent;
 import java.awt.FlowLayout;
 import java.awt.Color;
 
+import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.border.Border;
+import javax.swing.border.LineBorder;
 
+import constant.ColorScheme;
+import constant.TextStyle;
 import util.TextSource;
 
 public class GamePanel extends JPanel {
 	
-	private JTextField inputField = new JTextField(40);
+	private JTextField inputField = new JTextField(20);
 	
 	private JLabel text = new JLabel("타이핑 해보세요");
 	
@@ -32,6 +37,8 @@ public class GamePanel extends JPanel {
 		this.editPanel = editPanel;
 		
 		setLayout(new BorderLayout());
+		// Padding을 모든 방향에 8씩 부여한다.
+		setBorder(BorderFactory.createEmptyBorder(8, 8, 8, 8));
 		add(new GameGroundPanel(), BorderLayout.CENTER);
 		add(new InputPanel(), BorderLayout.SOUTH);
 		
@@ -72,7 +79,8 @@ public class GamePanel extends JPanel {
 	private class InputPanel extends JPanel {
 		public InputPanel() {
 			setLayout(new FlowLayout());
-			setBackground(Color.DARK_GRAY);
+			inputField.setFont(TextStyle.headline5);
+			inputField.setBorder(new LineBorder(ColorScheme.primary, 3));
 			add(inputField);
 		}
 	}

@@ -1,4 +1,4 @@
-package constants;
+package constant;
 import javax.swing.ImageIcon;
 
 public final class Icons {
