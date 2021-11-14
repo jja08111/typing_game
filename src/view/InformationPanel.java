@@ -71,8 +71,12 @@ public class InformationPanel extends JPanel {
 	/**
 	 * 점수를 5점 감소한다.
 	 */
-	public void decreaseScrore() {
-		// TODO: 구현
+	public void decreaseScore() {
+		score -= 5;
+		if (score < 0) {
+			score = 0;
+		}
+		scorePanel.setScore(score);
 	}
 	
 	/**
@@ -80,6 +84,10 @@ public class InformationPanel extends JPanel {
 	 */
 	public void increaseStage() {
 		// TODO: 구현
+	}
+	
+	public int getStage() {
+		return stage;
 	}
 	
 }

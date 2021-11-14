@@ -44,7 +44,7 @@ public class GameFrame extends JFrame {
 	
 	private EditPanel editPanel = new EditPanel();
 	
-	private GamePanel gamePanel = new GamePanel(informationPanel, editPanel);
+	private GamePanel gamePanel = new GamePanel(informationPanel);
 
 	
 	public GameFrame() {

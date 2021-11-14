@@ -1,14 +1,14 @@
 package handler;
 import java.util.Vector;
 
-public class TextSource {
+public class TextSourceHandler {
 	
 	private Vector<String> v = new Vector<String>();
 	
 	/*
 	 * 파일에서 문자열 소스를 읽어들인다.
 	 */
-	public TextSource() {
+	public TextSourceHandler() {
 		v.add("hello");
 		v.add("Game");
 		v.add("I love you");
