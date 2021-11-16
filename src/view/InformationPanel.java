@@ -184,7 +184,7 @@ class CountLabelPanel extends LabelPanel {
 	}
 	
 	@Override
-	public Component buildBottomComponent(int count) {
+	public Component initBottomComponent(int count) {
 		gage = new CircleGagePanel();
 		return gage;
 	}
@@ -208,7 +208,7 @@ class ScoreLabelPanel extends LabelPanel {
 	}
 	
 	@Override
-	public Component buildBottomComponent(int score) {
+	public Component initBottomComponent(int score) {
 		scoreLabel = new JLabel();
 		scoreLabel.setText(Integer.toString(score));	
 		scoreLabel.setHorizontalAlignment(JLabel.CENTER);
@@ -220,7 +220,7 @@ class ScoreLabelPanel extends LabelPanel {
 
 /**
  * 상단에 레이블을 가지고 아래에 점수를 갖는 추상 패널이다. 
- * 반드시 {@link LabelPanel#buildBottomComponent(int)}를 구현해야 한다.
+ * 반드시 {@link LabelPanel#initBottomComponent(int)}를 구현해야 한다.
  */
 abstract class LabelPanel extends JPanel {
 	
@@ -240,13 +240,13 @@ abstract class LabelPanel extends JPanel {
 		
 		setLayout(new BorderLayout(0, 12));
 		add(titleLabel, BorderLayout.NORTH);
-		bottomComp = buildBottomComponent(score);
+		bottomComp = initBottomComponent(score);
 		add(bottomComp, BorderLayout.CENTER);
 	}
 	
 	/**
-	 * {@link LabelPanel} 클래스를 생성시 패널 중앙에 부착 할 컴포넌트를 빌드한다.
+	 * {@link LabelPanel} 클래스를 생성시 패널 중앙에 부착 할 컴포넌트를 초기화한다.
 	 * @return 패널 중앙에 부착할 컴포넌트 
 	 */
-	public abstract Component buildBottomComponent(int score);
+	public abstract Component initBottomComponent(int score);
 }
