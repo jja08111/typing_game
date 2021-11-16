@@ -7,13 +7,11 @@ import java.util.Vector;
 
 /**
  * 텍스트 소스들을 읽어오고 추가 삭제하는 클래스이다.
- * 싱글톤으로 구현한 이유는 앱 실행 후 한 번만 모든 단어 소스를 읽어오기 위해서이다. 
+ * 싱글톤으로 구현한 이유는 한 번만 모든 단어 소스를 읽어오기 위해서이다. Lazy holder 패턴으로 구현했다. 
  */
 public class TextSourceHandler {
 	
 	private static final String FILE_NAME = "words.txt";
-	
-	private static final TextSourceHandler instance = new TextSourceHandler();
 	
 	private Vector<String> v = new Vector<String>();
 
@@ -41,11 +39,14 @@ public class TextSourceHandler {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
 	}
 	
 	public static TextSourceHandler getInstance() {
-		return instance;
+		return LazyHolder.INSTANCE;
+	}
+	
+	private static class LazyHolder { 
+		private static final TextSourceHandler INSTANCE = new TextSourceHandler(); 
 	}
 	
 	public String getRandom() {
