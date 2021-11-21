@@ -70,7 +70,7 @@ public class InformationPanel extends JPanel {
 	private void init() {
 		life = 3;
 		score = 0;
-		stage = 1;
+		stage = 3;
 		
 		lifePanel.updateGageCount(life);
 		scorePanel.setScore(score);
@@ -84,16 +84,8 @@ public class InformationPanel extends JPanel {
 		life -= 1;
 		lifePanel.updateGageCount(life);
 		
-		if (life == 0) {
-			if (enemyHandler != null) enemyHandler.stopGenThread();
-
-			String name = JOptionPane.showInputDialog(Integer.toString(score) + "점으로 게임 오버! 이름을 입력하세요.");
-			
-			if (name != null) recordHandler.save(new RecordItem(name, stage, score));
-			
-			if (enemyHandler != null) enemyHandler.clear();
-
-			init();
+		if (life <= 0) {
+			onEndGame(Integer.toString(score) + "점으로 게임 오버! 이름을 입력하세요.");
 		}
 	}
 	
@@ -117,14 +109,41 @@ public class InformationPanel extends JPanel {
 	}
 	
 	/**
-	 * 단계를 하나 올린다.
+	 * 단계를 하나 올린다. 마지막 단계에서 이 함수를 실행하면 게임 클리어 엔딩이 나온다.
 	 */
 	public void increaseStage() {
-		// TODO: 구현
+		stage += 1;
+		if (stage > MAX_STAGE) {
+			onEndGame("축하합니다! " + Integer.toString(score) + "점으로 클리어 했습니다!\n저장할 이름을 입력하세요.");
+		} else {
+			stagePanel.updateGageCount(stage);
+		}
 	}
 	
 	public int getStage() {
 		return stage;
+	}
+	
+	/**
+	 * 생명을 모두 잃거나 게임을 모두 해결하여 게임이 끝난 경우 실행하는 함수이다. 
+	 * 
+	 * 적들을 지우고 점수를 입력받아 저장한다. 그 후 점수들을 초기화한다.
+	 * @param msg 기록을 저장할 때 입력할 메시지 
+	 */
+	private void onEndGame(String msg) {
+		assert (enemyHandler != null);
+		
+		enemyHandler.stopGenThread();
+		enemyHandler.stopAllEnemies();
+		
+		String name = JOptionPane.showInputDialog(msg);
+
+		if (name != null) recordHandler.save(new RecordItem(name, stage, score));
+		
+		// 스레드를 나중에 종료하는 이유는 enemyPanel의 스레드에서 게임 오버를 감지하여 이 함수에 도달 하기 때문이다.
+		// 즉, 스레드를 다이어로그가 나오기 전에 종료하면 스레드가 종료되며 다이어로그가 바로 사라지기 때문이다.
+		enemyHandler.clear();
+		init();
 	}
 	
 }

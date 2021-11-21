@@ -8,6 +8,7 @@ import javax.swing.JLabel;
 
 import constant.ColorScheme;
 import constant.Icons;
+import handler.EnemyHandler;
 import handler.TextSourceHandler;
 
 /**
@@ -18,34 +19,36 @@ import handler.TextSourceHandler;
  */
 public class EnemyPanel extends CharactorPanel implements Runnable {
 	
-	/**
-	 * 밀리초 단위로 되어 있는 딜레이 상수이다.
-	 */
-	private static final int DELAY = 300;
-	
 	private final JLabel label;
 	
 	private final Thread thread;
+	
+	private final EnemyHandler handler;
 	
 	private final UserCharactorPanel userPanel;
 	
 	private final InformationPanel infoPanel;
 	
-	private final int speed;
+	/**
+	 * 적의 움직임 속도를 결정하는 밀리초 단위 딜레이이다.
+	 */
+	private int delay;
+	
+	private boolean isMovingEnabled = true;
 	
 	/**
 	 * 게임 단계에 맞는 적을 생성한다. 생성시 랜덤 텍스트가 생성된다. <br>
-	 * 
 	 * 크기는 결정이 되나 <strong>위치는 결정이 안되었기 때문에 따로 지정해주어야 한다.<strong>
 	 */
-	public EnemyPanel(String word, int stage, UserCharactorPanel userPanel, InformationPanel infoPanel) {
+	public EnemyPanel(EnemyHandler handler, UserCharactorPanel userPanel, InformationPanel infoPanel) {
 		super(Icons.normal);
-		
+		this.handler = handler;
 		this.userPanel = userPanel;
 		this.infoPanel = infoPanel;
-		this.speed = getSpeedPer(stage);
 		
-		label = new JLabel(word);
+		setDelayPerStage();
+		
+		label = new JLabel(handler.getRandomWord());
 		label.setForeground(ColorScheme.onPrimary);
 		label.setBackground(ColorScheme.primaryVariant);
 		label.setSize(getLabelWidth(label.getText()), 32);
@@ -64,6 +67,15 @@ public class EnemyPanel extends CharactorPanel implements Runnable {
 		thread.start();
 	}
 
+	private void setDelayPerStage() {
+		switch (infoPanel.getStage()) {
+		case 1: delay = 40; break;
+		case 2: delay = 30; break;
+		case 3: delay = 20; break;
+		default: assert(false);
+		}
+	}
+	
 	/**
 	 * 적이 가진 단어를 반환한다.
 	 */
@@ -73,28 +85,27 @@ public class EnemyPanel extends CharactorPanel implements Runnable {
 	
 	public void interruptThread() {
 		thread.interrupt();
-		removeThisFromParent();
+	}
+	
+	public void stopMoving() {
+		isMovingEnabled = false;
+	}
+	
+	private void removeThisFromHandler() {
+		handler.remove(this.getWord());
 	}
 	
 	private int getLabelWidth(String string) {
 		return string.length() * 8 + 10;
 	}
 	
-	private void removeThisFromParent() {
-		if (this.getParent() != null) {
-			Container parent = this.getParent();
-			parent.remove(this);
-			parent.repaint();	
-		}
-	}
-	
 	@Override 
 	public void run() {
 		while(true) {
 			try {
-				Thread.sleep(DELAY);
+				Thread.sleep(delay);
 			} catch (InterruptedException e) { // 예외 발생시 스레드 종료
-				removeThisFromParent();
+				removeThisFromHandler();
 				return;
 			}
 			// 이미 패널이 화면상에서 사라졌음에도 쓰레드가 살아있는 경우 종료
@@ -102,27 +113,19 @@ public class EnemyPanel extends CharactorPanel implements Runnable {
 				return;
 			}
 			// 좌측으로 이동한다.
-			setLocation(getX() - speed, getY());
+			if (isMovingEnabled)
+				setLocation(getX() - 1, getY());
+			
 			if (isCollidedWithUser()) {
 				infoPanel.decreaseLife();
 				infoPanel.decreaseScore();
 				
-				removeThisFromParent();
+				removeThisFromHandler();
 				return;
 			}
 			
 			repaint();
 		}
-	}
-	
-	private int getSpeedPer(int stage) {
-		switch (stage) {
-		case 1: return 100; //TODO : 10으로 변경 
-		case 2: return 20;
-		case 3: return 30;
-		default: assert(false);
-		}
-		return -1;
 	}
 	
 	private boolean isCollidedWithUser() {

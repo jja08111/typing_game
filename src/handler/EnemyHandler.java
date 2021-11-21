@@ -56,16 +56,15 @@ public final class EnemyHandler {
 	/**
 	 * 새로운 적을 1개 생성한다. 
 	 * 생성시 랜덤으로 y 위치가 지정되며 단어도 무작위로 선택된다.  
-	 * @param stage 현재 게임의 단계 
 	 */
-	private void create(int stage) {
+	private void create() {
 		// gameGroundPanel의 크기가 결정되고 나서 위치를 정하기 위해 늦게 초기화를 한다.
 		if (x == null) {
 			// 화면 밖으로 적 시작 x 위치를 설정한다.
 			x = gameGroundPanel.getWidth();
 		}
 
-		EnemyPanel newEnemy = new EnemyPanel(getRandomWord(), stage, gameGroundPanel.getUserPanel(), infoPanel);
+		EnemyPanel newEnemy = new EnemyPanel(this, gameGroundPanel.getUserPanel(), infoPanel);
 		final int y = random.nextInt(gameGroundPanel.getHeight() - newEnemy.getHeight());
 		newEnemy.setLocation(x, y);
 		
@@ -74,7 +73,8 @@ public final class EnemyHandler {
 	}
 
 	/**
-	 * word를 key로 가진 적을 제거한다. 이때 게임 패널에서도 제거된다.
+	 * word를 key로 가진 적을 제거한다. 이때 게임 패널에서도 제거된다. 
+	 * 만약 해당 적이 마지막 적이었다면 다음 단계로 진입한다.
 	 * @param word 적이 가진 단어
 	 * @return 해당 단어를 가지고 있는 적이 없다면 false를 반환한다. 
 	 */
@@ -88,7 +88,14 @@ public final class EnemyHandler {
 		
 		parent.remove(enemy);
 		parent.repaint();
-		enemyMap.remove(word);
+		synchronized (enemyMap) {
+			enemyMap.remove(word);
+		}
+		// 현재 단계를 클리어한 경우 
+		if (generationThread.getRemainCount() == 0 && enemyMap.isEmpty()) {
+			infoPanel.increaseStage();
+		}
+
 		return true;
 	}
 	
@@ -96,16 +103,30 @@ public final class EnemyHandler {
 	 * 모든 적을 삭제하고 화면에서도 지운다.
 	 */
 	public void clear() {
-		Collection<EnemyPanel> set = enemyMap.values();
-		set.forEach(enemyPanel -> {
-			enemyPanel.interruptThread();
-			Container c = enemyPanel.getParent();
-			if (c != null) {
-				c.remove(enemyPanel);
-				c.repaint();
-			}
-		});
-		enemyMap.clear();
+		synchronized (enemyMap) {
+			Collection<EnemyPanel> set = enemyMap.values();
+			set.forEach(enemyPanel -> {
+				enemyPanel.interruptThread();
+				Container c = enemyPanel.getParent();
+				if (c != null) {
+					c.remove(enemyPanel);
+					c.repaint();
+				}
+			});
+			enemyMap.clear(); 
+		}
+	}
+	
+	/**
+	 * 모든 적들을 움직이지 않게 한다.
+	 */
+	public void stopAllEnemies() {
+		synchronized (enemyMap) {
+			Collection<EnemyPanel> set = enemyMap.values();
+			set.forEach(enemyPanel -> {
+				enemyPanel.stopMoving();
+			});
+		}
 	}
 	
 	/**
@@ -113,7 +134,6 @@ public final class EnemyHandler {
 	 */
 	public void startGenThread() {
 		if (isGenerating) return;
-		isGenerating = true;
 		generationThread = new EnemyGenerationThread();
 		generationThread.start();
 	}
@@ -123,14 +143,13 @@ public final class EnemyHandler {
 	 */
 	public void stopGenThread() {
 		if (!isGenerating) return;
-		isGenerating = false;
 		generationThread.interrupt();
 	}
 	
 	/**
 	 * 무작위 단어를 얻는다. 이때 중복되지 않는 단어를 얻는다.
 	 */
-	private String getRandomWord() {
+	public String getRandomWord() {
 		String word;
 		while (true) {
 			word = textSource.getRandom();
@@ -141,7 +160,7 @@ public final class EnemyHandler {
 	}
 	
 	/**
-	 * 적을 일정한 주기마다 생성하는 쓰레드이다. 
+	 * 적을 일정한 주기마다 생성하는 쓰레드이다. 적을 모두 생성하면 종료된다.
 	 * 단계마다 적의 갯수, 적이 출현하는 속도가 다르다. 
 	 */
 	public class EnemyGenerationThread extends Thread {
@@ -160,11 +179,15 @@ public final class EnemyHandler {
 		/**
 		 * 추가로 생성하야 할 적의 개수이다.
 		 */
-		private int count;
+		private int remainCount;
 		
 		public EnemyGenerationThread() {
-			this.count = getEnemyCountPerStage();
+			this.remainCount = getEnemyCountPerStage();
 			this.delay = getDelayPerStage();
+		}
+		
+		public int getRemainCount() {
+			return remainCount;
 		}
 		
 		private int getEnemyCountPerStage() {
@@ -179,9 +202,9 @@ public final class EnemyHandler {
 		
 		private int getDelayPerStage() {
 			switch (infoPanel.getStage()) {
-			case 1: return 1000 * 10 / 3;
-			case 2: return 1000 * 10 / 5;
-			case 3: return 1000 * 10 / 7;
+			case 1: return 1000 * 10 / 2;
+			case 2: return 1000 * 10 / 4;
+			case 3: return 1000 * 10 / 6;
 			default: assert(false);
 			}
 			return -1;
@@ -193,19 +216,21 @@ public final class EnemyHandler {
 		
 		@Override 
 		public void run() {
+			isGenerating = true;
 			while (true) {
-				count--;
-				create(infoPanel.getStage());
+				remainCount--;
+				create();
 				try {
 					sleep(getRandomDelay());
 				} catch (InterruptedException e) { // 인터럽트 발생시 스레드 종료
-					return;
+					break;
 				}
 
-				if (count == 0) { // 적을 모두 생성하면 탈출한다.
+				if (remainCount == 0) { // 적을 모두 생성하면 종료한다.
 					break;
 				}
 			}
+			isGenerating = false;
 		}
 	}
 	
