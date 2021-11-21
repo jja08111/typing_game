@@ -46,8 +46,8 @@ public class RecordHandler {
 	public void save(RecordItem item) {
 		String content = item.toString();
 		try {
-			writer.write(content, 0, content.length());
-			writer.write("\r\n", 0, 2);
+			writer.write(content);
+			writer.write("\r\n");
 			writer.flush(); 
 		} catch (IOException e) {
 			System.out.println("기록 저장에 실패했습니다.");

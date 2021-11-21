@@ -70,7 +70,7 @@ public class InformationPanel extends JPanel {
 	private void init() {
 		life = 3;
 		score = 0;
-		stage = 3;
+		stage = 1;
 		
 		lifePanel.updateGageCount(life);
 		scorePanel.setScore(score);
@@ -85,7 +85,7 @@ public class InformationPanel extends JPanel {
 		lifePanel.updateGageCount(life);
 		
 		if (life <= 0) {
-			onEndGame(Integer.toString(score) + "점으로 게임 오버! 이름을 입력하세요.");
+			onEndGame(Integer.toString(score) + "점으로 게임 오버!\n저장할 이름을 입력하세요.");
 		}
 	}
 	
@@ -137,8 +137,11 @@ public class InformationPanel extends JPanel {
 		enemyHandler.stopAllEnemies();
 		
 		String name = JOptionPane.showInputDialog(msg);
-
-		if (name != null) recordHandler.save(new RecordItem(name, stage, score));
+		
+		if (name != null) {
+			// 이름에 공백은 언더바로 교체하여 전달한다.
+			recordHandler.save(new RecordItem(name.replace(" ", "_"), stage, score));
+		}
 		
 		// 스레드를 나중에 종료하는 이유는 enemyPanel의 스레드에서 게임 오버를 감지하여 이 함수에 도달 하기 때문이다.
 		// 즉, 스레드를 다이어로그가 나오기 전에 종료하면 스레드가 종료되며 다이어로그가 바로 사라지기 때문이다.
