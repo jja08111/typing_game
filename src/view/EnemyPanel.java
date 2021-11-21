@@ -43,7 +43,7 @@ public class EnemyPanel extends CharactorPanel implements Runnable {
 		
 		this.userPanel = userPanel;
 		this.infoPanel = infoPanel;
-		this.speed = getSpeedFrom(stage);
+		this.speed = getSpeedPer(stage);
 		
 		label = new JLabel(word);
 		label.setForeground(ColorScheme.onPrimary);
@@ -115,7 +115,7 @@ public class EnemyPanel extends CharactorPanel implements Runnable {
 		}
 	}
 	
-	private int getSpeedFrom(int stage) {
+	private int getSpeedPer(int stage) {
 		switch (stage) {
 		case 1: return 100; //TODO : 10으로 변경 
 		case 2: return 20;
