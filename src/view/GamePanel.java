@@ -22,42 +22,27 @@ public class GamePanel extends JPanel {
 	
 	private final JTextField inputField = new JTextField(20);
 	
-	private final GameGroundPanel groundPanel = new GameGroundPanel();
-	
-	private final InformationPanel inforemationPanel;
+	private final InformationPanel informationPanel;
 
-	private final EnemyHandler enemyHandler = new EnemyHandler(groundPanel);
-	
-	public GamePanel(InformationPanel informationPanel) {
-		this.inforemationPanel = informationPanel;
+	private final EnemyHandler enemyHandler;
+
+	public GamePanel(
+			InformationPanel informationPanel, 
+			GameGroundPanel groundPanel,
+			EnemyHandler enemyHandler
+			) {
+		this.informationPanel = informationPanel;
+		this.enemyHandler = enemyHandler;
 		
 		setLayout(new BorderLayout());
 		// Padding을 모든 방향에 8씩 부여한다.
 		setBorder(BorderFactory.createEmptyBorder(8, 8, 8, 8));
 		add(groundPanel, BorderLayout.CENTER);
 		add(new InputPanel(), BorderLayout.SOUTH);
-		
-		inputField.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				JTextField t = (JTextField)e.getSource();
-				String inputWord = t.getText();
-				
-				if (enemyHandler.remove(inputWord)) { // 사용자가 단어 맞추기 성공한 경우 
-					informationPanel.increaseScore();
-				} else {
-					informationPanel.decreaseScore();
-				}
-				
-				// inputField 텍스트를 비운다.
-				t.setText("");
-			}
-		});
 	}
 	
 	public void startGame() {
-		EnemyGenerationThread generationThread = new EnemyGenerationThread();
-		generationThread.start();
+		enemyHandler.startGenThread();
 	}
 	
 	private class InputPanel extends JPanel {
@@ -65,59 +50,24 @@ public class GamePanel extends JPanel {
 			setLayout(new FlowLayout());
 			inputField.setFont(TextStyle.headline5);
 			inputField.setBorder(new LineBorder(ColorScheme.primary, 3));
+			inputField.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					JTextField t = (JTextField)e.getSource();
+					String inputWord = t.getText();
+					
+					if (enemyHandler.remove(inputWord)) { // 사용자가 단어 맞추기 성공한 경우 
+						informationPanel.increaseScore();
+					} else {
+						informationPanel.decreaseScore();
+					}
+					
+					// inputField 텍스트를 비운다.
+					t.setText("");
+				}
+			});
 			add(inputField);
 		}
 	}
 	
-	/**
-	 * 적을 일정한 주기마다 생성하는 쓰레드이다. 
-	 * 단계마다 적의 갯수, 적이 출현하는 속도가 다르다. 
-	 */
-	private class EnemyGenerationThread extends Thread {
-		
-		private final int sleepDuration;
-		
-		private int count;
-		
-		public EnemyGenerationThread() {
-			this.count = getEnemyCount();
-			this.sleepDuration = getSleepDuration();
-		}
-		
-		private int getEnemyCount() {
-			switch (inforemationPanel.getStage()) {
-			case 1: return 10;
-			case 2: return 15;
-			case 3: return 20;
-			default: assert(false);
-			}
-			return -1;
-		}
-		
-		private int getSleepDuration() {
-			switch (inforemationPanel.getStage()) {
-			case 1: return 1000 * 10 / 3;
-			case 2: return 1000 * 10 / 5;
-			case 3: return 1000 * 10 / 7;
-			default: assert(false);
-			}
-			return -1;
-		}
-		
-		@Override 
-		public void run() {
-			while (true) {
-				count--;
-				enemyHandler.create(inforemationPanel.getStage());
-				try {
-					sleep(sleepDuration);
-				} catch (InterruptedException e) {
-					
-				}
-				if (count == 0) {
-					break;
-				}
-			}
-		}
-	}
 }

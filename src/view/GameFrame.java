@@ -1,4 +1,5 @@
 package view;
+
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -13,6 +14,7 @@ import javax.swing.JSplitPane;
 import javax.swing.JToolBar;
 
 import constant.Icons;
+import handler.EnemyHandler;
 
 import java.awt.BorderLayout;
 
@@ -27,25 +29,26 @@ public class GameFrame extends JFrame {
 	 * 프레임의 높이이다.
 	 */
 	public static final int HEIGHT = 600;
-	
-	// TODO: 주석 달기
-	
-	private JMenuItem startItem = new JMenuItem("Start");
-	
-	private JMenuItem stopItem = new JMenuItem("Stop");
-	
-	private JMenuItem exitItem = new JMenuItem("Exit");
-	
-	private JButton startBtn = new JButton(Icons.normal);
-	
-	private JButton stopBtn = new JButton("Stop");
-	
-	private InformationPanel informationPanel = new InformationPanel();
-	
-	private EditPanel editPanel = new EditPanel();
-	
-	private GamePanel gamePanel = new GamePanel(informationPanel);
 
+	private final JMenuItem startItem = new JMenuItem("Start");
+	
+	private final JMenuItem stopItem = new JMenuItem("Stop");
+	
+	private final JMenuItem exitItem = new JMenuItem("Exit");
+	
+	private final JButton startBtn = new JButton(Icons.normal);
+	
+	private final JButton stopBtn = new JButton("Stop");
+
+	private final InformationPanel informationPanel = new InformationPanel();
+	
+	private final EditPanel editPanel = new EditPanel();
+	
+	private final GameGroundPanel groundPanel = new GameGroundPanel();
+	
+	private final EnemyHandler enemyHandler = new EnemyHandler(groundPanel, informationPanel);
+	
+	private final GamePanel gamePanel = new GamePanel(informationPanel, groundPanel, enemyHandler);
 	
 	public GameFrame() {
 		setTitle("타이핑 게임");
@@ -73,6 +76,8 @@ public class GameFrame extends JFrame {
 		
 		hPane.setLeftComponent(gamePanel);
 		hPane.setRightComponent(informationPanel);
+		
+		informationPanel.initEnemyHandler(enemyHandler);
 	}
 	
 	private void initMenuBar() {
@@ -108,4 +113,5 @@ public class GameFrame extends JFrame {
 			gamePanel.startGame();
 		}
 	}
+	
 }

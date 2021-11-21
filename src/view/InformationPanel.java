@@ -7,12 +7,15 @@ import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.Graphics;
 
+import javax.swing.JDialog;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSplitPane;
 
 import constant.ColorScheme;
 import constant.TextStyle;
+import handler.EnemyHandler;
 
 /**
  * {@link GameFrame} 오른쪽에 위치할 패널이다. 
@@ -25,23 +28,27 @@ public class InformationPanel extends JPanel {
 	
 	private static final int MAX_STAGE = 3;
 	
-	private int life = 3;
+	private int life;
 	
-	private int score = 0;
+	private int score;
 	
-	private int stage = 1;
+	private int stage;
 
-	private CountLabelPanel lifePanel = 
-			new CountLabelPanel("생명", ColorScheme.primary, life, MAX_LIFE);
+	private final CircleCountLabelPanel lifePanel = 
+			new CircleCountLabelPanel("생명", ColorScheme.primary, life, MAX_LIFE);
 	
-	private ScoreLabelPanel scorePanel = new ScoreLabelPanel("점수", score);
+	private final ScoreLabelPanel scorePanel = new ScoreLabelPanel("점수", score);
 	
-	private CountLabelPanel stagePanel = 
-			new CountLabelPanel("단계", ColorScheme.secondary, stage, MAX_STAGE);
+	private final CircleCountLabelPanel stagePanel = 
+			new CircleCountLabelPanel("단계", ColorScheme.secondary, stage, MAX_STAGE);
+	
+	private EnemyHandler enemyHandler;
 	
 	public InformationPanel() {
 		setBackground(Color.white);
 		setLayout(null);
+		
+		init(false);
 		
 		lifePanel.setLocation(34, 80);
 		scorePanel.setLocation(34, 210);
@@ -52,12 +59,37 @@ public class InformationPanel extends JPanel {
 		add(stagePanel);
 	}
 	
+	public void initEnemyHandler(EnemyHandler enemyHandler) {
+		this.enemyHandler = enemyHandler;
+	}
+	
+	private void init(boolean repaint) {
+		life = 3;
+		score = 0;
+		stage = 1;
+		if (repaint) {
+			lifePanel.updateGageCount(life);
+			scorePanel.setScore(score);
+			stagePanel.updateGageCount(stage);
+		}
+	}
+	
 	/**
 	 * 생명을 하나 감소한다.
 	 */
 	public void decreaseLife() {
 		life -= 1;
 		lifePanel.updateGageCount(life);
+		
+		if (life == 0) {
+			if (enemyHandler != null) enemyHandler.stopGenThread();
+			// TODO: 따로 만들기  
+			//GameOverDialog(Integer.toString(score) + "점으로 게임 오버! 이름을 입력하세요.");
+			
+			if (enemyHandler != null) enemyHandler.clear();
+
+			init(true);
+		}
 	}
 	
 	/**
@@ -88,6 +120,10 @@ public class InformationPanel extends JPanel {
 	
 	public int getStage() {
 		return stage;
+	}
+	
+	private class GameOverDialog extends JDialog {
+		
 	}
 	
 }
@@ -163,7 +199,7 @@ class CircleGagePanel extends JPanel {
 /**
  * 상단에 레이블을 가지고 중앙에 원으로 카운트를 보이는 패널이다.
  */
-class CountLabelPanel extends LabelPanel {
+class CircleCountLabelPanel extends LabelPanel {
 	
 	private CircleGagePanel gage;
 	
@@ -172,7 +208,7 @@ class CountLabelPanel extends LabelPanel {
 	 * @param score 원형 이미지가 몇개 채워져 있는 지 정한다.
 	 * @param maxScore 최대 몇 개까지 채울 수 있는 지 정한다.
 	 */
-	public CountLabelPanel(String title, Color color, int score, int maxScore) {
+	public CircleCountLabelPanel(String title, Color color, int score, int maxScore) {
 		super(title, score);
 		gage.setColor(color);
 		gage.setCount(score);
