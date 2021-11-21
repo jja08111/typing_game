@@ -17,8 +17,14 @@ public class RecordItem implements Comparable<RecordItem> {
 	 */
 	private final int score;
 	
+	/**
+	 * 기록 단위가 되는 객체를 생성하는데 이름에 공백이 있는 경우 언더바(_)로 교체한다.
+	 * @param name 이름 
+	 * @param stage 해결한 단계 
+	 * @param score 달성한 점수 
+	 */
 	public RecordItem(String name, int stage, int score) {
-		this.name = name;
+		this.name = name.replace(" ", "_");
 		this.stage = stage;
 		this.score = score;
 	}

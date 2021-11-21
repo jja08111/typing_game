@@ -139,8 +139,7 @@ public class InformationPanel extends JPanel {
 		String name = JOptionPane.showInputDialog(msg);
 		
 		if (name != null) {
-			// 이름에 공백은 언더바로 교체하여 전달한다.
-			recordHandler.save(new RecordItem(name.replace(" ", "_"), stage, score));
+			recordHandler.save(new RecordItem(name, stage, score));
 		}
 		
 		// 스레드를 나중에 종료하는 이유는 enemyPanel의 스레드에서 게임 오버를 감지하여 이 함수에 도달 하기 때문이다.
