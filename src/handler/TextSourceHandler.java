@@ -33,6 +33,7 @@ public class TextSourceHandler {
 					word += (char)c;
 				}
 			}
+			reader.close();
 		} catch (FileNotFoundException e) { // 파일이 없는 경우 새로 샘플을 만든다.
 			System.out.println("words.txt 파일이 존재하지 않아 샘플 파일이 생성되었습니다.");
 			// TODO: 샘플파일 생성하는 함수 만들기 

@@ -16,6 +16,8 @@ import javax.swing.JSplitPane;
 import constant.ColorScheme;
 import constant.TextStyle;
 import handler.EnemyHandler;
+import handler.RecordHandler;
+import model.RecordItem;
 
 /**
  * {@link GameFrame} 오른쪽에 위치할 패널이다. 
@@ -44,11 +46,13 @@ public class InformationPanel extends JPanel {
 	
 	private EnemyHandler enemyHandler;
 	
+	private RecordHandler recordHandler = RecordHandler.getInstance();
+	
 	public InformationPanel() {
 		setBackground(Color.white);
 		setLayout(null);
 		
-		init(false);
+		init();
 		
 		lifePanel.setLocation(34, 80);
 		scorePanel.setLocation(34, 210);
@@ -63,15 +67,14 @@ public class InformationPanel extends JPanel {
 		this.enemyHandler = enemyHandler;
 	}
 	
-	private void init(boolean repaint) {
+	private void init() {
 		life = 3;
 		score = 0;
 		stage = 1;
-		if (repaint) {
-			lifePanel.updateGageCount(life);
-			scorePanel.setScore(score);
-			stagePanel.updateGageCount(stage);
-		}
+		
+		lifePanel.updateGageCount(life);
+		scorePanel.setScore(score);
+		stagePanel.updateGageCount(stage);
 	}
 	
 	/**
@@ -83,12 +86,14 @@ public class InformationPanel extends JPanel {
 		
 		if (life == 0) {
 			if (enemyHandler != null) enemyHandler.stopGenThread();
-			// TODO: 따로 만들기  
-			//GameOverDialog(Integer.toString(score) + "점으로 게임 오버! 이름을 입력하세요.");
+
+			String name = JOptionPane.showInputDialog(Integer.toString(score) + "점으로 게임 오버! 이름을 입력하세요.");
+			
+			if (name != null) recordHandler.save(new RecordItem(name, stage, score));
 			
 			if (enemyHandler != null) enemyHandler.clear();
 
-			init(true);
+			init();
 		}
 	}
 	
@@ -120,10 +125,6 @@ public class InformationPanel extends JPanel {
 	
 	public int getStage() {
 		return stage;
-	}
-	
-	private class GameOverDialog extends JDialog {
-		
 	}
 	
 }

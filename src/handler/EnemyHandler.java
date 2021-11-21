@@ -83,6 +83,9 @@ public final class EnemyHandler {
 		EnemyPanel enemy = enemyMap.get(word);
 		
 		Container parent = enemy.getParent();
+		
+		if (parent == null) return false;
+		
 		parent.remove(enemy);
 		parent.repaint();
 		enemyMap.remove(word);
