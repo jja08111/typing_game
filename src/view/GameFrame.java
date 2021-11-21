@@ -32,7 +32,7 @@ public class GameFrame extends JFrame {
 
 	private final JMenuItem restartItem = new JMenuItem("재시작");
 	
-	private final JMenuItem stopItem = new JMenuItem("게임취소");
+	private final JMenuItem stopItem = new JMenuItem("게임 취소");
 	
 	private final JMenuItem exitItem = new JMenuItem("종료");
 
