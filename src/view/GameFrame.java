@@ -30,19 +30,13 @@ public class GameFrame extends JFrame {
 	 */
 	public static final int HEIGHT = 600;
 
-	private final JMenuItem startItem = new JMenuItem("Start");
+	private final JMenuItem restartItem = new JMenuItem("재시작");
 	
-	private final JMenuItem stopItem = new JMenuItem("Stop");
+	private final JMenuItem stopItem = new JMenuItem("게임취소");
 	
-	private final JMenuItem exitItem = new JMenuItem("Exit");
-	
-	private final JButton startBtn = new JButton(Icons.normal);
-	
-	private final JButton stopBtn = new JButton("Stop");
+	private final JMenuItem exitItem = new JMenuItem("종료");
 
 	private final InformationPanel informationPanel = new InformationPanel();
-	
-	private final EditPanel editPanel = new EditPanel();
 	
 	private final GameGroundPanel groundPanel = new GameGroundPanel();
 	
@@ -55,8 +49,7 @@ public class GameFrame extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(WIDTH, HEIGHT);
 		
-		initSplitPane();
-		initToolBar();
+		initMainSplitPane();
 		initMenuBar();
 		
 		setResizable(false);
@@ -67,7 +60,7 @@ public class GameFrame extends JFrame {
 	 * JSplitPane을 생성하여 contentPane의 CENTER에 부착한다. 
 	 * 왼쪽에는 {@link GamePanel}을 배치하고 오른쪽에는 {@link InformationPanel}을 배치한다.
 	 */
-	private void initSplitPane() {
+	private void initMainSplitPane() {
 		JSplitPane hPane = new JSplitPane();
 		getContentPane().add(hPane, BorderLayout.CENTER);
 		hPane.setOrientation(JSplitPane.HORIZONTAL_SPLIT);
@@ -84,27 +77,13 @@ public class GameFrame extends JFrame {
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
 		
-		JMenu fileMenu = new JMenu("Game");
-		fileMenu.add(startItem);
+		JMenu fileMenu = new JMenu("메뉴");
+		fileMenu.add(restartItem);
 		fileMenu.add(stopItem);
 		fileMenu.addSeparator();
 		fileMenu.add(exitItem);
 		
 		menuBar.add(fileMenu);
-		
-		startItem.addActionListener(new StartAction());
-	}
-	
-	private void initToolBar() {
-		JToolBar toolBar = new JToolBar();
-		toolBar.add(startBtn);
-		toolBar.add(stopBtn);
-		
-		getContentPane().add(toolBar, BorderLayout.NORTH);
-		
-		startBtn.addActionListener(new StartAction());
-		startBtn.setPressedIcon(Icons.pressed);
-		startBtn.setRolloverIcon(Icons.over);
 	}
 	
 	private class StartAction implements ActionListener {
