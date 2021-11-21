@@ -2,6 +2,8 @@ package view;
 
 import java.awt.BorderLayout;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.awt.event.ActionEvent;
 import java.awt.FlowLayout;
 import java.awt.Color;
@@ -39,10 +41,29 @@ public class GamePanel extends JPanel {
 		setBorder(BorderFactory.createEmptyBorder(8, 8, 8, 8));
 		add(groundPanel, BorderLayout.CENTER);
 		add(new InputPanel(), BorderLayout.SOUTH);
+		
+		addKeyListener(new KeyAdapter() {
+			@Override 
+			public void keyPressed(KeyEvent e) {
+				if (e.getKeyChar() == ' ') {
+					startGame();
+				}
+			}
+		});
 	}
 	
 	public void startGame() {
+		enableInputField();
 		enemyHandler.startGenThread();
+	}
+	
+	public void enableInputField() {
+		inputField.setText("");
+		inputField.setEnabled(true);
+	}
+	
+	public void disableInputField() {
+		inputField.setEnabled(false);
 	}
 	
 	private class InputPanel extends JPanel {
@@ -50,6 +71,8 @@ public class GamePanel extends JPanel {
 			setLayout(new FlowLayout());
 			inputField.setFont(TextStyle.headline5);
 			inputField.setBorder(new LineBorder(ColorScheme.primary, 3));
+			disableInputField();
+			inputField.setText("스페이스바를 눌러 게임 시작");
 			inputField.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {

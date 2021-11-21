@@ -1,22 +1,15 @@
 package view;
 
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
-import javax.swing.JPanel;
 import javax.swing.JSplitPane;
-import javax.swing.JToolBar;
 
-import constant.Icons;
 import handler.EnemyHandler;
 
 import java.awt.BorderLayout;
+import java.awt.Container;
 
 public class GameFrame extends JFrame {
 	
@@ -54,6 +47,8 @@ public class GameFrame extends JFrame {
 		
 		setResizable(false);
 		setVisible(true);
+		
+		gamePanel.requestFocus();
 	}
 
 	/**
@@ -62,7 +57,10 @@ public class GameFrame extends JFrame {
 	 */
 	private void initMainSplitPane() {
 		JSplitPane hPane = new JSplitPane();
-		getContentPane().add(hPane, BorderLayout.CENTER);
+		
+		Container c = getContentPane();
+		c.add(hPane, BorderLayout.CENTER);
+		
 		hPane.setOrientation(JSplitPane.HORIZONTAL_SPLIT);
 		hPane.setDividerLocation(800);
 		hPane.setEnabled(false);
@@ -84,13 +82,6 @@ public class GameFrame extends JFrame {
 		fileMenu.add(exitItem);
 		
 		menuBar.add(fileMenu);
-	}
-	
-	private class StartAction implements ActionListener {
-		@Override 
-		public void actionPerformed(ActionEvent e) {
-			gamePanel.startGame();
-		}
 	}
 	
 }
