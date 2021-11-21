@@ -84,10 +84,10 @@ public final class EnemyHandler {
 		
 		Container parent = enemy.getParent();
 		
-		if (parent == null) return false;
-		
-		parent.remove(enemy);
-		parent.repaint();
+		if (parent != null) {
+			parent.remove(enemy);
+			parent.repaint();
+		}
 		synchronized (enemyMap) {
 			enemyMap.remove(word);
 		}
