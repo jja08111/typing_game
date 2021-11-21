@@ -85,7 +85,7 @@ public class InformationPanel extends JPanel {
 		lifePanel.updateGageCount(life);
 		
 		if (life <= 0) {
-			onEndGame(Integer.toString(score) + "점으로 게임 오버!\n저장할 이름을 입력하세요.");
+			onEndGame(Integer.toString(score) + "점으로 게임 오버!\n저장할 이름을 입력하세요.", false);
 		}
 	}
 	
@@ -114,7 +114,7 @@ public class InformationPanel extends JPanel {
 	public void increaseStage() {
 		stage += 1;
 		if (stage > MAX_STAGE) {
-			onEndGame("축하합니다! " + Integer.toString(score) + "점으로 클리어 했습니다!\n저장할 이름을 입력하세요.");
+			onEndGame("축하합니다! " + Integer.toString(score) + "점으로 클리어 했습니다!\n저장할 이름을 입력하세요.", true);
 		} else {
 			stagePanel.updateGageCount(stage);
 		}
@@ -130,16 +130,19 @@ public class InformationPanel extends JPanel {
 	 * 적들을 지우고 점수를 입력받아 저장한다. 그 후 점수들을 초기화한다.
 	 * @param msg 기록을 저장할 때 입력할 메시지 
 	 */
-	private void onEndGame(String msg) {
+	private void onEndGame(String msg, boolean isAllClear) {
 		assert (enemyHandler != null);
 		
 		enemyHandler.stopGenThread();
 		enemyHandler.stopAllEnemies();
 		
 		String name = JOptionPane.showInputDialog(msg);
+		// 실패하여 게임이 끝난 경우 달성한 단계는 이전 단계이다.
+		int clearedStage = stage + (isAllClear ? 0 : -1);
+		if (clearedStage < 0) clearedStage = 0;
 		
 		if (name != null) {
-			recordHandler.save(new RecordItem(name, stage, score));
+			recordHandler.save(new RecordItem(name, clearedStage, score));
 		}
 		
 		// 스레드를 나중에 종료하는 이유는 enemyPanel의 스레드에서 게임 오버를 감지하여 이 함수에 도달 하기 때문이다.
