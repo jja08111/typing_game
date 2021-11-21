@@ -6,34 +6,35 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.ActionEvent;
 import java.awt.FlowLayout;
-import java.awt.Color;
 
 import javax.swing.BorderFactory;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
 
 import constant.ColorScheme;
 import constant.TextStyle;
 import handler.EnemyHandler;
-import handler.TextSourceHandler;
 
 public class GamePanel extends JPanel {
 	
-	private final JTextField inputField = new JTextField(20);
+	private final TypingField typingField;
 	
 	private final InformationPanel informationPanel;
 
+	private final GameGroundPanel groundPanel;
+	
 	private final EnemyHandler enemyHandler;
 
 	public GamePanel(
+			TypingField typingField,
 			InformationPanel informationPanel, 
 			GameGroundPanel groundPanel,
 			EnemyHandler enemyHandler
 			) {
+		this.typingField = typingField;
 		this.informationPanel = informationPanel;
+		this.groundPanel = groundPanel;
 		this.enemyHandler = enemyHandler;
 		
 		setLayout(new BorderLayout());
@@ -41,39 +42,31 @@ public class GamePanel extends JPanel {
 		setBorder(BorderFactory.createEmptyBorder(8, 8, 8, 8));
 		add(groundPanel, BorderLayout.CENTER);
 		add(new InputPanel(), BorderLayout.SOUTH);
-		
-		addKeyListener(new KeyAdapter() {
-			@Override 
-			public void keyPressed(KeyEvent e) {
-				if (e.getKeyChar() == ' ') {
-					startGame();
-				}
-			}
-		});
 	}
 	
-	public void startGame() {
-		enableInputField();
+	private void startGame() {
 		enemyHandler.startGenThread();
-	}
-	
-	public void enableInputField() {
-		inputField.setText("");
-		inputField.setEnabled(true);
-	}
-	
-	public void disableInputField() {
-		inputField.setEnabled(false);
+		typingField.changeToTextFieldMode();
 	}
 	
 	private class InputPanel extends JPanel {
+		
 		public InputPanel() {
 			setLayout(new FlowLayout());
-			inputField.setFont(TextStyle.headline5);
-			inputField.setBorder(new LineBorder(ColorScheme.primary, 3));
-			disableInputField();
-			inputField.setText("스페이스바를 눌러 게임 시작");
-			inputField.addActionListener(new ActionListener() {
+			
+			typingField.addKeyListener(new KeyAdapter() {
+				@Override 
+				public void keyTyped(KeyEvent e) {
+					if (e.getKeyChar() == ' ') {
+						if (typingField.getIsSimpleMode()) {
+							startGame();
+							// 공백입력을 무시한다.
+							e.consume();
+						}
+					}
+				}
+			});
+			typingField.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					JTextField t = (JTextField)e.getSource();
@@ -89,7 +82,7 @@ public class GamePanel extends JPanel {
 					t.setText("");
 				}
 			});
-			add(inputField);
+			add(typingField);
 		}
 	}
 	

@@ -5,6 +5,7 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JSplitPane;
+import javax.swing.JTextField;
 
 import handler.EnemyHandler;
 
@@ -29,13 +30,15 @@ public class GameFrame extends JFrame {
 	
 	private final JMenuItem exitItem = new JMenuItem("종료");
 
-	private final InformationPanel informationPanel = new InformationPanel();
+	private final TypingField typingField = new TypingField(20);
+	
+	private final InformationPanel informationPanel = new InformationPanel(typingField);
 	
 	private final GameGroundPanel groundPanel = new GameGroundPanel();
 	
 	private final EnemyHandler enemyHandler = new EnemyHandler(groundPanel, informationPanel);
 	
-	private final GamePanel gamePanel = new GamePanel(informationPanel, groundPanel, enemyHandler);
+	private final GamePanel gamePanel = new GamePanel(typingField, informationPanel, groundPanel, enemyHandler);
 	
 	public GameFrame() {
 		setTitle("타이핑 게임");
@@ -47,8 +50,6 @@ public class GameFrame extends JFrame {
 		
 		setResizable(false);
 		setVisible(true);
-		
-		gamePanel.requestFocus();
 	}
 
 	/**

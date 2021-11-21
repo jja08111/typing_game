@@ -12,6 +12,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSplitPane;
+import javax.swing.JTextField;
 
 import constant.ColorScheme;
 import constant.TextStyle;
@@ -46,9 +47,12 @@ public class InformationPanel extends JPanel {
 	
 	private EnemyHandler enemyHandler;
 	
-	private RecordHandler recordHandler = RecordHandler.getInstance();
+	private final RecordHandler recordHandler = RecordHandler.getInstance();
 	
-	public InformationPanel() {
+	private final TypingField typingField;
+	
+	public InformationPanel(TypingField typingField) {
+		this.typingField = typingField;
 		setBackground(Color.white);
 		setLayout(null);
 		
@@ -132,6 +136,8 @@ public class InformationPanel extends JPanel {
 	 */
 	private void onEndGame(String msg, boolean isAllClear) {
 		assert (enemyHandler != null);
+		
+		typingField.changeToSimpleMode();
 		
 		enemyHandler.stopGenThread();
 		enemyHandler.stopAllEnemies();
