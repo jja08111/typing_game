@@ -175,6 +175,8 @@ public final class EnemyHandler {
 		public EnemyGenerationThread() {
 			this.remainCount = getEnemyCountPerStage();
 			this.delay = getDelayPerStage();
+			// 스레드 이름을 지정한다.
+			setName(getClass().getSimpleName() + "-" + Integer.toString(delay));
 		}
 		
 		public int getRemainCount() {
@@ -193,6 +195,7 @@ public final class EnemyHandler {
 		
 		private int getDelayPerStage() {
 			switch (infoPanel.getStage()) {
+			// 10초당 x개를 생성한다.
 			case 1: return 1000 * 10 / 2;
 			case 2: return 1000 * 10 / 4;
 			case 3: return 1000 * 10 / 6;
