@@ -80,14 +80,9 @@ public final class EnemyHandler {
 	 */
 	public boolean remove(String word) {
 		if (!enemyMap.containsKey(word)) return false;
-		EnemyPanel enemy = enemyMap.get(word);
+
+		enemyMap.get(word).end();
 		
-		Container parent = enemy.getParent();
-		
-		if (parent != null) {
-			parent.remove(enemy);
-			parent.repaint();
-		}
 		synchronized (enemyMap) {
 			enemyMap.remove(word);
 		}
@@ -106,12 +101,8 @@ public final class EnemyHandler {
 		synchronized (enemyMap) {
 			Collection<EnemyPanel> set = enemyMap.values();
 			set.forEach(enemyPanel -> {
-				enemyPanel.interruptThread();
-				Container c = enemyPanel.getParent();
-				if (c != null) {
-					c.remove(enemyPanel);
-					c.repaint();
-				}
+				//enemyPanel.interruptThread();
+				enemyPanel.end();
 			});
 			enemyMap.clear(); 
 		}

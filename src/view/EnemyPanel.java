@@ -83,12 +83,19 @@ public class EnemyPanel extends CharactorPanel implements Runnable {
 		return label.getText();
 	}
 	
-	public void interruptThread() {
-		thread.interrupt();
-	}
-	
 	public void stopMoving() {
 		isMovingEnabled = false;
+	}
+	
+	/**
+	 * 적 인스턴스를 부모 컨테이너로부터 제거하며 이때 스레드가 종료된다.
+	 */
+	public void end() {
+		Container parent = getParent();
+		if (parent != null) {
+			parent.remove(this);
+			parent.repaint();
+		}
 	}
 	
 	private void removeThisFromHandler() {
