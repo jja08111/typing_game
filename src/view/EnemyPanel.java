@@ -45,10 +45,10 @@ public class EnemyPanel extends CharactorPanel implements Runnable {
 		this.handler = handler;
 		this.userPanel = userPanel;
 		this.infoPanel = infoPanel;
-		
 		setDelayPerStage();
 		
-		label = new JLabel(handler.getRandomWord());
+		String word = handler.getRandomWord();
+		label = new JLabel(word);
 		label.setForeground(ColorScheme.onPrimary);
 		label.setBackground(ColorScheme.primaryVariant);
 		label.setSize(getLabelWidth(label.getText()), 32);
@@ -64,6 +64,8 @@ public class EnemyPanel extends CharactorPanel implements Runnable {
 		setComponentZOrder(label, 0);
 		
 		thread = new Thread(this);
+		// 디버깅을 위해 스레드 이름을 변경한다.
+		thread.setName(getClass().getSimpleName() + "-" + word);
 		thread.start();
 	}
 
