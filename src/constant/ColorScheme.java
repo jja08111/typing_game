@@ -31,4 +31,9 @@ public final class ColorScheme {
 	 * {@link ColorScheme#primary} 위에 있는 컴포넌트의 색상이다. 예를 들어 JLabel이 있다.
 	 */
 	public static final Color onPrimary = Color.white;
+	
+	/**
+	 * {@link ColorScheme#secondary} 위에 있는 컴포넌트의 색상이다. 예를 들어 JLabel이 있다.
+	 */
+	public static final Color onSecondary = Color.white;
 }

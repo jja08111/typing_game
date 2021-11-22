@@ -4,12 +4,14 @@ import view.EnemyPanel;
 import view.GameGroundPanel;
 import view.GamePanel;
 import view.InformationPanel;
+import view.SpecialEnemyPanel;
 
 import java.awt.Container;
 import java.awt.Font;
 import java.awt.Point;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Random;
 
 import javax.swing.JLabel;
@@ -21,11 +23,12 @@ import constant.Icons;
  */
 public final class EnemyHandler {
 	
+	private enum Type { NORMAL, SPECIAL };
+	
 	/**
 	 * 새로운 랜덤 단어를 만드는 변수이다.
 	 */
 	private static final TextSourceHandler textSource = TextSourceHandler.getInstance();
-	
 	
 	private final HashMap<String, EnemyPanel> enemyMap = new HashMap<String, EnemyPanel>();
 	
@@ -56,22 +59,50 @@ public final class EnemyHandler {
 	/**
 	 * 새로운 적을 1개 생성한다. 
 	 * 생성시 랜덤으로 y 위치가 지정되며 단어도 무작위로 선택된다.  
+	 * @param type 생성할 적의 타입
 	 */
-	private void create() {
+	private void create(Type type) {
 		// gameGroundPanel의 크기가 결정되고 나서 위치를 정하기 위해 늦게 초기화를 한다.
 		if (x == null) {
 			// 화면 밖으로 적 시작 x 위치를 설정한다.
 			x = gameGroundPanel.getWidth();
 		}
 
-		EnemyPanel newEnemy = new EnemyPanel(this, gameGroundPanel.getUserPanel(), infoPanel);
-		final int y = random.nextInt(gameGroundPanel.getHeight() - newEnemy.getHeight());
+		EnemyPanel newEnemy;
+		switch (type) {
+		case NORMAL:
+			newEnemy = new EnemyPanel(this, gameGroundPanel.getUserPanel(), infoPanel);
+			break;
+		case SPECIAL:
+			newEnemy = new SpecialEnemyPanel(this, gameGroundPanel.getUserPanel(), infoPanel);
+			break;
+		default:
+			assert(false);
+			return;
+		}
+		
+		int y = random.nextInt(gameGroundPanel.getHeight() - newEnemy.getHeight());
 		newEnemy.setLocation(x, y);
 		
-		enemyMap.put(newEnemy.getWord(), newEnemy);
+		synchronized (enemyMap) {
+			enemyMap.put(newEnemy.getWord(), newEnemy);
+		}
 		gameGroundPanel.add(newEnemy);
 	}
-
+	
+	/**
+	 * 생성 스레드와 별도로 지정한 위치에 새로운 일반 적을 1개 생성한다. 
+	 */
+	public void createNormalAt(int x, int y) {
+		EnemyPanel newEnemy = new EnemyPanel(this, gameGroundPanel.getUserPanel(), infoPanel);
+		newEnemy.setLocation(x, y);
+		
+		synchronized (enemyMap) {
+			enemyMap.put(newEnemy.getWord(), newEnemy);
+		}
+		gameGroundPanel.add(newEnemy);
+	}
+	
 	/**
 	 * word를 key로 가진 적을 제거한다. 이때 게임 패널에서도 제거된다. 
 	 * 만약 해당 적이 마지막 적이었다면 다음 단계로 진입한다.
@@ -79,18 +110,19 @@ public final class EnemyHandler {
 	 * @return 해당 단어를 가지고 있는 적이 없다면 false를 반환한다. 
 	 */
 	public boolean remove(String word) {
-		if (!enemyMap.containsKey(word)) return false;
-
-		enemyMap.get(word).end();
-		
 		synchronized (enemyMap) {
-			enemyMap.remove(word);
-		}
-		// 현재 단계를 클리어한 경우 
-		if (generationThread.getRemainCount() == 0 && enemyMap.isEmpty()) {
-			infoPanel.increaseStage();
-		}
+			if (!enemyMap.containsKey(word)) return false;
 
+			EnemyPanel enemyPanel = enemyMap.get(word);
+			enemyPanel.removeThisFromParent();
+			
+			enemyMap.remove(word);
+		
+			// 현재 단계를 클리어한 경우 
+			if (generationThread.getRemainCount() == 0 && enemyMap.isEmpty()) {
+				infoPanel.increaseStage();
+			}
+		}
 		return true;
 	}
 	
@@ -99,24 +131,15 @@ public final class EnemyHandler {
 	 */
 	public void clear() {
 		synchronized (enemyMap) {
-			Collection<EnemyPanel> set = enemyMap.values();
-			set.forEach(enemyPanel -> {
-				//enemyPanel.interruptThread();
-				enemyPanel.end();
+			enemyMap.values().forEach(enemyPanel -> {
+				// 특별한 적을 제거하는 removeThisFromParent() 함수는 3개의 적을 생성한다.
+				// 이때 CuncurrentModificationException이 발생하므로 이를 막기 위해 3개의 적을 만들지 않도록 해준다.
+				if (enemyPanel instanceof SpecialEnemyPanel) {
+					((SpecialEnemyPanel)enemyPanel).doNotGiveBirth();
+				}
+				enemyPanel.removeThisFromParent();
 			});
 			enemyMap.clear(); 
-		}
-	}
-	
-	/**
-	 * 모든 적들을 움직이지 않게 한다.
-	 */
-	public void stopAllEnemies() {
-		synchronized (enemyMap) {
-			Collection<EnemyPanel> set = enemyMap.values();
-			set.forEach(enemyPanel -> {
-				enemyPanel.stopMoving();
-			});
 		}
 	}
 	
@@ -154,7 +177,7 @@ public final class EnemyHandler {
 	 * 적을 일정한 주기마다 생성하는 쓰레드이다. 적을 모두 생성하면 종료된다.
 	 * 단계마다 적의 갯수, 적이 출현하는 속도가 다르다. 
 	 */
-	public class EnemyGenerationThread extends Thread {
+	private class EnemyGenerationThread extends Thread {
 		
 		/**
 		 * 랜덤으로 생성할 적의 생성 속도 범위이다. 
@@ -213,7 +236,7 @@ public final class EnemyHandler {
 			isGenerating = true;
 			while (true) {
 				remainCount--;
-				create();
+				create(Type.SPECIAL);
 				try {
 					sleep(getRandomDelay());
 				} catch (InterruptedException e) { // 인터럽트 발생시 스레드 종료

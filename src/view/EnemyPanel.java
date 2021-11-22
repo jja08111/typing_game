@@ -19,11 +19,11 @@ import handler.TextSourceHandler;
  */
 public class EnemyPanel extends CharactorPanel implements Runnable {
 	
-	private final JLabel label;
+	protected final JLabel label;
 	
 	private final Thread thread;
 	
-	private final EnemyHandler handler;
+	protected final EnemyHandler handler;
 	
 	private final UserCharactorPanel userPanel;
 	
@@ -92,7 +92,7 @@ public class EnemyPanel extends CharactorPanel implements Runnable {
 	/**
 	 * 적 인스턴스를 부모 컨테이너로부터 제거하며 이때 스레드가 종료된다.
 	 */
-	public void end() {
+	public void removeThisFromParent() {
 		Container parent = getParent();
 		if (parent != null) {
 			parent.remove(this);
