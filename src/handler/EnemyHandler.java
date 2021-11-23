@@ -179,9 +179,9 @@ public final class EnemyHandler {
 	private class EnemyGenerationThread extends Thread {
 		
 		/**
-		 * 랜덤으로 생성할 적의 생성 속도 범위이다. 
+		 * 적을 생성할 때 추가로 딜레이할 랜덤한 딜레이 범위이다. 
 		 */
-		private static final int RANGE = 200;
+		private static final int RANGE = 300;
 		
 		/**
 		 * 적을 생성하는 속도를 조절할 변수이다. {@link EnemyGenerationThread.RANGE} 변수와 
