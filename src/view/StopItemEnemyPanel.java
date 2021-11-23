@@ -5,6 +5,9 @@ import java.awt.Color;
 import constant.ColorScheme;
 import handler.EnemyHandler;
 
+/**
+ * 죽는 경우 현재 보이는 모든 적들을 멈추는 아이템 적이다.
+ */
 public class StopItemEnemyPanel extends ItemEnemyPanel {
 
 	private static final int STOP_DURATION_MILLISEC = 3000;
