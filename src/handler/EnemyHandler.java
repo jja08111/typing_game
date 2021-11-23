@@ -57,40 +57,6 @@ public final class EnemyHandler {
 	}
 	
 	/**
-	 * 새로운 적을 1개 생성한다. 
-	 * 생성시 랜덤으로 y 위치가 지정되며 단어도 무작위로 선택된다.  
-	 * @param type 생성할 적의 타입
-	 */
-	private void create(Type type) {
-		// gameGroundPanel의 크기가 결정되고 나서 위치를 정하기 위해 늦게 초기화를 한다.
-		if (x == null) {
-			// 화면 밖으로 적 시작 x 위치를 설정한다.
-			x = gameGroundPanel.getWidth();
-		}
-
-		EnemyPanel newEnemy;
-		switch (type) {
-		case NORMAL:
-			newEnemy = new EnemyPanel(this, gameGroundPanel.getUserPanel(), infoPanel);
-			break;
-		case SPECIAL:
-			newEnemy = new SpecialEnemyPanel(this, gameGroundPanel.getUserPanel(), infoPanel);
-			break;
-		default:
-			assert(false);
-			return;
-		}
-		
-		int y = random.nextInt(gameGroundPanel.getHeight() - newEnemy.getHeight());
-		newEnemy.setLocation(x, y);
-		
-		synchronized (enemyMap) {
-			enemyMap.put(newEnemy.getWord(), newEnemy);
-		}
-		gameGroundPanel.add(newEnemy);
-	}
-	
-	/**
 	 * 생성 스레드와 별도로 지정한 위치에 새로운 일반 적을 1개 생성한다. 
 	 */
 	public void createNormalAt(int x, int y) {
@@ -228,6 +194,40 @@ public final class EnemyHandler {
 		
 		private int getRandomDelay() {
 			return delay + (int)(Math.random() * RANGE);
+		}
+		
+		/**
+		 * 새로운 적을 1개 생성한다. 
+		 * 생성시 랜덤으로 y 위치가 지정되며 단어도 무작위로 선택된다.  
+		 * @param type 생성할 적의 타입
+		 */
+		private void create(Type type) {
+			// gameGroundPanel의 크기가 결정되고 나서 위치를 정하기 위해 늦게 초기화를 한다.
+			if (x == null) {
+				// 화면 밖으로 적 시작 x 위치를 설정한다.
+				x = gameGroundPanel.getWidth();
+			}
+
+			EnemyPanel newEnemy;
+			switch (type) {
+			case NORMAL:
+				newEnemy = new EnemyPanel(EnemyHandler.this, gameGroundPanel.getUserPanel(), infoPanel);
+				break;
+			case SPECIAL:
+				newEnemy = new SpecialEnemyPanel(EnemyHandler.this, gameGroundPanel.getUserPanel(), infoPanel);
+				break;
+			default:
+				assert(false);
+				return;
+			}
+			
+			int y = random.nextInt(gameGroundPanel.getHeight() - newEnemy.getHeight());
+			newEnemy.setLocation(x, y);
+			
+			synchronized (enemyMap) {
+				enemyMap.put(newEnemy.getWord(), newEnemy);
+			}
+			gameGroundPanel.add(newEnemy);
 		}
 		
 		@Override 
