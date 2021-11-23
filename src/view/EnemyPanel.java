@@ -21,9 +21,9 @@ public class EnemyPanel extends CharactorPanel implements Runnable {
 	
 	protected final JLabel label;
 	
-	private final Thread thread;
-	
 	protected final EnemyHandler handler;
+	
+	private final Thread thread;
 	
 	private final UserCharactorPanel userPanel;
 	
@@ -85,7 +85,11 @@ public class EnemyPanel extends CharactorPanel implements Runnable {
 		return label.getText();
 	}
 	
-	public void stopMoving() {
+	public void enableMoving() {
+		isMovingEnabled = true;
+	}
+	
+	public void disableMoving() {
 		isMovingEnabled = false;
 	}
 	

@@ -36,4 +36,10 @@ public final class ColorScheme {
 	 * {@link ColorScheme#secondary} 위에 있는 컴포넌트의 색상이다. 예를 들어 JLabel이 있다.
 	 */
 	public static final Color onSecondary = Color.white;
+	
+	/**
+	 * 죽으면 멈추거나 적이 3개 사라지는 적 객체의 텍스트 배경 색상으로 이용한다.
+	 */
+	public static final Color itemEnemyBackground = new Color(24, 68, 64);
+	
 }

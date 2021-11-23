@@ -5,6 +5,7 @@ import view.GameGroundPanel;
 import view.GamePanel;
 import view.InformationPanel;
 import view.SpecialEnemyPanel;
+import view.StopItemEnemyPanel;
 
 import java.awt.Container;
 import java.awt.Font;
@@ -23,7 +24,7 @@ import constant.Icons;
  */
 public final class EnemyHandler {
 	
-	private enum Type { NORMAL, SPECIAL };
+	private enum Type { NORMAL, SPECIAL, STOP_ITEM };
 	
 	/**
 	 * 새로운 랜덤 단어를 만드는 변수이다.
@@ -125,6 +126,18 @@ public final class EnemyHandler {
 		generationThread.interrupt();
 	}
 	
+	public void enableMovingAll() {
+		synchronized (enemyMap) {
+			enemyMap.values().forEach(enemy -> enemy.enableMoving());
+		}
+	}
+	
+	public void disableMovingAll() {
+		synchronized (enemyMap) {
+			enemyMap.values().forEach(enemy -> enemy.disableMoving());
+		}
+	}
+	
 	/**
 	 * 무작위 단어를 얻는다. 이때 중복되지 않는 단어를 얻는다.
 	 */
@@ -215,6 +228,9 @@ public final class EnemyHandler {
 				break;
 			case SPECIAL:
 				newEnemy = new SpecialEnemyPanel(EnemyHandler.this, gameGroundPanel.getUserPanel(), infoPanel);
+				break;
+			case STOP_ITEM:
+				newEnemy = new StopItemEnemyPanel(EnemyHandler.this, gameGroundPanel.getUserPanel(), infoPanel);
 				break;
 			default:
 				assert(false);
