@@ -5,7 +5,7 @@ import java.awt.Color;
 import constant.ColorScheme;
 import handler.EnemyHandler;
 
-public class StopItemEnemyPanel extends EnemyPanel {
+public class StopItemEnemyPanel extends ItemEnemyPanel {
 
 	private static final int STOP_DURATION_MILLISEC = 3000;
 	
