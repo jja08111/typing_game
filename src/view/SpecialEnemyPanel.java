@@ -7,8 +7,11 @@ import java.awt.Point;
 import constant.ColorScheme;
 import handler.EnemyHandler;
 
+/**
+ * 죽을 때 {@link EnemyPanel}을 3개 생성하는 적이다.
+ */
 public class SpecialEnemyPanel extends EnemyPanel {
-	
+
 	/**
 	 * 이 특별한 적이 죽은 경우 새로 생성할 새로운 적들의 위치를 결정하기 위해 사용하는 원의 반지름이다.
 	 */
@@ -19,6 +22,9 @@ public class SpecialEnemyPanel extends EnemyPanel {
 	 */
 	private static final int CHILDREN_COUNT = 3;
 	
+	/**
+	 * 죽을 때 일반 적 3개를 생성하는 여부를 지정한다.
+	 */
 	private boolean giveBirth = true;
 	
 	public SpecialEnemyPanel(EnemyHandler handler, UserCharactorPanel userPanel, InformationPanel infoPanel) {
@@ -27,6 +33,9 @@ public class SpecialEnemyPanel extends EnemyPanel {
 		label.setBackground(ColorScheme.secondaryVariant);
 	}
 
+	/**
+	 * 죽을 때 일반 적 3개를 생성하지 않도록 한다.
+	 */
 	public void doNotGiveBirth() {
 		giveBirth = false;
 	}

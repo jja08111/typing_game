@@ -132,8 +132,7 @@ public final class EnemyHandler {
 	public void clear() {
 		synchronized (enemyMap) {
 			enemyMap.values().forEach(enemyPanel -> {
-				// 특별한 적을 제거하는 removeThisFromParent() 함수는 3개의 적을 생성한다.
-				// 이때 CuncurrentModificationException이 발생하므로 이를 막기 위해 3개의 적을 만들지 않도록 해준다.
+				// CuncurrentModificationException이 발생하므로 이를 막기 위해 3개의 적을 만들지 않도록 해준다.
 				if (enemyPanel instanceof SpecialEnemyPanel) {
 					((SpecialEnemyPanel)enemyPanel).doNotGiveBirth();
 				}
