@@ -65,7 +65,7 @@ public class MainFrame extends JFrame {
 	
 }
 
-class IntroPanel extends DefaultPanel {
+class IntroPanel extends TitlePanel {
 	
 	public IntroPanel(MainFrame mainFrame) {
 		super("타이핑 게임");
