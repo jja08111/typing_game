@@ -131,6 +131,7 @@ public final class EnemyHandler {
 	private void checkIfStageIsCleared() {
 		if (generationThread.getRemainCount().isEmpty() && enemyMap.isEmpty()) {
 			infoPanel.increaseStage();
+			stopGenThread();
 		}
 	}
 	

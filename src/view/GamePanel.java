@@ -58,7 +58,7 @@ public class GamePanel extends JPanel {
 				@Override 
 				public void keyTyped(KeyEvent e) {
 					if (e.getKeyChar() == ' ') {
-						if (typingField.getIsSimpleMode()) {
+						if (typingField.isReadyMode()) {
 							startGame();
 							// 공백입력을 무시한다.
 							e.consume();
@@ -71,15 +71,19 @@ public class GamePanel extends JPanel {
 				public void actionPerformed(ActionEvent e) {
 					JTextField t = (JTextField)e.getSource();
 					String inputWord = t.getText();
+					final boolean isReadyMode = typingField.isReadyMode();
+					
+					// 준비 모드가 아닌 경우 엔터키 입력시 텍스트를 비운다.
+					if (!isReadyMode) {
+						t.setText("");
+					}
 					
 					if (enemyHandler.kill(inputWord)) { // 사용자가 단어 맞추기 성공한 경우 
 						informationPanel.increaseScore();
 					} else {
-						informationPanel.decreaseScore();
+						if (!isReadyMode)
+							informationPanel.decreaseScore();
 					}
-					
-					// inputField 텍스트를 비운다.
-					t.setText("");
 				}
 			});
 			add(typingField);

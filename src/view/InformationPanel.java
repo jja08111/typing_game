@@ -1,18 +1,13 @@
 package view;
 
 import java.awt.Color;
-import java.awt.FlowLayout;
-import java.awt.Font;
 import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.Graphics;
 
-import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JSplitPane;
-import javax.swing.JTextField;
 
 import constant.ColorScheme;
 import constant.TextStyle;
@@ -121,6 +116,12 @@ public class InformationPanel extends JPanel {
 			onGameEnd("축하합니다! " + Integer.toString(score) + "점으로 클리어 했습니다!\n저장할 이름을 입력하세요.", true);
 		} else {
 			stagePanel.updateGageCount(stage);
+			new Thread() {
+				@Override
+				public void run() {
+					typingField.changeToReadyMode("스페이스바를 눌러 다음 단계 시작");					
+				}
+			}.start();
 		}
 	}
 	
@@ -137,7 +138,7 @@ public class InformationPanel extends JPanel {
 	private void onGameEnd(String msg, boolean isAllClear) {
 		assert (enemyHandler != null);
 		
-		typingField.changeToSimpleMode();
+		typingField.changeToReadyMode();
 		
 		Thread th = new Thread() {
 			@Override
