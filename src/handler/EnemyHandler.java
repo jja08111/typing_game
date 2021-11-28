@@ -3,29 +3,22 @@ package handler;
 import view.BombItemEnemyPanel;
 import view.EnemyPanel;
 import view.GameGroundPanel;
-import view.GamePanel;
 import view.InformationPanel;
 import view.SpecialEnemyPanel;
 import view.StopItemEnemyPanel;
 import view.UserCharactorPanel;
 
-import java.awt.Container;
-import java.awt.Font;
-import java.awt.Point;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.Random;
+import java.util.Vector;
 
-import javax.swing.JLabel;
-
-import constant.Icons;
+import model.EnemyCount;
+import model.EnemyType;
 
 /**
  * 적 클래스들을 생성 및 삭제하는 클래스이다.
  */
 public final class EnemyHandler {
-	
-	private enum Type { NORMAL, SPECIAL, STOP_ITEM, BOMB_ITEM };
 	
 	/**
 	 * 새로운 랜덤 단어를 만드는 변수이다.
@@ -79,11 +72,11 @@ public final class EnemyHandler {
 	 */
 	public boolean kill(String word) {
 		EnemyPanel enemy = enemyMap.get(word);
-		boolean result = remove(word);
-		if (result) {
+		if (enemy != null) {
 			enemy.isKilled();
+			return remove(word);
 		}
-		return result; 
+		return false; 
 	}
 	
 	/**
@@ -99,33 +92,44 @@ public final class EnemyHandler {
 			EnemyPanel enemyPanel = enemyMap.get(word);
 			enemyPanel.removeThisFromParent();
 			enemyMap.remove(word);
-		
-			checkIfStageIsCleared();
 		}
+		checkIfStageIsCleared();
 		return true;
 	}
 	
 	/**
-	 * 무작위로 적을 하나 제거한다. 
+	 * 해당 단어를 가진 적을 제외하고 무작위로 적을 하나 제거한다. 
+	 * @param word 제거하지 않을 적이 가진 단어
 	 */
-	public void removeRandom() {
+	public void removeRandomExcept(String word) {
 		synchronized (enemyMap) {
-			if (enemyMap.isEmpty()) return;
+			// 예외할 적을 해쉬맵에서 빼낸다.
+			EnemyPanel exceptedEnemy = enemyMap.get(word);
+			if (exceptedEnemy == null) return;
+			enemyMap.remove(exceptedEnemy);
+			
+			if (enemyMap.isEmpty()) {
+				// 예외했던 적을 다시 해쉬맵에 넣는다.
+				enemyMap.put(exceptedEnemy.getWord(), exceptedEnemy);
+				return;
+			}
 			Object[] values = enemyMap.values().toArray();
 			
 			EnemyPanel randomEnemy = (EnemyPanel)values[random.nextInt(values.length)];
 			randomEnemy.removeThisFromParent();
 			enemyMap.remove(randomEnemy.getWord());
 			
-			checkIfStageIsCleared();
+			// 예외했던 적을 다시 해쉬맵에 넣는다.
+			enemyMap.put(exceptedEnemy.getWord(), exceptedEnemy);
 		}
+		checkIfStageIsCleared();
 	}
 	
 	/**
 	 * 현제 단계를 클리어 했는지 확인하고 클리어 했다면 다음 단계로 진입한다.
 	 */
 	private void checkIfStageIsCleared() {
-		if (generationThread.getRemainCount() == 0 && enemyMap.isEmpty()) {
+		if (generationThread.getRemainCount().isEmpty() && enemyMap.isEmpty()) {
 			infoPanel.increaseStage();
 		}
 	}
@@ -208,27 +212,31 @@ public final class EnemyHandler {
 		/**
 		 * 추가로 생성하야 할 적의 개수이다.
 		 */
-		private int remainCount;
+		private EnemyCount remainCount;
 		
 		public EnemyGenerationThread() {
-			this.remainCount = getEnemyCountPerStage();
+			this.remainCount = getEnemyCountPer();
 			this.delay = getDelayPerStage();
 			// 스레드 이름을 지정한다.
 			setName(getClass().getSimpleName() + "-" + Integer.toString(delay));
 		}
 		
-		public int getRemainCount() {
-			return remainCount;
+		public EnemyCount getEnemyCountPer() {
+			switch (infoPanel.getStage()) {
+			case 1:
+				return new EnemyCount(10, 1, 1);
+			case 2:
+				return new EnemyCount(11, 2, 1);
+			case 3:
+				return new EnemyCount(12, 4, 2);
+			default:
+				assert false;
+			}
+			return null;
 		}
 		
-		private int getEnemyCountPerStage() {
-			switch (infoPanel.getStage()) {
-			case 1: return 10;
-			case 2: return 15;
-			case 3: return 20;
-			default: assert(false);
-			}
-			return -1;
+		public EnemyCount getRemainCount() {
+			return remainCount;
 		}
 		
 		private int getDelayPerStage() {
@@ -251,7 +259,7 @@ public final class EnemyHandler {
 		 * 생성시 랜덤으로 y 위치가 지정되며 단어도 무작위로 선택된다.  
 		 * @param type 생성할 적의 타입
 		 */
-		private void create(Type type) {
+		private void create(EnemyType type) {
 			// gameGroundPanel의 크기가 결정되고 나서 위치를 정하기 위해 늦게 초기화를 한다.
 			if (x == null) {
 				// 화면 밖으로 적 시작 x 위치를 설정한다.
@@ -263,15 +271,19 @@ public final class EnemyHandler {
 			switch (type) {
 			case NORMAL:
 				newEnemy = new EnemyPanel(EnemyHandler.this, userPanel, infoPanel);
+				remainCount.decreaseNormal();
 				break;
 			case SPECIAL:
 				newEnemy = new SpecialEnemyPanel(EnemyHandler.this, userPanel, infoPanel);
+				remainCount.decreaseSpecial();
 				break;
 			case STOP_ITEM:
 				newEnemy = new StopItemEnemyPanel(EnemyHandler.this, userPanel, infoPanel);
+				remainCount.decreaseItem();
 				break;
 			case BOMB_ITEM:
 				newEnemy = new BombItemEnemyPanel(EnemyHandler.this, userPanel, infoPanel);
+				remainCount.decreaseItem();
 				break;
 			default:
 				assert(false);
@@ -291,15 +303,15 @@ public final class EnemyHandler {
 		public void run() {
 			isGenerating = true;
 			while (true) {
-				remainCount--;
-				create(Type.BOMB_ITEM);
+				
+				create(remainCount.getRandomType());
 				try {
 					sleep(getRandomDelay());
 				} catch (InterruptedException e) { // 인터럽트 발생시 스레드 종료
 					break;
 				}
 
-				if (remainCount == 0) { // 적을 모두 생성하면 종료한다.
+				if (remainCount.isEmpty()) { // 적을 모두 생성하면 종료한다.
 					break;
 				}
 			}

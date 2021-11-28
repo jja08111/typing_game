@@ -15,15 +15,9 @@ public class BombItemEnemyPanel extends ItemEnemyPanel {
 
 	@Override
 	public void isKilled() {		
-		Thread th = new Thread() {
-			@Override
-			public void run() {
-				for (int i = 0; i < COUNT; ++i) {
-					handler.removeRandom();
-				}
-			}
-		};
-		th.start();
+		for (int i = 0; i < COUNT; ++i) {
+			handler.removeRandomExcept(getWord());
+		}
 	}
 	
 }
