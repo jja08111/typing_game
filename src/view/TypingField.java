@@ -37,7 +37,7 @@ public class TypingField extends JTextField {
 	}
 	
 	/**
-	 * 게임을 대기하는 모드로 전환하고 "스페이스바를 눌러 게임 시작" 문구를 텍스트에 넣는다.
+	 * 게임을 대기하는 모드로 전환하고 전달된 문자열을 텍스트에 넣는다.
 	 */
 	public void changeToReadyMode(String msg) {
 		setText(msg);
