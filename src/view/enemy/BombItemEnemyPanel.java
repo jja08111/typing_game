@@ -1,6 +1,8 @@
-package view;
+package view.enemy;
 
 import handler.EnemyHandler;
+import view.InformationPanel;
+import view.UserCharactorPanel;
 
 public class BombItemEnemyPanel extends ItemEnemyPanel {
 

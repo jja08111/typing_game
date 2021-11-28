@@ -1,4 +1,4 @@
-package view;
+package view.enemy;
 
 import java.util.Random;
 import java.awt.Container;
@@ -6,6 +6,8 @@ import java.awt.Point;
 
 import constant.ColorScheme;
 import handler.EnemyHandler;
+import view.InformationPanel;
+import view.UserCharactorPanel;
 
 /**
  * 죽을 때 {@link EnemyPanel}을 3개 생성하는 적이다.

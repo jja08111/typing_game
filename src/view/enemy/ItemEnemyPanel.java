@@ -1,9 +1,11 @@
-package view;
+package view.enemy;
 
 import java.awt.Color;
 
 import constant.ColorScheme;
 import handler.EnemyHandler;
+import view.InformationPanel;
+import view.UserCharactorPanel;
 
 /**
  * 죽는 경우 플레이어에게 좋은 현상을 제공하는 추상 객체이다.

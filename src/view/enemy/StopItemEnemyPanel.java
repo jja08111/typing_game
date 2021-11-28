@@ -1,9 +1,11 @@
-package view;
+package view.enemy;
 
 import java.awt.Color;
 
 import constant.ColorScheme;
 import handler.EnemyHandler;
+import view.InformationPanel;
+import view.UserCharactorPanel;
 
 /**
  * 죽는 경우 현재 보이는 모든 적들을 멈추는 아이템 적이다.

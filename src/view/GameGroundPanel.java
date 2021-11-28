@@ -3,6 +3,8 @@ package view;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import view.enemy.EnemyPanel;
+
 /**
  * {@link UserCharactorPanel}과 {@link EnemyHandler}를 통해 
  * 생성된 {@link EnemyPanel}들이 있다.  

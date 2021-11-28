@@ -1,4 +1,4 @@
-package view;
+package view.enemy;
 
 import java.awt.Container;
 import java.awt.Font;
@@ -10,6 +10,9 @@ import constant.ColorScheme;
 import constant.Icons;
 import handler.EnemyHandler;
 import handler.TextSourceHandler;
+import view.CharactorPanel;
+import view.InformationPanel;
+import view.UserCharactorPanel;
 
 /**
  * 적을 표현하는 패널이다. 
