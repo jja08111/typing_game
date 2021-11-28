@@ -19,7 +19,7 @@ public class StopItemEnemyPanel extends ItemEnemyPanel {
 	}
 
 	@Override
-	public void removeThisFromParent() {
+	public void isKilled() {
 		Thread th = new Thread() {
 			@Override
 			public void run() {

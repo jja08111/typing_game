@@ -72,7 +72,7 @@ public class GamePanel extends JPanel {
 					JTextField t = (JTextField)e.getSource();
 					String inputWord = t.getText();
 					
-					if (enemyHandler.remove(inputWord)) { // 사용자가 단어 맞추기 성공한 경우 
+					if (enemyHandler.kill(inputWord)) { // 사용자가 단어 맞추기 성공한 경우 
 						informationPanel.increaseScore();
 					} else {
 						informationPanel.decreaseScore();

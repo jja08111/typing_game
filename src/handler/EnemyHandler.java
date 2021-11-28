@@ -1,18 +1,19 @@
 package handler;
 
+import view.BombItemEnemyPanel;
 import view.EnemyPanel;
 import view.GameGroundPanel;
 import view.GamePanel;
 import view.InformationPanel;
 import view.SpecialEnemyPanel;
 import view.StopItemEnemyPanel;
+import view.UserCharactorPanel;
 
 import java.awt.Container;
 import java.awt.Font;
 import java.awt.Point;
 import java.util.Collection;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Random;
 
 import javax.swing.JLabel;
@@ -24,7 +25,7 @@ import constant.Icons;
  */
 public final class EnemyHandler {
 	
-	private enum Type { NORMAL, SPECIAL, STOP_ITEM };
+	private enum Type { NORMAL, SPECIAL, STOP_ITEM, BOMB_ITEM };
 	
 	/**
 	 * 새로운 랜덤 단어를 만드는 변수이다.
@@ -71,7 +72,22 @@ public final class EnemyHandler {
 	}
 	
 	/**
-	 * word를 key로 가진 적을 제거한다. 이때 게임 패널에서도 제거된다. 
+	 * word를 key로 가진 적을 제거한다. <strong>여기서 {@link EnemyPanel#isKilled()}함수가 호출된다.</strong> 
+	 * 이때 게임 패널에서도 제거된다. 만약 해당 적이 마지막 적이었다면 다음 단계로 진입한다.
+	 * @param word 적이 가진 단어
+	 * @return 해당 단어를 가지고 있는 적이 없다면 false를 반환한다. 
+	 */
+	public boolean kill(String word) {
+		EnemyPanel enemy = enemyMap.get(word);
+		boolean result = remove(word);
+		if (result) {
+			enemy.isKilled();
+		}
+		return result; 
+	}
+	
+	/**
+	 * word를 key로 가진 적을 삭제한다. 이때 게임 패널에서도 제거된다. 
 	 * 만약 해당 적이 마지막 적이었다면 다음 단계로 진입한다.
 	 * @param word 적이 가진 단어
 	 * @return 해당 단어를 가지고 있는 적이 없다면 false를 반환한다. 
@@ -82,15 +98,36 @@ public final class EnemyHandler {
 
 			EnemyPanel enemyPanel = enemyMap.get(word);
 			enemyPanel.removeThisFromParent();
-			
 			enemyMap.remove(word);
 		
-			// 현재 단계를 클리어한 경우 
-			if (generationThread.getRemainCount() == 0 && enemyMap.isEmpty()) {
-				infoPanel.increaseStage();
-			}
+			checkIfStageIsCleared();
 		}
 		return true;
+	}
+	
+	/**
+	 * 무작위로 적을 하나 제거한다. 
+	 */
+	public void removeRandom() {
+		synchronized (enemyMap) {
+			if (enemyMap.isEmpty()) return;
+			Object[] values = enemyMap.values().toArray();
+			
+			EnemyPanel randomEnemy = (EnemyPanel)values[random.nextInt(values.length)];
+			randomEnemy.removeThisFromParent();
+			enemyMap.remove(randomEnemy.getWord());
+			
+			checkIfStageIsCleared();
+		}
+	}
+	
+	/**
+	 * 현제 단계를 클리어 했는지 확인하고 클리어 했다면 다음 단계로 진입한다.
+	 */
+	private void checkIfStageIsCleared() {
+		if (generationThread.getRemainCount() == 0 && enemyMap.isEmpty()) {
+			infoPanel.increaseStage();
+		}
 	}
 	
 	/**
@@ -220,17 +257,21 @@ public final class EnemyHandler {
 				// 화면 밖으로 적 시작 x 위치를 설정한다.
 				x = gameGroundPanel.getWidth();
 			}
+			final UserCharactorPanel userPanel = gameGroundPanel.getUserPanel();
 
 			EnemyPanel newEnemy;
 			switch (type) {
 			case NORMAL:
-				newEnemy = new EnemyPanel(EnemyHandler.this, gameGroundPanel.getUserPanel(), infoPanel);
+				newEnemy = new EnemyPanel(EnemyHandler.this, userPanel, infoPanel);
 				break;
 			case SPECIAL:
-				newEnemy = new SpecialEnemyPanel(EnemyHandler.this, gameGroundPanel.getUserPanel(), infoPanel);
+				newEnemy = new SpecialEnemyPanel(EnemyHandler.this, userPanel, infoPanel);
 				break;
 			case STOP_ITEM:
-				newEnemy = new StopItemEnemyPanel(EnemyHandler.this, gameGroundPanel.getUserPanel(), infoPanel);
+				newEnemy = new StopItemEnemyPanel(EnemyHandler.this, userPanel, infoPanel);
+				break;
+			case BOMB_ITEM:
+				newEnemy = new BombItemEnemyPanel(EnemyHandler.this, userPanel, infoPanel);
 				break;
 			default:
 				assert(false);
@@ -251,7 +292,7 @@ public final class EnemyHandler {
 			isGenerating = true;
 			while (true) {
 				remainCount--;
-				create(Type.SPECIAL);
+				create(Type.BOMB_ITEM);
 				try {
 					sleep(getRandomDelay());
 				} catch (InterruptedException e) { // 인터럽트 발생시 스레드 종료

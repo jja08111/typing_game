@@ -104,6 +104,16 @@ public class EnemyPanel extends CharactorPanel implements Runnable {
 		}
 	}
 	
+	/**
+	 * 플레이어가 단어를 입력하여 이 적 객체가 제거될 때 호출되는 함수이다.
+	 * 정확히 {@link EnemyHandler#kill(String)} 함수에서 호출된다.
+	 * 
+	 * 주로 이 클래스를 상속할 때 이 함수를 오버라이딩하여 구현한다. 
+	 */
+	public void isKilled() {
+		
+	}
+	
 	private void removeThisFromHandler() {
 		handler.remove(this.getWord());
 	}
