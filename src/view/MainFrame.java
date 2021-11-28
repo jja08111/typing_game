@@ -1,6 +1,7 @@
 package view;
 
 import javax.swing.JButton;
+import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -8,6 +9,8 @@ import constant.TextStyle;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -35,11 +38,23 @@ public class MainFrame extends JFrame {
 		setVisible(true);
 	}
 
+	public void changeToIntroPanel() {
+		changeTo(new IntroPanel(this));
+	}
+	
 	public void changeToGamePanel() {
+		changeTo(new GamePanel(this));
+	}
+	
+	public void changeToRecordPanel() {
+		changeTo(new RecordPanel(this));
+	}
+
+	private void changeTo(JComponent comp) {
 		Container c = getContentPane();
 		
 		c.removeAll();
-		c.add(new GamePanel(this));
+		c.add(comp);
 		c.revalidate(); 
 		c.repaint();
 	}
@@ -50,7 +65,7 @@ class IntroPanel extends TitlePanel {
 
 	private JButton startButton = getButton("게임시작");
 	
-	public IntroPanel(MainFrame gameFrame) {
+	public IntroPanel(MainFrame mainFrame) {
 		super("타이핑 게임");
 		
 		JPanel buttonBarPanel = new JPanel();
@@ -66,7 +81,7 @@ class IntroPanel extends TitlePanel {
 		startButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				gameFrame.changeToGamePanel();
+				mainFrame.changeToGamePanel();
 			}
 		});
 		
