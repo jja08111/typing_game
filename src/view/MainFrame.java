@@ -68,7 +68,7 @@ public class MainFrame extends JFrame {
 class IntroPanel extends TitlePanel {
 	
 	public IntroPanel(MainFrame mainFrame) {
-		super("타이핑 게임");
+		super("타이핑 게임", mainFrame, false);
 		
 		JButton wordListButton = getButton("단어목록");
 		JButton recordButton = getButton("기록");
