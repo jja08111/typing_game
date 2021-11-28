@@ -227,9 +227,9 @@ public final class EnemyHandler {
 			case 1:
 				return new EnemyCount(10, 1, 1);
 			case 2:
-				return new EnemyCount(11, 2, 1);
+				return new EnemyCount(11, 2, 2);
 			case 3:
-				return new EnemyCount(12, 4, 2);
+				return new EnemyCount(12, 4, 3);
 			default:
 				assert false;
 			}
