@@ -65,22 +65,31 @@ public class MainFrame extends JFrame {
 	
 }
 
-class IntroPanel extends TitlePanel {
-
-	private JButton startButton = getButton("게임시작");
+class IntroPanel extends DefaultPanel {
 	
 	public IntroPanel(MainFrame mainFrame) {
 		super("타이핑 게임");
+		
+		JButton wordListButton = getButton("단어목록");
+		JButton recordButton = getButton("기록");
+		JButton startButton = getButton("게임시작");
 		
 		JPanel buttonBarPanel = new JPanel();
 		buttonBarPanel.setSize(200, 300);
 		buttonBarPanel.setLocation(400, 360);
 		buttonBarPanel.setLayout(new FlowLayout());
-		buttonBarPanel.add(getButton("단어목록"));
-		buttonBarPanel.add(getButton("기록"));
+		buttonBarPanel.add(wordListButton);
+		buttonBarPanel.add(recordButton);
 		buttonBarPanel.add(startButton);
 		
 		add(buttonBarPanel);
+		
+		recordButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				mainFrame.changeToRecordPanel();
+			}
+		});
 		
 		startButton.addActionListener(new ActionListener() {
 			@Override
