@@ -66,7 +66,7 @@ public class InformationPanel extends JPanel {
 		this.enemyHandler = enemyHandler;
 	}
 	
-	private void init() {
+	public void init() {
 		life = 3;
 		score = 0;
 		stage = 1;

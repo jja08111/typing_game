@@ -4,11 +4,14 @@ import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JSplitPane;
 import javax.swing.JTextField;
 
 import handler.EnemyHandler;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.BorderLayout;
 import java.awt.Container;
 
@@ -24,11 +27,9 @@ public class GameFrame extends JFrame {
 	 */
 	public static final int HEIGHT = 600;
 
-	private final JMenuItem restartItem = new JMenuItem("재시작");
-	
 	private final JMenuItem stopItem = new JMenuItem("게임 취소");
 	
-	private final JMenuItem exitItem = new JMenuItem("종료");
+	private final JMenuItem exitItem = new JMenuItem("메인으로 돌아가기");
 
 	private final TypingField typingField = new TypingField(20);
 	
@@ -77,10 +78,28 @@ public class GameFrame extends JFrame {
 		setJMenuBar(menuBar);
 		
 		JMenu fileMenu = new JMenu("메뉴");
-		fileMenu.add(restartItem);
 		fileMenu.add(stopItem);
 		fileMenu.addSeparator();
 		fileMenu.add(exitItem);
+		
+		stopItem.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new Thread() {
+					@Override
+					public void run() {
+						int result = JOptionPane.showConfirmDialog(null, "게임을 취소하며 진행중인 내용은 저장되지 않습니다.", "확인", JOptionPane.YES_NO_OPTION);
+						if (result == JOptionPane.YES_OPTION) {
+							enemyHandler.stopGenThread();
+							enemyHandler.clear();
+							informationPanel.init();
+							typingField.changeToReadyMode();
+						}
+					}
+				}.start();
+			}
+		
+		});
 		
 		menuBar.add(fileMenu);
 	}
