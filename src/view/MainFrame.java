@@ -69,6 +69,14 @@ class IntroPanel extends TitlePanel {
 				gameFrame.changeToGamePanel();
 			}
 		});
+		
+		addComponentListener(new ComponentAdapter() {
+			@Override
+			public void componentResized(ComponentEvent e) {
+				startButton.requestFocus();
+				removeComponentListener(this);
+			}
+		});
 	}
 	
 	private JButton getButton(String label) {
