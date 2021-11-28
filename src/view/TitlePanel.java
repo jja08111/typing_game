@@ -18,7 +18,7 @@ import constant.TextStyle;
  */
 public abstract class TitlePanel extends JPanel {
 
-	private static final int BACK_BUTTON_SIZE = 50;
+	private static final int BACK_BUTTON_SIZE = 40;
 	
 	public TitlePanel(String title, MainFrame mainFrame, boolean hasBackButton) {
 		setLayout(null);
