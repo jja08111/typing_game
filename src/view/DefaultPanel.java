@@ -8,9 +8,9 @@ import constant.TextStyle;
 /**
  * 상단 중앙에 제목을 가진 추상 패널이다. 레이아웃은 null로 지정되어 있다.
  */
-public abstract class TitlePanel extends JPanel {
+public abstract class DefaultPanel extends JPanel {
 
-	public TitlePanel(String title) {
+	public DefaultPanel(String title) {
 		setLayout(null);
 		
 		JLabel label = new JLabel(title);
