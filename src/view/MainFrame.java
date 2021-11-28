@@ -59,6 +59,10 @@ public class MainFrame extends JFrame {
 		c.repaint();
 	}
 	
+	public static void main(String[] args) {
+		new MainFrame();
+	}
+	
 }
 
 class IntroPanel extends TitlePanel {
