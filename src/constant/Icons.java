@@ -11,4 +11,6 @@ public final class Icons {
 	
 	public static final ImageIcon userCharactor = new ImageIcon("over.png");
 	
+	public static final ImageIcon back = new ImageIcon("back_ic.png");
+	
 }
