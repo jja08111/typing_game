@@ -16,7 +16,7 @@ import handler.RecordHandler;
 import model.RecordItem;
 
 /**
- * {@link GameFrame} 오른쪽에 위치할 패널이다. 
+ * {@link MainFrame} 오른쪽에 위치할 패널이다. 
  * 
  * 이곳에서 남은 생명, 점수, 현재 단계를 보여준다.
  */
