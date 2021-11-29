@@ -14,6 +14,7 @@ import java.awt.event.ComponentEvent;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Point;
 
 public class MainFrame extends JFrame {
 	
@@ -68,7 +69,7 @@ public class MainFrame extends JFrame {
 class IntroPanel extends TitlePanel {
 	
 	public IntroPanel(MainFrame mainFrame) {
-		super("타이핑 게임", mainFrame, false);
+		super("타이핑 게임", new Point(300, 112), mainFrame, false);
 		
 		JButton wordListButton = getButton("단어목록");
 		JButton recordButton = getButton("기록");

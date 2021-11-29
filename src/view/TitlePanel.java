@@ -3,6 +3,7 @@ package view;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.Image;
+import java.awt.Point;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -18,15 +19,19 @@ import constant.TextStyle;
  */
 public abstract class TitlePanel extends JPanel {
 
-	private static final int BACK_BUTTON_SIZE = 40;
+	private static final int BACK_BUTTON_SIZE = 32;
 	
 	public TitlePanel(String title, MainFrame mainFrame, boolean hasBackButton) {
+		this(title, new Point(300, 16), mainFrame, hasBackButton);
+	}
+	
+	public TitlePanel(String title, Point titleLocation, MainFrame mainFrame, boolean hasBackButton) {
 		setLayout(null);
 		
 		JLabel label = new JLabel(title);
 		label.setHorizontalAlignment(JLabel.CENTER);
 		label.setFont(TextStyle.headline2);
-		label.setLocation(300, 88);
+		label.setLocation(titleLocation);
 		label.setSize(396, 100);
 		add(label);
 		
