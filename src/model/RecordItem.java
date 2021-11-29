@@ -1,5 +1,8 @@
 package model;
 
+import java.util.Comparator;
+import java.util.Vector;
+
 public class RecordItem implements Comparable<RecordItem> {
 	
 	/**
@@ -55,6 +58,18 @@ public class RecordItem implements Comparable<RecordItem> {
 	}
 
 	/**
+	 * 이름, 점수, 단계로 이루어진 1차원 벡터를 반환한다. 
+	 * @return
+	 */
+	public Vector<Object> split() {
+		Vector<Object> result = new Vector<Object>(3);
+		result.add(name);
+		result.add(score);
+		result.add(stage);
+		return result;
+	}
+	
+	/**
 	 * 점수, 단계, 이름 순으로 비교하여 결과를 반환한다. 
 	 * 점수와 단계는 내림차순으로, 이름은 오름차순으로 비교한다.
 	 * @param other 비교할 다른 객체 
@@ -72,4 +87,14 @@ public class RecordItem implements Comparable<RecordItem> {
 		return scoreCompare;
 	}
 	
+	public static Comparator<String> getComparator() {
+		return new Comparator<String>() {
+		    public int compare(String s1, String s2) {
+		        String[] strings1 = s1.split("\\s");
+		        String[] strings2 = s2.split("\\s");
+		        return strings1[strings1.length - 1]
+		            .compareTo(strings2[strings2.length - 1]);
+		    }
+		};
+	}
 }

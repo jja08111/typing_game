@@ -1,11 +1,10 @@
 package handler;
 
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.TreeSet;
+import java.util.Vector;
 
 import model.RecordItem;
 
@@ -55,8 +54,12 @@ public class RecordHandler {
 		}
 	}
 	
-	public TreeSet<RecordItem> readAll() {
-		TreeSet<RecordItem> result = new TreeSet<RecordItem>();
+	/**
+	 * 저장된 모든 기록을 2차원 벡터로 반환한다. 가로 열은 이름, 점수, 단계 순으로 되어있다.
+	 * @return 저장된 2차원 벡터 반환
+	 */
+	public Vector<Vector<Object>> readAll() {
+		Vector<Vector<Object>> result = new Vector<Vector<Object>>();
 		String str = "";
 		int c;
 		try {
@@ -65,7 +68,7 @@ public class RecordHandler {
 				if ((char)c == '\n') {
 					// `\r`을 포함한 앞, 뒤 공백을 제거한 문자열로부터 객체를 얻는다.
 					RecordItem item = RecordItem.parse(str.trim());
-					result.add(item);
+					result.add(item.split());
 					str = "";
 				} else {
 					str += (char)c;
