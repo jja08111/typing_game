@@ -37,37 +37,37 @@ public class Toast extends JDialog {
 		toast.setUndecorated(true);
 		
 		toast.getContentPane().setLayout(new BorderLayout(0, 0));
-
-        JPanel panel = new JPanel();
-        panel.setBackground(Color.GRAY);
-        toast.getContentPane().add(panel, BorderLayout.CENTER);
-
-        JLabel toastLabel = new JLabel("");
-        toastLabel.setText(msg);
-        toastLabel.setFont(TextStyle.bodyText1);
-        toastLabel.setForeground(Color.WHITE);
-
-        toast.setAlwaysOnTop(true);
-        // 토스트 크기를 정한다.
-        toast.setBounds(100, 100, toastLabel.getPreferredSize().width + 20, 32);
-        
-        // 윈도우의 중앙 하단부에 위치시킨다.
-        int y = frame.getY() + frame.getHeight() / 2 - toast.getSize().height / 2;
-        int x = frame.getX() + frame.getWidth() / 2 - toast.getSize().width / 2;
-        toast.setLocation(x, y + y / 2);
-        panel.add(toastLabel);
-        toast.setVisible(true);
-
-        new Thread(){
-            public void run() {
-                try {
-                    Thread.sleep(3000);
-                    toast.dispose();
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
-        }.start();
+		
+		JPanel panel = new JPanel();
+		panel.setBackground(Color.GRAY);
+		toast.getContentPane().add(panel, BorderLayout.CENTER);
+		
+		JLabel toastLabel = new JLabel("");
+		toastLabel.setText(msg);
+		toastLabel.setFont(TextStyle.bodyText1);
+		toastLabel.setForeground(Color.WHITE);
+		
+		toast.setAlwaysOnTop(true);
+		// 토스트 크기를 정한다.
+		toast.setBounds(100, 100, toastLabel.getPreferredSize().width + 20, 32);
+		
+		// 윈도우의 중앙 하단부에 위치시킨다.
+		int y = frame.getY() + frame.getHeight() / 2 - toast.getSize().height / 2;
+		int x = frame.getX() + frame.getWidth() / 2 - toast.getSize().width / 2;
+		toast.setLocation(x, y + y / 2);
+		panel.add(toastLabel);
+		toast.setVisible(true);
+		
+		new Thread(){
+		    public void run() {
+		        try {
+		            Thread.sleep(3000);
+		            toast.dispose();
+		        } catch (InterruptedException e) {
+		            e.printStackTrace();
+		        }
+		    }
+		}.start();
 	}
 	
 	/**
