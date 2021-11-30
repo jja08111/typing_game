@@ -40,21 +40,28 @@ public class MainFrame extends JFrame {
 	}
 
 	/**
-	 * {@link IntroPanel}으로 화면을 변경한다.
+	 * {@link WordEditPanel}로 화면을 변경한다.
+	 */
+	public void changeToWordEditPanel() {
+		changeTo(new WordEditPanel(this));
+	}
+	
+	/**
+	 * {@link IntroPanel}로 화면을 변경한다.
 	 */
 	public void changeToIntroPanel() {
 		changeTo(new IntroPanel(this));
 	}
 	
 	/**
-	 * {@link GamePanel}으로 화면을 변경한다.
+	 * {@link GamePanel}로 화면을 변경한다.
 	 */
 	public void changeToGamePanel() {
 		changeTo(new GamePanel(this));
 	}
 	
 	/**
-	 * {@link RecordPanel}으로 화면을 변경한다.
+	 * {@link RecordPanel}로 화면을 변경한다.
 	 */
 	public void changeToRecordPanel() {
 		changeTo(new RecordPanel(this));
@@ -97,13 +104,18 @@ class IntroPanel extends TitlePanel {
 		
 		add(buttonBarPanel);
 		
+		wordListButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				mainFrame.changeToWordEditPanel();
+			}
+		});
 		recordButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				mainFrame.changeToRecordPanel();
 			}
 		});
-		
 		startButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
