@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.Graphics;
+import java.io.IOException;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -13,6 +14,7 @@ import constant.ColorScheme;
 import constant.TextStyle;
 import handler.EnemyHandler;
 import handler.RecordHandler;
+import handler.Toast;
 import model.RecordItem;
 
 /**
@@ -41,9 +43,7 @@ public class InformationPanel extends JPanel {
 			new CircleCountLabelPanel("단계", ColorScheme.secondary, stage, MAX_STAGE);
 	
 	private EnemyHandler enemyHandler;
-	
-	private final RecordHandler recordHandler = RecordHandler.getInstance();
-	
+
 	private final TypingField typingField;
 	
 	public InformationPanel(TypingField typingField) {
@@ -152,7 +152,12 @@ public class InformationPanel extends JPanel {
 				if (clearedStage < 0) clearedStage = 0;
 				
 				if (name != null) {
-					recordHandler.save(new RecordItem(name, clearedStage, score));
+					try {
+						RecordHandler.save(new RecordItem(name, clearedStage, score));
+					} catch (IOException e) {
+						Toast.show("기록 파일을 수정하려는 도중에 파일 입출력 에러가 발생했습니다. 콘솔 로그를 확인해보세요.", 7000, getComponentPopupMenu());
+						e.printStackTrace();
+					}
 				}
 				
 				init();

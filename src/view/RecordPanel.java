@@ -1,5 +1,6 @@
 package view;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
@@ -13,13 +14,21 @@ import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
 import handler.RecordHandler;
+import handler.Toast;
 
 public class RecordPanel extends TitlePanel {
 
 	public RecordPanel(MainFrame mainFrame) {
 		super(mainFrame, "기록", true);
 
-		Vector<Vector<Object>> records = RecordHandler.getInstance().readAll();
+		Vector<Vector<Object>> records;
+		try {
+			records = RecordHandler.readAll();
+		} catch (IOException e) {
+			Toast.show("기록 파일을 읽는 도중에 파일 입출력 에러가 발생했습니다. 콘솔 로그를 확인해보세요.", 7000, getComponentPopupMenu());
+			e.printStackTrace();
+			return;
+		}
 		
 		DefaultTableModel model = new DefaultTableModel(new String[]{"이름", "점수", "단계"}, 0) {
 			@Override
