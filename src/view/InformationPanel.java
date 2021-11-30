@@ -7,6 +7,7 @@ import java.awt.Graphics;
 import java.io.IOException;
 
 import javax.swing.JLabel;
+import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
@@ -27,6 +28,8 @@ public class InformationPanel extends JPanel {
 	private static final int MAX_LIFE = 3;
 	
 	private static final int MAX_STAGE = 3;
+
+	private final JMenuItem stopItem;
 	
 	private int life;
 	
@@ -46,8 +49,9 @@ public class InformationPanel extends JPanel {
 
 	private final TypingField typingField;
 	
-	public InformationPanel(TypingField typingField) {
+	public InformationPanel(TypingField typingField, JMenuItem stopItem) {
 		this.typingField = typingField;
+		this.stopItem = stopItem;
 		setBackground(Color.white);
 		setLayout(null);
 		
@@ -145,6 +149,7 @@ public class InformationPanel extends JPanel {
 			public void run() {
 				enemyHandler.stopGenThread();
 				enemyHandler.clear();
+				stopItem.setEnabled(false);
 				
 				String name = JOptionPane.showInputDialog(msg);
 				// 실패하여 게임이 끝난 경우 달성한 단계는 이전 단계이다.

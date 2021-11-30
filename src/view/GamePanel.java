@@ -34,7 +34,7 @@ public class GamePanel extends JPanel {
 
 	private final TypingField typingField = new TypingField(20);
 	
-	private final InformationPanel informationPanel = new InformationPanel(typingField);
+	private final InformationPanel informationPanel = new InformationPanel(typingField, stopItem);
 	
 	private final GameGroundPanel groundPanel = new GameGroundPanel();
 	
@@ -91,6 +91,8 @@ public class GamePanel extends JPanel {
 		fileMenu.addSeparator();
 		fileMenu.add(exitItem);
 		
+		// 게임을 시작하지 않은 초기에는 비활성화한다.
+		stopItem.setEnabled(false);
 		stopItem.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -103,6 +105,7 @@ public class GamePanel extends JPanel {
 							enemyHandler.clear();
 							informationPanel.init();
 							typingField.changeToReadyMode();
+							stopItem.setEnabled(false);
 						}
 					}
 				}.start();
@@ -149,9 +152,17 @@ public class GamePanel extends JPanel {
 					if (e.getKeyChar() == ' ') {
 						if (typingField.isReadyMode()) {
 							startGame();
-							// 공백입력을 무시한다.
-							e.consume();
 						}
+						
+						final boolean isReadyMode = typingField.isReadyMode();
+						if (isReadyMode && stopItem.isEnabled()) {
+							stopItem.setEnabled(false);
+						} else if (!isReadyMode && !stopItem.isEnabled()) {
+							stopItem.setEnabled(true);
+						}
+						
+						// 공백입력을 무시한다.
+						e.consume();
 					}
 				}
 			});
@@ -162,14 +173,14 @@ public class GamePanel extends JPanel {
 					String inputWord = t.getText();
 					final boolean isReadyMode = typingField.isReadyMode();
 					
-					// 준비 모드가 아닌 경우 엔터키 입력시 텍스트를 비운다.
+					// 준비 모드가 아닌 경우 즉, 게임이 진행중인 경우 엔터키 입력시 텍스트를 비운다.
 					if (!isReadyMode) {
 						t.setText("");
 					}
 					
 					if (enemyHandler.kill(inputWord)) { // 사용자가 단어 맞추기 성공한 경우 
 						informationPanel.increaseScore();
-					} else {
+					} else { // 해당 단어가 없는 경우 
 						if (!isReadyMode)
 							informationPanel.decreaseScore();
 					}
