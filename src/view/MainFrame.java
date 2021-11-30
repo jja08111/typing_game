@@ -39,21 +39,33 @@ public class MainFrame extends JFrame {
 		setVisible(true);
 	}
 
+	/**
+	 * {@link IntroPanel}으로 화면을 변경한다.
+	 */
 	public void changeToIntroPanel() {
 		changeTo(new IntroPanel(this));
 	}
 	
+	/**
+	 * {@link GamePanel}으로 화면을 변경한다.
+	 */
 	public void changeToGamePanel() {
 		changeTo(new GamePanel(this));
 	}
 	
+	/**
+	 * {@link RecordPanel}으로 화면을 변경한다.
+	 */
 	public void changeToRecordPanel() {
 		changeTo(new RecordPanel(this));
 	}
 
+	/**
+	 * comp로 컨탠트 팬 내용을 변경한다.
+	 * @param comp 변경할 컴포넌트
+	 */
 	private void changeTo(JComponent comp) {
 		Container c = getContentPane();
-		
 		c.removeAll();
 		c.add(comp);
 		c.revalidate(); 
