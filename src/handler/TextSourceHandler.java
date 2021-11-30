@@ -2,6 +2,7 @@ package handler;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Vector;
 
@@ -15,11 +16,9 @@ public class TextSourceHandler {
 	
 	private Vector<String> v = new Vector<String>();
 
-	private FileReader reader;
-	
 	private TextSourceHandler() {
 		try {
-			reader = new FileReader(FILE_NAME);
+			FileReader reader = new FileReader(FILE_NAME);
 			
 			String word = "";
 			int c;
@@ -54,6 +53,36 @@ public class TextSourceHandler {
 		int index = (int)(Math.random() * v.size());
 		
 		return v.get(index);
+	}
+	
+	public Vector<String> getAll() {
+		return v;
+	}
+	
+	/**
+	 * 단어 목록 파일에 새로운 단어를 추가한다.
+	 * @param word 새로 추가할 단어 
+	 * @throws IOException 파일 열기에 실패한 경우 던진다.
+	 * @throws IllegalArgumentException 이미 포함된 단어를 전달한 경우 던진다.
+	 */
+	public void add(String word) throws IOException, IllegalArgumentException {
+		word = word.trim();
+		
+		if (v.contains(word))
+			throw new IllegalArgumentException("이미 포함된 단어입니다.");
+		v.add(word);
+		// append 모드로 파일을 연다.
+		FileWriter writer = new FileWriter(FILE_NAME, true);
+		writer.write(word + "\n");
+		writer.close();
+	}
+	
+	public void remove(String word) throws IOException {
+		FileWriter writer = new FileWriter(FILE_NAME);
+		v.remove(word);
+		for (String w : v) {
+			writer.append(w + "\n");
+		}
 	}
 	
 }
