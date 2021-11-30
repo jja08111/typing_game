@@ -52,7 +52,7 @@ class IntroPanel extends TitlePanel {
 		super(mainFrame, "타이핑 게임", new Point(300, 112), false);
 		mainFrame.setJMenuBar(null);
 		
-		JButton wordListButton = getButton("단어목록");
+		JButton wordEditButton = getButton("단어편집");
 		JButton recordButton = getButton("기록");
 		JButton startButton = getButton("게임시작");
 		
@@ -60,13 +60,13 @@ class IntroPanel extends TitlePanel {
 		buttonBarPanel.setSize(200, 300);
 		buttonBarPanel.setLocation(400, 360);
 		buttonBarPanel.setLayout(new FlowLayout());
-		buttonBarPanel.add(wordListButton);
+		buttonBarPanel.add(wordEditButton);
 		buttonBarPanel.add(recordButton);
 		buttonBarPanel.add(startButton);
 		
 		add(buttonBarPanel);
 		
-		wordListButton.addActionListener(new ActionListener() {
+		wordEditButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				Navigator.to(IntroPanel.this, new WordEditPanel(mainFrame));
