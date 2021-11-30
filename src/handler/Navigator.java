@@ -16,10 +16,19 @@ public class Navigator {
 		this.rootFrame = rootFrame;
 	}
 	
+	/**
+	 * {@code component}가 속한 프레임을 가지고 있는 {@link Navigator} 인스턴스를 반환한다.
+	 * @param component 프레임이 속한 컴포넌트 
+	 * @return {@link Navigator} 인스턴스
+	 */
 	public static Navigator of(JComponent component) {
 		return new Navigator((JFrame) SwingUtilities.getWindowAncestor(component));
 	}
 	
+	/**
+	 * {@code component}으로 화면을 전환한다. 
+	 * @param component 전환할 컴포넌트 
+	 */
 	public void to(JComponent component) {
 		if (rootFrame == null) {
 			System.out.println("네비게이터의 rootFrame이 초기화 되지 않았습니다. 컴포넌트가 부모와 연결되기 전에 사용했는지 확인하세요.");
@@ -32,6 +41,11 @@ public class Navigator {
 		c.repaint();
 	}
 	
+	/**
+	 * {@code source}가 속한 프레임에서 {@code target}으로 화면을 전환한다. 
+	 * @param source 프레임이 속한 컴포넌트 
+	 * @param target 전환할 컴포넌트 
+	 */
 	public static void to(JComponent source, JComponent target) {
 		Navigator.of(source).to(target);
 	}
