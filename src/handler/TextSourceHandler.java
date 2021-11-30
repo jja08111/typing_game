@@ -77,6 +77,11 @@ public class TextSourceHandler {
 		writer.close();
 	}
 	
+	/**
+	 * 단어 목록 파일에서 단어를 삭제한다.
+	 * @param word 삭제할 단어 
+	 * @throws IOException 파일 입출력에 실패한 경우 던진다.
+	 */
 	public void remove(String word) throws IOException {
 		FileWriter writer = new FileWriter(FILE_NAME);
 		v.remove(word);
