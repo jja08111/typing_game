@@ -17,12 +17,12 @@ public class Navigator {
 	}
 	
 	/**
-	 * {@code component}가 속한 프레임을 가지고 있는 {@link Navigator} 인스턴스를 반환한다.
-	 * @param component 프레임이 속한 컴포넌트 
+	 * {@code contextComponent}가 속한 프레임을 가지고 있는 {@link Navigator} 인스턴스를 반환한다.
+	 * @param contextComponent 프레임이 속한 컴포넌트 
 	 * @return {@link Navigator} 인스턴스
 	 */
-	public static Navigator of(JComponent component) {
-		return new Navigator((JFrame) SwingUtilities.getWindowAncestor(component));
+	public static Navigator of(JComponent contextComponent) {
+		return new Navigator((JFrame) SwingUtilities.getWindowAncestor(contextComponent));
 	}
 	
 	/**
@@ -42,12 +42,12 @@ public class Navigator {
 	}
 	
 	/**
-	 * {@code source}가 속한 프레임에서 {@code target}으로 화면을 전환한다. 
-	 * @param source 프레임이 속한 컴포넌트 
+	 * {@code contextComponent}가 속한 프레임에서 {@code target}으로 화면을 전환한다. 
+	 * @param contextComponent 프레임이 속한 컴포넌트 
 	 * @param target 전환할 컴포넌트 
 	 */
-	public static void to(JComponent source, JComponent target) {
-		Navigator.of(source).to(target);
+	public static void to(JComponent contextComponent, JComponent target) {
+		Navigator.of(contextComponent).to(target);
 	}
 	
 }
