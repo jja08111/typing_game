@@ -12,6 +12,7 @@ import javax.swing.JPanel;
 
 import constant.Icons;
 import constant.TextStyle;
+import handler.Navigator;
 
 /**
  * 상단 중앙에 제목을 가진 추상 패널이다. 레이아웃은 null로 지정되어 있다. 
@@ -21,11 +22,11 @@ public abstract class TitlePanel extends JPanel {
 
 	private static final int BACK_BUTTON_SIZE = 32;
 	
-	public TitlePanel(String title, MainFrame mainFrame, boolean hasBackButton) {
-		this(title, new Point(300, 16), mainFrame, hasBackButton);
+	public TitlePanel(MainFrame mainFrame, String title, boolean hasBackButton) {
+		this(mainFrame, title, new Point(300, 16), hasBackButton);
 	}
 	
-	public TitlePanel(String title, Point titleLocation, MainFrame mainFrame, boolean hasBackButton) {
+	public TitlePanel(MainFrame mainFrame, String title, Point titleLocation, boolean hasBackButton) {
 		setLayout(null);
 		
 		JLabel label = new JLabel(title);
@@ -41,7 +42,7 @@ public abstract class TitlePanel extends JPanel {
 			backButton.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					mainFrame.changeToIntroPanel();
+					Navigator.to(TitlePanel.this, new IntroPanel(mainFrame));
 				}
 			});
 			backButton.setSize(BACK_BUTTON_SIZE, BACK_BUTTON_SIZE);

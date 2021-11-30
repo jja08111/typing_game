@@ -10,6 +10,7 @@ import java.awt.event.ComponentEvent;
 import java.awt.FlowLayout;
 
 import javax.swing.BorderFactory;
+import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
@@ -17,8 +18,11 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSplitPane;
 import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
+import javax.swing.JFrame;
 
 import handler.EnemyHandler;
+import handler.Navigator;
 
 public class GamePanel extends JPanel {
 	
@@ -38,7 +42,6 @@ public class GamePanel extends JPanel {
 
 	public GamePanel(MainFrame mainFrame) {
 		this.mainFrame = mainFrame;
-		
 		initMainSplitPane();
 		initMenuBar();
 		
@@ -105,11 +108,12 @@ public class GamePanel extends JPanel {
 				}.start();
 			}
 		});
+
 		exitItem.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if (typingField.isReadyMode()) {
-					mainFrame.changeToIntroPanel();
+					Navigator.to(GamePanel.this, new IntroPanel(mainFrame));
 				} else {
 					new Thread() {
 						@Override
@@ -118,7 +122,7 @@ public class GamePanel extends JPanel {
 							if (result == JOptionPane.YES_OPTION) {
 								enemyHandler.stopGenThread();
 								enemyHandler.clear();
-								mainFrame.changeToIntroPanel();
+								Navigator.to(GamePanel.this, new IntroPanel(mainFrame));
 							}
 						}
 					}.start();

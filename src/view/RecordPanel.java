@@ -16,11 +16,8 @@ import handler.RecordHandler;
 
 public class RecordPanel extends TitlePanel {
 
-	private final MainFrame mainFrame;
-	
 	public RecordPanel(MainFrame mainFrame) {
-		super("기록", mainFrame, true);
-		this.mainFrame = mainFrame;
+		super(mainFrame, "기록", true);
 
 		Vector<Vector<Object>> records = RecordHandler.getInstance().readAll();
 		
