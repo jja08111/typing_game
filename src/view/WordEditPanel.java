@@ -164,7 +164,7 @@ public class WordEditPanel extends TitlePanel {
 	}
 	
 	private void showFileIOExceptionToast() {
-		Toast.show("파일 입출력 에러가 발생했습니다. 콘솔 창에서 에러 내용을 확인할 수 있습니다.", WordEditPanel.this);
+		Toast.show("파일 입출력 에러가 발생했습니다. 콘솔 창에서 에러 내용을 확인할 수 있습니다.", 7000, WordEditPanel.this);
 	}
 	
 	private class WordList extends JList<String> {
