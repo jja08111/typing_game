@@ -110,7 +110,7 @@ class IntroPanel extends TitlePanel {
 				mainFrame.changeToGamePanel();
 			}
 		});
-		
+		// 인트로 화면 진입시 시작 버튼에 포커스가 가도록 한다.
 		addComponentListener(new ComponentAdapter() {
 			@Override
 			public void componentResized(ComponentEvent e) {
