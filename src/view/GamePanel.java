@@ -188,8 +188,10 @@ public class GamePanel extends JPanel {
 					if (enemyHandler.kill(inputWord)) { // 사용자가 단어 맞추기 성공한 경우 
 						informationPanel.increaseScore();
 					} else { // 해당 단어가 없는 경우 
-						if (!isReadyMode)
+						if (!isReadyMode) {
 							informationPanel.decreaseScore();
+							SoundController.play(Sounds.WRONG);
+						}
 					}
 				}
 			});

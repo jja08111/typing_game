@@ -37,6 +37,11 @@ public enum Sounds {
 	WARNING,
 	
 	/**
+	 * 잘못된 단어를 입력한 경우 재생할 소리이다.
+	 */
+	WRONG,
+	
+	/**
 	 * 단계를 해결할 때 재생할 소리이다.
 	 */
 	SUCCESS,
