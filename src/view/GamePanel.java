@@ -153,8 +153,9 @@ public class GamePanel extends JPanel {
 				@Override 
 				public void keyTyped(KeyEvent e) {
 					final boolean isReadyMode = typingField.isReadyMode();
+					final char typedChar = e.getKeyChar();
 					
-					if (e.getKeyChar() == ' ') {
+					if (typedChar == ' ') {
 						if (isReadyMode) {
 							startGame();
 						}
@@ -168,7 +169,7 @@ public class GamePanel extends JPanel {
 						// 공백입력을 무시한다.
 						e.consume();
 					}
-					if (!isReadyMode) {
+					if (!isReadyMode && typedChar != ' ' && typedChar != '\n') {
 						SoundController.play(Sounds.TYPING);
 					}
 				}
@@ -180,8 +181,11 @@ public class GamePanel extends JPanel {
 					String inputWord = t.getText();
 					final boolean isReadyMode = typingField.isReadyMode();
 					
-					// 준비 모드가 아닌 경우 즉, 게임이 진행중인 경우 엔터키 입력시 텍스트를 비운다.
+					// 게임이 진행중인 경우
 					if (!isReadyMode) {
+						// 빈 칸일 때 엔터키를 입력한 경우 무시한다.
+						if (typingField.getText().isEmpty()) return;
+						// 텍스트 필드 내용을 비운다.
 						t.setText("");
 					}
 					
