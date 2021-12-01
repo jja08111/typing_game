@@ -15,8 +15,10 @@ import constant.ColorScheme;
 import constant.TextStyle;
 import handler.EnemyHandler;
 import handler.RecordHandler;
+import handler.SoundController;
 import handler.Toast;
 import model.RecordItem;
+import model.Sounds;
 
 /**
  * {@link MainFrame} 오른쪽에 위치할 패널이다. 
@@ -117,6 +119,7 @@ public class InformationPanel extends JPanel {
 	public void increaseStage() {
 		stage += 1;
 		if (stage > MAX_STAGE) {
+			SoundController.play(Sounds.ALL_CLEAR);
 			onGameEnd("축하합니다! " + Integer.toString(score) + "점으로 클리어 했습니다!\n저장할 이름을 입력하세요.", true);
 		} else {
 			stagePanel.updateGageCount(stage);
