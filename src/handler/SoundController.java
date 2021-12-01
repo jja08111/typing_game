@@ -10,6 +10,10 @@ import model.Sounds;
 
 public class SoundController {
 
+	/**
+	 * {@code sound}에 해당하는 소리를 새로운 스레드에서 재생한다.
+	 * @param sound 재생할 소리
+	 */
 	public static void play(Sounds sound) {
 		new Thread() {
 			@Override 
