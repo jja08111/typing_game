@@ -225,7 +225,7 @@ public final class EnemyHandler {
 		public EnemyCount getEnemyCountPer() {
 			switch (infoPanel.getStage()) {
 			case 1:
-				return new EnemyCount(10, 1, 1);
+				return new EnemyCount(1, 10, 1);
 			case 2:
 				return new EnemyCount(11, 2, 2);
 			case 3:

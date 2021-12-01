@@ -4,6 +4,7 @@ import java.awt.Container;
 import java.awt.Font;
 import java.awt.Point;
 
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
 import constant.ColorScheme;
@@ -22,7 +23,7 @@ import view.UserCharactorPanel;
  */
 public class EnemyPanel extends CharactorPanel implements Runnable {
 	
-	protected final JLabel label;
+	protected final JLabel wordLabel;
 	
 	protected final EnemyHandler handler;
 	
@@ -44,27 +45,45 @@ public class EnemyPanel extends CharactorPanel implements Runnable {
 	 * 크기는 결정이 되나 <strong>위치는 결정이 안되었기 때문에 따로 지정해주어야 한다.<strong>
 	 */
 	public EnemyPanel(EnemyHandler handler, UserCharactorPanel userPanel, InformationPanel infoPanel) {
-		super(Icons.NORMAL_ENEMY);
+		this(Icons.NORMAL_ENEMY, handler, userPanel, infoPanel);
+	}
+	
+	/**
+	 * 게임 단계에 맞는 적을 생성한다. 아이콘을 통해 적의 이미지를 지정할 수 있다. 생성시 랜덤 텍스트가 생성된다. <br>
+	 * 크기는 결정이 되나 <strong>위치는 결정이 안되었기 때문에 따로 지정해주어야 한다.<strong>
+	 */
+	public EnemyPanel(ImageIcon icon, EnemyHandler handler, UserCharactorPanel userPanel, InformationPanel infoPanel) {
+		super(icon);
 		this.handler = handler;
 		this.userPanel = userPanel;
 		this.infoPanel = infoPanel;
 		setDelayPerStage();
 		
 		String word = handler.getRandomWord();
-		label = new JLabel(word);
-		label.setForeground(ColorScheme.ON_PRIMARY);
-		label.setBackground(ColorScheme.PRIMARY_VARIANT);
-		label.setSize(getLabelWidth(label.getText()), 32);
-		label.setLocation(0, 0);
-		label.setHorizontalAlignment(JLabel.CENTER);
-		label.setOpaque(true);
+		wordLabel = new JLabel(word);
+		wordLabel.setForeground(ColorScheme.ON_PRIMARY);
+		wordLabel.setBackground(ColorScheme.PRIMARY_VARIANT);
+		wordLabel.setSize(getLabelWidth(wordLabel.getText()), 32);
+		wordLabel.setLocation(0, 0);
+		wordLabel.setHorizontalAlignment(JLabel.CENTER);
+		wordLabel.setOpaque(true);
 		
-		super.setLayout(null);
-		super.setSize(label.getWidth(), label.getHeight() + 20);
+		setLayout(null);
+		final int height = wordLabel.getHeight() + imageLabel.getHeight();
+		// 단어를 보이는 레이블의 너비가 이미지보다 넓은 경우 이미지를 단어가 보이는 레이블 중앙에 둔다.
+		if (wordLabel.getWidth() > imageLabel.getWidth()) {
+			setSize(wordLabel.getWidth(), height);
+			imageLabel.setLocation((wordLabel.getWidth() - imageLabel.getWidth()) / 2, wordLabel.getHeight());
+		} else { // 반대의 경우 단어를 보이는 레이블을 이미지 레이블 중앙에 둔다. 
+			setSize(imageLabel.getWidth(), height);
+			wordLabel.setLocation((imageLabel.getWidth() - wordLabel.getWidth()) / 2, 0);
+		}
 		
-		add(label);
+		
+		
+		add(wordLabel);
 		// 단어를 위쪽에 배치한다.
-		setComponentZOrder(label, 0);
+		setComponentZOrder(wordLabel, 0);
 		
 		thread = new Thread(this);
 		// 디버깅을 위해 스레드 이름을 변경한다.
@@ -85,7 +104,7 @@ public class EnemyPanel extends CharactorPanel implements Runnable {
 	 * 적이 가진 단어를 반환한다.
 	 */
 	public String getWord() {
-		return label.getText();
+		return wordLabel.getText();
 	}
 	
 	public void enableMoving() {

@@ -2,7 +2,10 @@ package view.enemy;
 
 import java.awt.Color;
 
+import javax.swing.ImageIcon;
+
 import constant.ColorScheme;
+import constant.Icons;
 import handler.EnemyHandler;
 import view.InformationPanel;
 import view.UserCharactorPanel;
@@ -13,10 +16,10 @@ import view.UserCharactorPanel;
  */
 public abstract class ItemEnemyPanel extends EnemyPanel {
 
-	public ItemEnemyPanel(EnemyHandler handler, UserCharactorPanel userPanel, InformationPanel infoPanel) {
-		super(handler, userPanel, infoPanel);
-		label.setForeground(Color.white);
-		label.setBackground(ColorScheme.ITEM_ENEMY_BACKGROUND);
+	public ItemEnemyPanel(ImageIcon icon, EnemyHandler handler, UserCharactorPanel userPanel, InformationPanel infoPanel) {
+		super(icon, handler, userPanel, infoPanel);
+		wordLabel.setForeground(Color.white);
+		wordLabel.setBackground(ColorScheme.ITEM_ENEMY_BACKGROUND);
 	}
 
 }

@@ -5,6 +5,7 @@ import java.awt.Container;
 import java.awt.Point;
 
 import constant.ColorScheme;
+import constant.Icons;
 import handler.EnemyHandler;
 import view.InformationPanel;
 import view.UserCharactorPanel;
@@ -30,9 +31,9 @@ public class SpecialEnemyPanel extends EnemyPanel {
 	private boolean giveBirth = true;
 	
 	public SpecialEnemyPanel(EnemyHandler handler, UserCharactorPanel userPanel, InformationPanel infoPanel) {
-		super(handler, userPanel, infoPanel);
-		label.setForeground(ColorScheme.ON_SECONDARY);
-		label.setBackground(ColorScheme.SECONDARY_VARIANT);
+		super(Icons.SPECIAL_ENEMY, handler, userPanel, infoPanel);
+		wordLabel.setForeground(ColorScheme.ON_SECONDARY);
+		wordLabel.setBackground(ColorScheme.SECONDARY_VARIANT);
 	}
 
 	/**

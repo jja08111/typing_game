@@ -1,5 +1,6 @@
 package view.enemy;
 
+import constant.Icons;
 import handler.EnemyHandler;
 import view.InformationPanel;
 import view.UserCharactorPanel;
@@ -12,7 +13,7 @@ public class BombItemEnemyPanel extends ItemEnemyPanel {
 	private static final int COUNT = 3;
 	
 	public BombItemEnemyPanel(EnemyHandler handler, UserCharactorPanel userPanel, InformationPanel infoPanel) {
-		super(handler, userPanel, infoPanel);
+		super(Icons.BOMB_ITEM_ENEMY, handler, userPanel, infoPanel);
 	}
 
 	@Override

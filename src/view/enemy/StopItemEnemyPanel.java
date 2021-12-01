@@ -3,6 +3,7 @@ package view.enemy;
 import java.awt.Color;
 
 import constant.ColorScheme;
+import constant.Icons;
 import handler.EnemyHandler;
 import view.InformationPanel;
 import view.UserCharactorPanel;
@@ -15,9 +16,9 @@ public class StopItemEnemyPanel extends ItemEnemyPanel {
 	private static final int STOP_DURATION_MILLISEC = 3000;
 	
 	public StopItemEnemyPanel(EnemyHandler handler, UserCharactorPanel userPanel, InformationPanel infoPanel) {
-		super(handler, userPanel, infoPanel);
-		label.setForeground(Color.white);
-		label.setBackground(ColorScheme.ITEM_ENEMY_BACKGROUND);
+		super(Icons.STOP_ITEM_ENEMY, handler, userPanel, infoPanel);
+		wordLabel.setForeground(Color.white);
+		wordLabel.setBackground(ColorScheme.ITEM_ENEMY_BACKGROUND);
 	}
 
 	@Override

@@ -5,7 +5,7 @@ import constant.Icons;
 public class UserCharactorPanel extends CharactorPanel {
 
 	public UserCharactorPanel() {
-		super(Icons.USER_CHARACTOR);
+		super(Icons.USER_CHARACTOR, 100, 0);
 		setSize(100, 100);
 	}
 	
