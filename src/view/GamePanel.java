@@ -23,6 +23,8 @@ import javax.swing.JFrame;
 
 import handler.EnemyHandler;
 import handler.Navigator;
+import handler.SoundController;
+import model.Sounds;
 
 public class GamePanel extends JPanel {
 	
@@ -137,6 +139,7 @@ public class GamePanel extends JPanel {
 	}
 	
 	private void startGame() {
+		SoundController.play(Sounds.GAME_START);
 		enemyHandler.startGenThread();
 		typingField.changeToTextFieldMode();
 	}
