@@ -152,12 +152,13 @@ public class GamePanel extends JPanel {
 			typingField.addKeyListener(new KeyAdapter() {
 				@Override 
 				public void keyTyped(KeyEvent e) {
+					final boolean isReadyMode = typingField.isReadyMode();
+					
 					if (e.getKeyChar() == ' ') {
-						if (typingField.isReadyMode()) {
+						if (isReadyMode) {
 							startGame();
 						}
 						
-						final boolean isReadyMode = typingField.isReadyMode();
 						if (isReadyMode && stopItem.isEnabled()) {
 							stopItem.setEnabled(false);
 						} else if (!isReadyMode && !stopItem.isEnabled()) {
@@ -166,6 +167,9 @@ public class GamePanel extends JPanel {
 						
 						// 공백입력을 무시한다.
 						e.consume();
+					}
+					if (!isReadyMode) {
+						SoundController.play(Sounds.TYPING);
 					}
 				}
 			});

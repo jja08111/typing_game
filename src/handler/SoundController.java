@@ -37,6 +37,8 @@ public class SoundController {
 			return new File("assets/sounds/button_click.wav");
 		case GAME_START:
 			return new File("assets/sounds/game_start.wav");
+		case TYPING:
+			return new File("assets/sounds/typing.wav");
 		default:
 			assert (false);
 			break;

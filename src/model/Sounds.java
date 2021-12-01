@@ -9,5 +9,10 @@ public enum Sounds {
 	/**
 	 * 메인 게임을 시작할 때 재생할 소리이다.
 	 */
-	GAME_START
+	GAME_START,
+	
+	/**
+	 * 메인 게임에서 타이핑 할 때마다 재생할 소리이다.
+	 */
+	TYPING,
 };
