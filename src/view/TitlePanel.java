@@ -37,7 +37,7 @@ public abstract class TitlePanel extends JPanel {
 		add(label);
 		
 		if (hasBackButton) {
-			JButton backButton = new JButton(
+			DefaultButton backButton = new DefaultButton(
 					new ImageIcon(Icons.BACK_BUTTON.getImage().getScaledInstance(BACK_BUTTON_SIZE, BACK_BUTTON_SIZE, Image.SCALE_DEFAULT)));
 			backButton.addActionListener(new ActionListener() {
 				@Override

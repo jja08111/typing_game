@@ -36,9 +36,9 @@ public class WordEditPanel extends TitlePanel {
 	
 	private final JPanel buttonPane = new JPanel();
 	
-	private final JButton addButton = new JButton("추가");
+	private final DefaultButton addButton = new DefaultButton("추가");
 	
-	private final JButton removeButton  = new JButton("삭제");
+	private final DefaultButton removeButton  = new DefaultButton("삭제");
 	
 	public WordEditPanel(MainFrame mainFrame) {
 		super(mainFrame, "단어 편집", true);

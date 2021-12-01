@@ -10,9 +10,9 @@ public class EditPanel extends JPanel {
 
 	private JTextField textField = new JTextField(20);
 	
-	private JButton addButton = new JButton("ADD");
+	private DefaultButton addButton = new DefaultButton("ADD");
 	
-	private JButton saveButton = new JButton("SAVE");
+	private DefaultButton saveButton = new DefaultButton("SAVE");
 	
 	public EditPanel() {
 		setBackground(Color.GRAY);

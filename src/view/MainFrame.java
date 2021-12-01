@@ -52,9 +52,9 @@ class IntroPanel extends TitlePanel {
 		super(mainFrame, "타이핑 게임", new Point(300, 112), false);
 		mainFrame.setJMenuBar(null);
 		
-		JButton wordEditButton = getButton("단어편집");
-		JButton recordButton = getButton("기록");
-		JButton startButton = getButton("게임시작");
+		DefaultButton wordEditButton = getButton("단어편집");
+		DefaultButton recordButton = getButton("기록");
+		DefaultButton startButton = getButton("게임시작");
 		
 		JPanel buttonBarPanel = new JPanel();
 		buttonBarPanel.setSize(200, 300);
@@ -94,8 +94,8 @@ class IntroPanel extends TitlePanel {
 		});
 	}
 	
-	private JButton getButton(String label) {
-		JButton result = new JButton(label);
+	private DefaultButton getButton(String label) {
+		DefaultButton result = new DefaultButton(label);
 		result.setFont(TextStyle.BUTTON);
 		result.setPreferredSize(new Dimension(200, 40));
 		return result;
