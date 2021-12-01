@@ -143,8 +143,8 @@ public class EnemyPanel extends CharactorPanel implements Runnable {
 				setLocation(getX() - 1, getY());
 			
 			if (isCollidedWithUser()) {
-				infoPanel.decreaseLife();
 				infoPanel.decreaseScore();
+				infoPanel.decreaseLife();
 				
 				removeThisFromHandler();
 				return;
