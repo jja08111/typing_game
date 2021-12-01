@@ -44,7 +44,7 @@ public class EnemyPanel extends CharactorPanel implements Runnable {
 	 * 크기는 결정이 되나 <strong>위치는 결정이 안되었기 때문에 따로 지정해주어야 한다.<strong>
 	 */
 	public EnemyPanel(EnemyHandler handler, UserCharactorPanel userPanel, InformationPanel infoPanel) {
-		super(Icons.normal);
+		super(Icons.NORMAL_ENEMY);
 		this.handler = handler;
 		this.userPanel = userPanel;
 		this.infoPanel = infoPanel;
