@@ -2,6 +2,8 @@ package view.enemy;
 
 import constant.Icons;
 import handler.EnemyHandler;
+import handler.SoundController;
+import model.Sounds;
 import view.InformationPanel;
 import view.UserCharacterPanel;
 
@@ -17,7 +19,8 @@ public class BombItemEnemyPanel extends ItemEnemyPanel {
 	}
 
 	@Override
-	public void isKilled() {		
+	public void isKilled() {
+		SoundController.play(Sounds.KILL_BOMB_ITEM);
 		for (int i = 0; i < COUNT; ++i) {
 			handler.removeRandomExcept(getWord());
 		}

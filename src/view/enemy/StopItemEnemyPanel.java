@@ -5,6 +5,8 @@ import java.awt.Color;
 import constant.ColorScheme;
 import constant.Icons;
 import handler.EnemyHandler;
+import handler.SoundController;
+import model.Sounds;
 import view.InformationPanel;
 import view.UserCharacterPanel;
 
@@ -23,6 +25,7 @@ public class StopItemEnemyPanel extends ItemEnemyPanel {
 
 	@Override
 	public void isKilled() {
+		SoundController.play(Sounds.KILL_STOP_ITEM);
 		Thread th = new Thread() {
 			@Override
 			public void run() {

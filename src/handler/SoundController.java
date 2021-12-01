@@ -10,6 +10,8 @@ import model.Sounds;
 
 public class SoundController {
 
+	private static final String DIRECTORY = "assets/sounds/";
+	
 	/**
 	 * {@code sound}에 해당하는 소리를 새로운 스레드에서 재생한다.
 	 * @param sound 재생할 소리
@@ -34,11 +36,19 @@ public class SoundController {
 	private static File getFile(Sounds sound) {
 		switch (sound) {
 		case BUTTON_CLICK:
-			return new File("assets/sounds/button_click.wav");
+			return new File(DIRECTORY + "button_click.wav");
 		case GAME_START:
-			return new File("assets/sounds/game_start.wav");
+			return new File(DIRECTORY + "game_start.wav");
 		case TYPING:
-			return new File("assets/sounds/typing.wav");
+			return new File(DIRECTORY + "typing.wav");
+		case KILL:
+			return new File(DIRECTORY + "kill.wav");
+		case KILL_STOP_ITEM:
+			return new File(DIRECTORY + "kill_stop_item.wav");
+		case KILL_BOMB_ITEM:
+			return new File(DIRECTORY + "kill_bomb_item.wav");
+		case WARNING:
+			return new File(DIRECTORY + "warning.wav");
 		default:
 			assert (false);
 			break;

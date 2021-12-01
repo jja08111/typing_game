@@ -7,6 +7,8 @@ import java.awt.Point;
 import constant.ColorScheme;
 import constant.Icons;
 import handler.EnemyHandler;
+import handler.SoundController;
+import model.Sounds;
 import view.InformationPanel;
 import view.UserCharacterPanel;
 
@@ -30,10 +32,15 @@ public class SpecialEnemyPanel extends EnemyPanel {
 	 */
 	private boolean giveBirth = true;
 	
+	/**
+	 * 죽을 때 3개의 {@link EnemyPanel}을 생성하는 특별한 적을 생성한다.
+	 */
 	public SpecialEnemyPanel(EnemyHandler handler, UserCharacterPanel userPanel, InformationPanel infoPanel) {
 		super(Icons.SPECIAL_ENEMY, handler, userPanel, infoPanel);
 		wordLabel.setForeground(ColorScheme.ON_SECONDARY);
 		wordLabel.setBackground(ColorScheme.SECONDARY_VARIANT);
+		
+		SoundController.play(Sounds.WARNING);
 	}
 
 	/**
@@ -48,6 +55,7 @@ public class SpecialEnemyPanel extends EnemyPanel {
 	 */
 	@Override
 	public void isKilled() {
+		super.isKilled();
 		if (giveBirth) {
 			final Random r = new Random();
 			final int angleDiff = 360 / CHILDREN_COUNT;

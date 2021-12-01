@@ -10,7 +10,9 @@ import javax.swing.JLabel;
 import constant.ColorScheme;
 import constant.Icons;
 import handler.EnemyHandler;
+import handler.SoundController;
 import handler.TextSourceHandler;
+import model.Sounds;
 import view.CharacterPanel;
 import view.InformationPanel;
 import view.UserCharacterPanel;
@@ -133,7 +135,7 @@ public class EnemyPanel extends CharacterPanel implements Runnable {
 	 * 주로 이 클래스를 상속하여 특별한 적을 만들 때 이 함수를 오버라이딩하여 구현한다. 
 	 */
 	public void isKilled() {
-		
+		SoundController.play(Sounds.KILL);
 	}
 	
 	private void removeThisFromHandler() {
