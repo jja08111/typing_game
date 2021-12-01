@@ -81,8 +81,6 @@ public class EnemyPanel extends CharacterPanel implements Runnable {
 			wordLabel.setLocation((imageLabel.getWidth() - wordLabel.getWidth()) / 2, 0);
 		}
 		
-		
-		
 		add(wordLabel);
 		// 단어를 위쪽에 배치한다.
 		setComponentZOrder(wordLabel, 0);
