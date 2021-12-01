@@ -13,7 +13,7 @@ import view.InformationPanel;
 import view.UserCharacterPanel;
 
 /**
- * 죽을 때 {@link EnemyPanel}을 3개 생성하는 적이다.
+ * 죽을 때 {@link EnemyPanel}을 3개 생성하는 적이다. 이 적을 제거하지 못해 충돌하는 경우 곧바로 게임은 종료된다.
  */
 public class SpecialEnemyPanel extends EnemyPanel {
 
