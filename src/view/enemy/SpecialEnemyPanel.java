@@ -31,8 +31,8 @@ public class SpecialEnemyPanel extends EnemyPanel {
 	
 	public SpecialEnemyPanel(EnemyHandler handler, UserCharactorPanel userPanel, InformationPanel infoPanel) {
 		super(handler, userPanel, infoPanel);
-		label.setForeground(ColorScheme.onSecondary);
-		label.setBackground(ColorScheme.secondaryVariant);
+		label.setForeground(ColorScheme.ON_SECONDARY);
+		label.setBackground(ColorScheme.SECONDARY_VARIANT);
 	}
 
 	/**

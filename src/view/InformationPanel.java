@@ -38,12 +38,12 @@ public class InformationPanel extends JPanel {
 	private int stage;
 
 	private final CircleCountLabelPanel lifePanel = 
-			new CircleCountLabelPanel("생명", ColorScheme.primary, life, MAX_LIFE);
+			new CircleCountLabelPanel("생명", ColorScheme.PRIMARY, life, MAX_LIFE);
 	
 	private final ScoreLabelPanel scorePanel = new ScoreLabelPanel("점수", score);
 	
 	private final CircleCountLabelPanel stagePanel = 
-			new CircleCountLabelPanel("단계", ColorScheme.secondary, stage, MAX_STAGE);
+			new CircleCountLabelPanel("단계", ColorScheme.SECONDARY, stage, MAX_STAGE);
 	
 	private EnemyHandler enemyHandler;
 
@@ -293,7 +293,7 @@ class ScoreLabelPanel extends LabelPanel {
 		scoreLabel = new JLabel();
 		scoreLabel.setText(Integer.toString(score));	
 		scoreLabel.setHorizontalAlignment(JLabel.CENTER);
-		scoreLabel.setFont(TextStyle.headline4);
+		scoreLabel.setFont(TextStyle.HEADLINE4);
 		return scoreLabel;
 	}
 	
@@ -317,7 +317,7 @@ abstract class LabelPanel extends JPanel {
 		titleLabel.setHorizontalAlignment(JLabel.CENTER);
 		titleLabel.setForeground(Color.gray);
 		// 폰트 사이즈를 변경한다.
-		titleLabel.setFont(TextStyle.headline6);
+		titleLabel.setFont(TextStyle.HEADLINE6);
 		
 		setLayout(new BorderLayout(0, 12));
 		add(titleLabel, BorderLayout.NORTH);

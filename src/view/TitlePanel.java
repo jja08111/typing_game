@@ -31,14 +31,14 @@ public abstract class TitlePanel extends JPanel {
 		
 		JLabel label = new JLabel(title);
 		label.setHorizontalAlignment(JLabel.CENTER);
-		label.setFont(TextStyle.headline2);
+		label.setFont(TextStyle.HEADLINE2);
 		label.setLocation(titleLocation);
 		label.setSize(396, 100);
 		add(label);
 		
 		if (hasBackButton) {
 			JButton backButton = new JButton(
-					new ImageIcon(Icons.back.getImage().getScaledInstance(BACK_BUTTON_SIZE, BACK_BUTTON_SIZE, Image.SCALE_DEFAULT)));
+					new ImageIcon(Icons.BACK_BUTTON.getImage().getScaledInstance(BACK_BUTTON_SIZE, BACK_BUTTON_SIZE, Image.SCALE_DEFAULT)));
 			backButton.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {

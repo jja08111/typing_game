@@ -44,7 +44,7 @@ public class Toast extends JDialog {
 		
 		JLabel toastLabel = new JLabel("");
 		toastLabel.setText(msg);
-		toastLabel.setFont(TextStyle.bodyText1);
+		toastLabel.setFont(TextStyle.BODY_TEXT1);
 		toastLabel.setForeground(Color.WHITE);
 		
 		toast.setAlwaysOnTop(true);

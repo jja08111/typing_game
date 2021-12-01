@@ -17,7 +17,7 @@ public class StopItemEnemyPanel extends ItemEnemyPanel {
 	public StopItemEnemyPanel(EnemyHandler handler, UserCharactorPanel userPanel, InformationPanel infoPanel) {
 		super(handler, userPanel, infoPanel);
 		label.setForeground(Color.white);
-		label.setBackground(ColorScheme.itemEnemyBackground);
+		label.setBackground(ColorScheme.ITEM_ENEMY_BACKGROUND);
 	}
 
 	@Override

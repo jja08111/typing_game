@@ -16,7 +16,7 @@ public abstract class ItemEnemyPanel extends EnemyPanel {
 	public ItemEnemyPanel(EnemyHandler handler, UserCharactorPanel userPanel, InformationPanel infoPanel) {
 		super(handler, userPanel, infoPanel);
 		label.setForeground(Color.white);
-		label.setBackground(ColorScheme.itemEnemyBackground);
+		label.setBackground(ColorScheme.ITEM_ENEMY_BACKGROUND);
 	}
 
 }

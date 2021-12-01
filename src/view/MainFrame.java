@@ -96,7 +96,7 @@ class IntroPanel extends TitlePanel {
 	
 	private JButton getButton(String label) {
 		JButton result = new JButton(label);
-		result.setFont(TextStyle.button);
+		result.setFont(TextStyle.BUTTON);
 		result.setPreferredSize(new Dimension(200, 40));
 		return result;
 	}

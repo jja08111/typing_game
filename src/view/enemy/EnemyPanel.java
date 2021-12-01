@@ -52,8 +52,8 @@ public class EnemyPanel extends CharactorPanel implements Runnable {
 		
 		String word = handler.getRandomWord();
 		label = new JLabel(word);
-		label.setForeground(ColorScheme.onPrimary);
-		label.setBackground(ColorScheme.primaryVariant);
+		label.setForeground(ColorScheme.ON_PRIMARY);
+		label.setBackground(ColorScheme.PRIMARY_VARIANT);
 		label.setSize(getLabelWidth(label.getText()), 32);
 		label.setLocation(0, 0);
 		label.setHorizontalAlignment(JLabel.CENTER);
