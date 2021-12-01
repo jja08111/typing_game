@@ -150,6 +150,7 @@ public class EnemyPanel extends CharacterPanel implements Runnable {
 	 * 플레이어가 이 적을 제거하지 못해 플레이어와 충돌한 경우 호출 되는 함수이다.
 	 */
 	protected void onCollidedWithUser() {
+		SoundController.play(Sounds.COLLIDE);
 		infoPanel.decreaseScore();
 		infoPanel.decreaseLife();
 		

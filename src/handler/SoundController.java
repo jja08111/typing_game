@@ -47,6 +47,8 @@ public class SoundController {
 			return new File(DIRECTORY + "kill_stop_item.wav");
 		case KILL_BOMB_ITEM:
 			return new File(DIRECTORY + "kill_bomb_item.wav");
+		case COLLIDE:
+			return new File(DIRECTORY + "collide.wav");
 		case WARNING:
 			return new File(DIRECTORY + "warning.wav");
 		case WRONG:

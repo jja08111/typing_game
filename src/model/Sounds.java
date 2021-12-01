@@ -32,6 +32,11 @@ public enum Sounds {
 	KILL_BOMB_ITEM,
 	
 	/**
+	 * 플레이어와 적이 충돌하여 생명이 줄어들 때 나는 소리이다.
+	 */
+	COLLIDE,
+	
+	/**
 	 * {@link SpecialEnemy}가 생성되었을 때 재생할 소리이다.
 	 */
 	WARNING,
