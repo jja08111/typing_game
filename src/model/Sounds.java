@@ -37,6 +37,11 @@ public enum Sounds {
 	WARNING,
 	
 	/**
+	 * 단계를 해결할 때 재생할 소리이다.
+	 */
+	SUCCESS,
+	
+	/**
 	 * 모든 단계를 해결한 경우 재생하는 소리이다.
 	 */
 	ALL_CLEAR,

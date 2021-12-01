@@ -122,6 +122,7 @@ public class InformationPanel extends JPanel {
 			SoundController.play(Sounds.ALL_CLEAR);
 			onGameEnd("축하합니다! " + Integer.toString(score) + "점으로 클리어 했습니다!\n저장할 이름을 입력하세요.", true);
 		} else {
+			SoundController.play(Sounds.SUCCESS);
 			stagePanel.updateGageCount(stage);
 			new Thread() {
 				@Override
