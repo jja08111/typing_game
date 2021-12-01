@@ -17,7 +17,7 @@ public class TypingField extends JTextField {
 	
 	public TypingField(int columns) {
 		super(columns);
-		setFont(TextStyle.headline5);
+		setFont(TextStyle.HEADLINE5);
 		setBorder(new LineBorder(ColorScheme.PRIMARY, 3));
 		changeToReadyMode();
 	}
