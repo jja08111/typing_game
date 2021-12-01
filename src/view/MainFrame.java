@@ -1,10 +1,13 @@
 package view;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import constant.Icons;
 import constant.TextStyle;
 import handler.Navigator;
 
@@ -15,6 +18,7 @@ import java.awt.event.ComponentEvent;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Image;
 import java.awt.Point;
 
 public class MainFrame extends JFrame {
@@ -51,6 +55,8 @@ class IntroPanel extends TitlePanel {
 	public IntroPanel(MainFrame mainFrame) {
 		super(mainFrame, "타이핑 게임", new Point(300, 112), false);
 		mainFrame.setJMenuBar(null);
+		
+		initIcons();
 		
 		DefaultButton wordEditButton = getButton("단어편집");
 		DefaultButton recordButton = getButton("기록");
@@ -92,6 +98,26 @@ class IntroPanel extends TitlePanel {
 				removeComponentListener(this);
 			}
 		});
+	}
+	
+	private void initIcons() {
+		addImageLabel(Icons.USER_CHARACTER, "플레이어", 120, 190);
+		
+		addImageLabel(Icons.NORMAL_ENEMY, "적", 800, 150);
+		addImageLabel(Icons.SPECIAL_ENEMY, "특별한 적, 이 적을 제거 못하면 바로 게임오버. 죽을 때 적 3개를 만든다.", 730, 190);
+		addImageLabel(Icons.STOP_ITEM_ENEMY, "정지 아이템 적, 이 적을 제거시 모든 적이 3초간 멈춘다.", 850, 220);
+		addImageLabel(Icons.BOMB_ITEM_ENEMY, "폭탄 아이템 적, 이 적을 제거시 3개의 적이 같이 제거된다.", 770, 240);
+	}
+	
+	private void addImageLabel(ImageIcon icon, String tooltip, int x, int y) {
+		JLabel imageLabel = new JLabel();
+		imageLabel.setIcon(new ImageIcon(icon.getImage().getScaledInstance(90, 100, Image.SCALE_DEFAULT)));
+		imageLabel.setLocation(x, y);
+		imageLabel.setSize(120, 120);
+		imageLabel.setToolTipText(tooltip);
+		add(imageLabel);
+		// 나중에 추가된 레이블이 가장 위로 올라오도록 한다.
+		setComponentZOrder(imageLabel, 0);
 	}
 	
 	private DefaultButton getButton(String label) {
