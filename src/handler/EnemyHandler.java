@@ -2,7 +2,7 @@ package handler;
 
 import view.GameGroundPanel;
 import view.InformationPanel;
-import view.UserCharactorPanel;
+import view.UserCharacterPanel;
 import view.enemy.BombItemEnemyPanel;
 import view.enemy.EnemyPanel;
 import view.enemy.SpecialEnemyPanel;
@@ -266,7 +266,7 @@ public final class EnemyHandler {
 				// 화면 밖으로 적 시작 x 위치를 설정한다.
 				x = gameGroundPanel.getWidth();
 			}
-			final UserCharactorPanel userPanel = gameGroundPanel.getUserPanel();
+			final UserCharacterPanel userPanel = gameGroundPanel.getUserPanel();
 
 			EnemyPanel newEnemy;
 			switch (type) {

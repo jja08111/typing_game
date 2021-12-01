@@ -3,7 +3,7 @@ package view.enemy;
 import constant.Icons;
 import handler.EnemyHandler;
 import view.InformationPanel;
-import view.UserCharactorPanel;
+import view.UserCharacterPanel;
 
 public class BombItemEnemyPanel extends ItemEnemyPanel {
 
@@ -12,7 +12,7 @@ public class BombItemEnemyPanel extends ItemEnemyPanel {
 	 */
 	private static final int COUNT = 3;
 	
-	public BombItemEnemyPanel(EnemyHandler handler, UserCharactorPanel userPanel, InformationPanel infoPanel) {
+	public BombItemEnemyPanel(EnemyHandler handler, UserCharacterPanel userPanel, InformationPanel infoPanel) {
 		super(Icons.BOMB_ITEM_ENEMY, handler, userPanel, infoPanel);
 	}
 

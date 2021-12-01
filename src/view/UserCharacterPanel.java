@@ -2,10 +2,10 @@ package view;
 
 import constant.Icons;
 
-public class UserCharactorPanel extends CharactorPanel {
+public class UserCharacterPanel extends CharacterPanel {
 
-	public UserCharactorPanel() {
-		super(Icons.USER_CHARACTOR, 100, 0);
+	public UserCharacterPanel() {
+		super(Icons.USER_CHARACTER, 100, 0);
 		setSize(100, 100);
 	}
 	

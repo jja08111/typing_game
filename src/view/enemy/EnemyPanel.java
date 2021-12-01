@@ -11,9 +11,9 @@ import constant.ColorScheme;
 import constant.Icons;
 import handler.EnemyHandler;
 import handler.TextSourceHandler;
-import view.CharactorPanel;
+import view.CharacterPanel;
 import view.InformationPanel;
-import view.UserCharactorPanel;
+import view.UserCharacterPanel;
 
 /**
  * 적을 표현하는 패널이다. 
@@ -21,7 +21,7 @@ import view.UserCharactorPanel;
  * 적마다 각자의 쓰레드를 통해 움직인다. 단어를 가지고 있으며 {@link EnemyHandler}를 통해 
  * 생성, 삭제된다.
  */
-public class EnemyPanel extends CharactorPanel implements Runnable {
+public class EnemyPanel extends CharacterPanel implements Runnable {
 	
 	protected final JLabel wordLabel;
 	
@@ -29,7 +29,7 @@ public class EnemyPanel extends CharactorPanel implements Runnable {
 	
 	private final Thread thread;
 	
-	private final UserCharactorPanel userPanel;
+	private final UserCharacterPanel userPanel;
 	
 	private final InformationPanel infoPanel;
 	
@@ -44,7 +44,7 @@ public class EnemyPanel extends CharactorPanel implements Runnable {
 	 * 게임 단계에 맞는 적을 생성한다. 생성시 랜덤 텍스트가 생성된다. <br>
 	 * 크기는 결정이 되나 <strong>위치는 결정이 안되었기 때문에 따로 지정해주어야 한다.<strong>
 	 */
-	public EnemyPanel(EnemyHandler handler, UserCharactorPanel userPanel, InformationPanel infoPanel) {
+	public EnemyPanel(EnemyHandler handler, UserCharacterPanel userPanel, InformationPanel infoPanel) {
 		this(Icons.NORMAL_ENEMY, handler, userPanel, infoPanel);
 	}
 	
@@ -52,7 +52,7 @@ public class EnemyPanel extends CharactorPanel implements Runnable {
 	 * 게임 단계에 맞는 적을 생성한다. 아이콘을 통해 적의 이미지를 지정할 수 있다. 생성시 랜덤 텍스트가 생성된다. <br>
 	 * 크기는 결정이 되나 <strong>위치는 결정이 안되었기 때문에 따로 지정해주어야 한다.<strong>
 	 */
-	public EnemyPanel(ImageIcon icon, EnemyHandler handler, UserCharactorPanel userPanel, InformationPanel infoPanel) {
+	public EnemyPanel(ImageIcon icon, EnemyHandler handler, UserCharacterPanel userPanel, InformationPanel infoPanel) {
 		super(icon);
 		this.handler = handler;
 		this.userPanel = userPanel;

@@ -6,12 +6,12 @@ import javax.swing.JPanel;
 import view.enemy.EnemyPanel;
 
 /**
- * {@link UserCharactorPanel}과 {@link EnemyHandler}를 통해 
+ * {@link UserCharacterPanel}과 {@link EnemyHandler}를 통해 
  * 생성된 {@link EnemyPanel}들이 있다.  
  */
 public class GameGroundPanel extends JPanel {
 
-	private final UserCharactorPanel userPanel = new UserCharactorPanel();
+	private final UserCharacterPanel userPanel = new UserCharacterPanel();
 	
 	public GameGroundPanel() {
 		setLayout(null);
@@ -20,7 +20,7 @@ public class GameGroundPanel extends JPanel {
 		userPanel.setLocation(0, 180);
 	}
 	
-	public UserCharactorPanel getUserPanel() {
+	public UserCharacterPanel getUserPanel() {
 		return userPanel;
 	}
 	

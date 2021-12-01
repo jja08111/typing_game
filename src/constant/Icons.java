@@ -11,7 +11,7 @@ public final class Icons {
 
 	public static final ImageIcon BOMB_ITEM_ENEMY = new ImageIcon("assets/images/bomb_item_enemy.png");
 	
-	public static final ImageIcon USER_CHARACTOR = new ImageIcon("assets/images/user_charactor.png");
+	public static final ImageIcon USER_CHARACTER = new ImageIcon("assets/images/user_charactor.png");
 	
 	public static final ImageIcon BACK_BUTTON = new ImageIcon("assets/images/back_ic.png");
 	

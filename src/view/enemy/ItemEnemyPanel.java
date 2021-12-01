@@ -8,7 +8,7 @@ import constant.ColorScheme;
 import constant.Icons;
 import handler.EnemyHandler;
 import view.InformationPanel;
-import view.UserCharactorPanel;
+import view.UserCharacterPanel;
 
 /**
  * 죽는 경우 플레이어에게 좋은 현상을 제공하는 추상 객체이다.
@@ -16,7 +16,7 @@ import view.UserCharactorPanel;
  */
 public abstract class ItemEnemyPanel extends EnemyPanel {
 
-	public ItemEnemyPanel(ImageIcon icon, EnemyHandler handler, UserCharactorPanel userPanel, InformationPanel infoPanel) {
+	public ItemEnemyPanel(ImageIcon icon, EnemyHandler handler, UserCharacterPanel userPanel, InformationPanel infoPanel) {
 		super(icon, handler, userPanel, infoPanel);
 		wordLabel.setForeground(Color.white);
 		wordLabel.setBackground(ColorScheme.ITEM_ENEMY_BACKGROUND);

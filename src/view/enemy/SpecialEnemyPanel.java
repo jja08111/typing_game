@@ -8,7 +8,7 @@ import constant.ColorScheme;
 import constant.Icons;
 import handler.EnemyHandler;
 import view.InformationPanel;
-import view.UserCharactorPanel;
+import view.UserCharacterPanel;
 
 /**
  * 죽을 때 {@link EnemyPanel}을 3개 생성하는 적이다.
@@ -30,7 +30,7 @@ public class SpecialEnemyPanel extends EnemyPanel {
 	 */
 	private boolean giveBirth = true;
 	
-	public SpecialEnemyPanel(EnemyHandler handler, UserCharactorPanel userPanel, InformationPanel infoPanel) {
+	public SpecialEnemyPanel(EnemyHandler handler, UserCharacterPanel userPanel, InformationPanel infoPanel) {
 		super(Icons.SPECIAL_ENEMY, handler, userPanel, infoPanel);
 		wordLabel.setForeground(ColorScheme.ON_SECONDARY);
 		wordLabel.setBackground(ColorScheme.SECONDARY_VARIANT);
