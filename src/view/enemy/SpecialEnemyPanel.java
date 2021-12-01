@@ -73,7 +73,7 @@ public class SpecialEnemyPanel extends EnemyPanel {
 	}
 	
 	/**
-	 * 원의 방정식을 이용하여 해당 각도에 있는 좌표를 구한다.
+	 * 반지름이 {@code RADIUS}인 원의 방정식을 이용하여 해당 각도에 있는 좌표를 구한다.
 	 * @param angle 각도
 	 * @return 방정식에 값을 넣은 결과 
 	 */
