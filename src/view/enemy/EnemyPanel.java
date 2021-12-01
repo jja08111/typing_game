@@ -33,7 +33,7 @@ public class EnemyPanel extends CharacterPanel implements Runnable {
 	
 	private final UserCharacterPanel userPanel;
 	
-	private final InformationPanel infoPanel;
+	protected final InformationPanel infoPanel;
 	
 	/**
 	 * 적의 움직임 속도를 결정하는 밀리초 단위 딜레이이다.
@@ -146,6 +146,16 @@ public class EnemyPanel extends CharacterPanel implements Runnable {
 		return string.length() * 8 + 10;
 	}
 	
+	/**
+	 * 플레이어가 이 적을 제거하지 못해 플레이어와 충돌한 경우 호출 되는 함수이다.
+	 */
+	protected void onCollidedWithUser() {
+		infoPanel.decreaseScore();
+		infoPanel.decreaseLife();
+		
+		removeThisFromHandler();
+	}
+	
 	@Override 
 	public void run() {
 		while(true) {
@@ -164,10 +174,7 @@ public class EnemyPanel extends CharacterPanel implements Runnable {
 				setLocation(getX() - 1, getY());
 			
 			if (isCollidedWithUser()) {
-				infoPanel.decreaseScore();
-				infoPanel.decreaseLife();
-				
-				removeThisFromHandler();
+				onCollidedWithUser();
 				return;
 			}
 			

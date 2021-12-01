@@ -82,6 +82,17 @@ public class SpecialEnemyPanel extends EnemyPanel {
 	}
 	
 	/**
+	 * 특별한 적은 플레이어와 충돌한 경우 게임이 종료된다.
+	 */
+	@Override
+	protected void onCollidedWithUser() {
+		super.onCollidedWithUser();
+		if (infoPanel.getLife() > 0) {
+			infoPanel.decreaseLifeToZero();
+		}
+	}
+	
+	/**
 	 * 반지름이 {@code RADIUS}인 원의 방정식을 이용하여 해당 각도에 있는 좌표를 구한다.
 	 * @param angle 각도
 	 * @return 방정식에 값을 넣은 결과 

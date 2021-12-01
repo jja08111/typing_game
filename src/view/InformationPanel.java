@@ -82,6 +82,10 @@ public class InformationPanel extends JPanel {
 		stagePanel.updateGageCount(stage);
 	}
 	
+	public int getLife() {
+		return life;
+	}
+	
 	/**
 	 * 생명을 하나 감소한다.
 	 */
@@ -92,6 +96,16 @@ public class InformationPanel extends JPanel {
 		if (life <= 0) {
 			onGameEnd(Integer.toString(score) + "점으로 게임 오버!\n저장할 이름을 입력하세요.", false);
 		}
+	}
+	
+	/**
+	 * 생명을 모두 감소하고 게임은 오버된다.
+	 */
+	public void decreaseLifeToZero() {
+		life = 0;
+		lifePanel.updateGageCount(life);
+		
+		onGameEnd(Integer.toString(score) + "점으로 게임 오버!\n저장할 이름을 입력하세요.", false);
 	}
 	
 	/**
