@@ -21,6 +21,8 @@ import constant.TextStyle;
 import handler.RecordHandler;
 import handler.Toast;
 import model.RecordItem;
+import view.component.CharacterPanel;
+import view.component.TitlePanel;
 
 public class RecordPanel extends TitlePanel {
 

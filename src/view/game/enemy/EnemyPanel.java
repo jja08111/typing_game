@@ -1,4 +1,4 @@
-package view.enemy;
+package view.game.enemy;
 
 import java.awt.Container;
 import java.awt.Font;
@@ -13,9 +13,9 @@ import handler.EnemyHandler;
 import handler.SoundController;
 import handler.TextSourceHandler;
 import model.Sounds;
-import view.CharacterPanel;
-import view.InformationPanel;
-import view.UserCharacterPanel;
+import view.component.CharacterPanel;
+import view.game.InformationPanel;
+import view.game.UserCharacterPanel;
 
 /**
  * 적을 표현하는 패널이다. 

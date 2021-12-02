@@ -1,9 +1,9 @@
-package view;
+package view.game;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import view.enemy.EnemyPanel;
+import view.game.enemy.EnemyPanel;
 
 /**
  * {@link UserCharacterPanel}과 {@link EnemyHandler}를 통해 

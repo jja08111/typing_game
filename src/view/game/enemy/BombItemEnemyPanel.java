@@ -1,11 +1,11 @@
-package view.enemy;
+package view.game.enemy;
 
 import constant.Icons;
 import handler.EnemyHandler;
 import handler.SoundController;
 import model.Sounds;
-import view.InformationPanel;
-import view.UserCharacterPanel;
+import view.game.InformationPanel;
+import view.game.UserCharacterPanel;
 
 public class BombItemEnemyPanel extends ItemEnemyPanel {
 

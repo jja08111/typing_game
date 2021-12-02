@@ -1,4 +1,4 @@
-package view.enemy;
+package view.game.enemy;
 
 import java.util.Random;
 import java.awt.Container;
@@ -9,8 +9,8 @@ import constant.Icons;
 import handler.EnemyHandler;
 import handler.SoundController;
 import model.Sounds;
-import view.InformationPanel;
-import view.UserCharacterPanel;
+import view.game.InformationPanel;
+import view.game.UserCharacterPanel;
 
 /**
  * 죽을 때 {@link EnemyPanel}을 3개 생성하는 적이다. 이 적을 제거하지 못해 충돌하는 경우 곧바로 게임은 종료된다.

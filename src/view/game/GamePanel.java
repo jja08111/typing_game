@@ -1,4 +1,4 @@
-package view;
+package view.game;
 
 import java.awt.BorderLayout;
 import java.awt.event.ActionListener;
@@ -25,6 +25,8 @@ import handler.EnemyHandler;
 import handler.Navigator;
 import handler.SoundController;
 import model.Sounds;
+import view.IntroPanel;
+import view.MainFrame;
 
 public class GamePanel extends JPanel {
 	

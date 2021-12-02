@@ -1,4 +1,4 @@
-package view;
+package view.game;
 
 import java.awt.Container;
 import java.awt.event.KeyAdapter;
@@ -11,6 +11,7 @@ import constant.ColorScheme;
 import constant.TextStyle;
 import handler.SoundController;
 import model.Sounds;
+import view.WordEditPanel;
 
 /**
  * 텍스트 필드 모드와, 텍스트 편집이 불가능한 상태인 대기모드로 전환이 되는 객체이다. <br>

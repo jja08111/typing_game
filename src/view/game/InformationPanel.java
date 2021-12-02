@@ -1,4 +1,4 @@
-package view;
+package view.game;
 
 import java.awt.Color;
 import java.awt.BorderLayout;
@@ -19,6 +19,7 @@ import handler.SoundController;
 import handler.Toast;
 import model.RecordItem;
 import model.Sounds;
+import view.MainFrame;
 
 /**
  * {@link MainFrame} 오른쪽에 위치할 패널이다. 

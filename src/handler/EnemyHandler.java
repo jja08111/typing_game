@@ -1,12 +1,12 @@
 package handler;
 
-import view.GameGroundPanel;
-import view.InformationPanel;
-import view.UserCharacterPanel;
-import view.enemy.BombItemEnemyPanel;
-import view.enemy.EnemyPanel;
-import view.enemy.SpecialEnemyPanel;
-import view.enemy.StopItemEnemyPanel;
+import view.game.GameGroundPanel;
+import view.game.InformationPanel;
+import view.game.UserCharacterPanel;
+import view.game.enemy.BombItemEnemyPanel;
+import view.game.enemy.EnemyPanel;
+import view.game.enemy.SpecialEnemyPanel;
+import view.game.enemy.StopItemEnemyPanel;
 
 import java.util.HashMap;
 import java.util.Random;

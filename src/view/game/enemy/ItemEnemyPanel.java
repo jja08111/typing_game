@@ -1,4 +1,4 @@
-package view.enemy;
+package view.game.enemy;
 
 import java.awt.Color;
 
@@ -7,8 +7,8 @@ import javax.swing.ImageIcon;
 import constant.ColorScheme;
 import constant.Icons;
 import handler.EnemyHandler;
-import view.InformationPanel;
-import view.UserCharacterPanel;
+import view.game.InformationPanel;
+import view.game.UserCharacterPanel;
 
 /**
  * 죽는 경우 플레이어에게 좋은 현상을 제공하는 추상 객체이다.

@@ -25,6 +25,8 @@ import javax.swing.event.ListSelectionListener;
 
 import handler.TextSourceHandler;
 import handler.Toast;
+import view.component.DefaultButton;
+import view.component.TitlePanel;
 
 public class WordEditPanel extends TitlePanel {
 	

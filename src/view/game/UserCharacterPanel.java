@@ -1,6 +1,7 @@
-package view;
+package view.game;
 
 import constant.Icons;
+import view.component.CharacterPanel;
 
 public class UserCharacterPanel extends CharacterPanel {
 
