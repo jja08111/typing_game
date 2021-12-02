@@ -32,11 +32,12 @@ public class CharacterPanel extends JPanel {
 	public CharacterPanel(ImageIcon imageIcon, int size, int topPadding) {
 		this(imageIcon, size, size, topPadding);
 	}
-
+	
 	/**
 	 * 아이콘으로 보이는 캐릭터 패널을 생성한다.
 	 * @param imageIcon 캐릭터의 아이콘 
-	 * @param size 이미지의 너비와 높이 
+	 * @param width 이미지의 너비
+	 * @param height 이미지의 높이 
 	 * @param topPadding 상단부의 여백 크기
 	 */
 	public CharacterPanel(ImageIcon imageIcon, int width, int height, int topPadding) {
