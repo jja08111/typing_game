@@ -40,12 +40,12 @@ public class InformationPanel extends JPanel {
 	private int stage;
 
 	private final CircleCountLabelPanel lifePanel = 
-			new CircleCountLabelPanel("생명", ColorScheme.PRIMARY, life, MAX_LIFE);
+			new CircleCountLabelPanel("생명", ColorScheme.SECONDARY, life, MAX_LIFE);
 	
 	private final ScoreLabelPanel scorePanel = new ScoreLabelPanel("점수", score);
 	
 	private final CircleCountLabelPanel stagePanel = 
-			new CircleCountLabelPanel("단계", ColorScheme.SECONDARY, stage, MAX_STAGE);
+			new CircleCountLabelPanel("단계", ColorScheme.PRIMARY, stage, MAX_STAGE);
 	
 	private EnemyHandler enemyHandler;
 
