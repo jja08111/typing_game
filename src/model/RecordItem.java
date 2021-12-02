@@ -32,6 +32,10 @@ public class RecordItem implements Comparable<RecordItem> {
 		this.score = score;
 	}
 	
+	public String getName() {
+		return name;
+	}
+	
 	@Override
 	public String toString() {
 		return name + " " + Integer.toString(stage) + " " + Integer.toString(score); 
@@ -59,9 +63,8 @@ public class RecordItem implements Comparable<RecordItem> {
 
 	/**
 	 * 이름, 점수, 단계로 이루어진 1차원 벡터를 반환한다. 
-	 * @return
 	 */
-	public Vector<Object> split() {
+	public Vector<Object> toVector() {
 		Vector<Object> result = new Vector<Object>(3);
 		result.add(name);
 		result.add(score);
@@ -77,23 +80,24 @@ public class RecordItem implements Comparable<RecordItem> {
 	 */
 	@Override
 	public int compareTo(RecordItem other) {
-		int scoreCompare = Integer.compare(other.score, score);
+		return compare(this, other);
+	}
+	
+	private static int compare(RecordItem a, RecordItem b) {
+		int scoreCompare = Integer.compare(b.score, a.score);
 		if (scoreCompare == 0) {
-			int stageCompare = Integer.compare(other.stage, stage);
+			int stageCompare = Integer.compare(b.stage, a.stage);
 			if (stageCompare == 0)
-				return name.compareTo(other.name);
+				return a.name.compareTo(b.name);
 			return stageCompare;
 		}
 		return scoreCompare;
 	}
 	
-	public static Comparator<String> getComparator() {
-		return new Comparator<String>() {
-		    public int compare(String s1, String s2) {
-		        String[] strings1 = s1.split("\\s");
-		        String[] strings2 = s2.split("\\s");
-		        return strings1[strings1.length - 1]
-		            .compareTo(strings2[strings2.length - 1]);
+	public static Comparator<RecordItem> getComparator() {
+		return new Comparator<RecordItem>() {
+		    public int compare(RecordItem a, RecordItem b) {
+		        return RecordItem.compare(a, b);
 		    }
 		};
 	}

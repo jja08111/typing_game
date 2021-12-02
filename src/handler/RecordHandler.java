@@ -28,13 +28,13 @@ public class RecordHandler {
 	}
 	
 	/**
-	 * 저장된 모든 기록을 2차원 벡터로 반환한다. 가로 열은 이름, 점수, 단계 순으로 되어있다.
-	 * @return 저장된 2차원 벡터 반환
+	 * 저장된 모든 기록을 벡터로 반환한다.
+	 * @return 벡터로 된 저장된 모든 기록
 	 * @throws IOException 파일을 열고 읽는 과정에서 파일 입출력 예외 발생시 던진다.
 	 */
-	public static Vector<Vector<Object>> readAll() throws IOException {
+	public static Vector<RecordItem> readAll() throws IOException {
 		FileReader reader = new FileReader(FILE_NAME);
-		Vector<Vector<Object>> result = new Vector<Vector<Object>>();
+		Vector<RecordItem> result = new Vector<RecordItem>();
 		String str = "";
 		int c;
 		
@@ -43,7 +43,7 @@ public class RecordHandler {
 			if ((char)c == '\n') {
 				// `\r`을 포함한 앞, 뒤 공백을 제거한 문자열로부터 객체를 얻는다.
 				RecordItem item = RecordItem.parse(str.trim());
-				result.add(item.split());
+				result.add(item);
 				str = "";
 			} else {
 				str += (char)c;
