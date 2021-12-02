@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
 
+import java.awt.Color;
+
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -16,6 +18,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
+import constant.ColorScheme;
 import constant.Icons;
 import constant.TextStyle;
 import handler.RecordHandler;
@@ -104,38 +107,55 @@ public class RecordPanel extends TitlePanel {
 		public RankerPanel(int rank, ImageIcon icon, String name) {
 			setLayout(null);
 			
-			JLabel rankLabel = new JLabel(getRankLabelText(rank));
-			rankLabel.setFont(TextStyle.HEADLINE5);
-			rankLabel.setHorizontalAlignment(JLabel.CENTER);
-			rankLabel.setSize(100, 20);
-			rankLabel.setLocation(0, 0);
-			add(rankLabel);
+			RankerLabel rankerLabel = new RankerLabel(rank);
+			add(rankerLabel);
 			
 			CharacterPanel character = new CharacterPanel(icon, 100, 100, 0);
 			character.setSize(100, 100);
-			character.setLocation(0, rankLabel.getHeight());
+			character.setLocation(0, rankerLabel.getHeight());
 			add(character);
 			
 			JLabel nameLabel = new JLabel(name);
 			nameLabel.setFont(TextStyle.BODY_TEXT1);
 			nameLabel.setHorizontalAlignment(JLabel.CENTER);
-			nameLabel.setLocation(0, rankLabel.getHeight() + character.getHeight());
+			nameLabel.setLocation(0, rankerLabel.getHeight() + character.getHeight());
 			nameLabel.setSize(100, 20);
 			add(nameLabel);
 			
-			setSize(rankLabel.getWidth(), rankLabel.getHeight() + character.getHeight() + nameLabel.getHeight());
+			setSize(rankerLabel.getWidth(), rankerLabel.getHeight() + character.getHeight() + nameLabel.getHeight());
 		}
 		
-		private String getRankLabelText(int rank) {
-			assert (1 <= rank && rank <= 3);
+		private class RankerLabel extends JLabel {
 			
-			switch (rank) {
-			case 1: return "1st";
-			case 2: return "2nd";
-			case 3: return "3rd";
+			public RankerLabel(int rank) {
+				assert (1 <= rank && rank <= 3);
+				
+				Color color = Color.black;
+				String text = "";
+				switch (rank) {
+				case 1: 
+					text = "1st";
+					color = ColorScheme.SECONDARY_VARIANT;
+					break;
+				case 2: 
+					text = "2nd"; 
+					color = ColorScheme.PRIMARY;
+					break;
+				case 3:
+					text = "3rd";
+					color = Color.black;
+					break;
+				}
+		
+				setFont(TextStyle.HEADLINE5);
+				setForeground(color);
+				setHorizontalAlignment(JLabel.CENTER);
+				setText(text);
+				setSize(100, 20);
+				setLocation(0, 0);
 			}
-			return null;
 		}
+		
 	}
 	
 }
