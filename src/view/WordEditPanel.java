@@ -28,6 +28,8 @@ import handler.Toast;
 
 public class WordEditPanel extends TitlePanel {
 	
+	public static final int MAX_WORD_LENGTH = 30;
+	
 	private final DefaultListModel<String> model = new DefaultListModel<String>();
 	
 	private final WordList list = new WordList();
@@ -82,7 +84,7 @@ public class WordEditPanel extends TitlePanel {
 				
 				int inputLength = textField.getText().length();
 				// 20자 이상은 입력할 수 없게 한다.
-				if (inputLength >= 20) 
+				if (inputLength >= MAX_WORD_LENGTH) 
 					e.consume();
 				
 				// 어느 글자라도 입력된 경우만 추가 버튼을 활성화 시킨다.

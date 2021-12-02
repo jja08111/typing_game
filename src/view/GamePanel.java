@@ -156,7 +156,7 @@ public class GamePanel extends JPanel {
 					final char typedChar = e.getKeyChar();
 					
 					// 30자 이상 입력은 무시한다.
-					if (typingField.getText().length() > 30) {
+					if (typingField.getText().length() > WordEditPanel.MAX_WORD_LENGTH) {
 						e.consume();
 						return;
 					}
