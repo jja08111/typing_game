@@ -12,7 +12,7 @@ import java.util.Vector;
  */
 public class TextSourceHandler {
 	
-	private static final String FILE_NAME = "words.txt";
+	private static final String FILE_NAME = "assets/datas/words.txt";
 	
 	private Vector<String> v = new Vector<String>();
 
@@ -35,7 +35,6 @@ public class TextSourceHandler {
 			reader.close();
 		} catch (FileNotFoundException e) { // 파일이 없는 경우 새로 샘플을 만든다.
 			System.out.println("words.txt 파일이 존재하지 않아 샘플 파일이 생성되었습니다.");
-			// TODO: 샘플파일 생성하는 함수 만들기 
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

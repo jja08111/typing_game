@@ -10,7 +10,7 @@ import model.RecordItem;
 
 public class RecordHandler {
 	
-	private static final String FILE_NAME = "record.txt";
+	private static final String FILE_NAME = "assets/datas/record.txt";
 	
 	/**
 	 * 기록 데이터를 저장한다.
@@ -33,23 +33,31 @@ public class RecordHandler {
 	 * @throws IOException 파일을 열고 읽는 과정에서 파일 입출력 예외 발생시 던진다.
 	 */
 	public static Vector<RecordItem> readAll() throws IOException {
-		FileReader reader = new FileReader(FILE_NAME);
-		Vector<RecordItem> result = new Vector<RecordItem>();
-		String str = "";
-		int c;
-		
-		while ((c = reader.read()) != -1) {
-			// 문장의 끝을 만나면 문장을 변환하여 넣는다.
-			if ((char)c == '\n') {
-				// `\r`을 포함한 앞, 뒤 공백을 제거한 문자열로부터 객체를 얻는다.
-				RecordItem item = RecordItem.parse(str.trim());
-				result.add(item);
-				str = "";
-			} else {
-				str += (char)c;
+		FileReader reader;
+		try {
+			reader = new FileReader(FILE_NAME);	
+			
+			Vector<RecordItem> result = new Vector<RecordItem>();
+			String str = "";
+			int c;
+			
+			while ((c = reader.read()) != -1) {
+				// 문장의 끝을 만나면 문장을 변환하여 넣는다.
+				if ((char)c == '\n') {
+					// `\r`을 포함한 앞, 뒤 공백을 제거한 문자열로부터 객체를 얻는다.
+					RecordItem item = RecordItem.parse(str.trim());
+					result.add(item);
+					str = "";
+				} else {
+					str += (char)c;
+				}
 			}
+			reader.close();
+			return result;
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
-		reader.close();
-		return result;
+	
+		return null;
 	}
 }

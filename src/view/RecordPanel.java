@@ -38,7 +38,7 @@ public class RecordPanel extends TitlePanel {
 			records = RecordHandler.readAll();
 			records.sort(RecordItem.getComparator());
 		} catch (IOException e) {
-			Toast.show("기록 파일을 읽는 도중에 파일 입출력 에러가 발생했습니다. 콘솔 로그를 확인해보세요.", 7000, getComponentPopupMenu());
+			System.out.println("기록 파일을 읽는 도중에 파일이 없는 등의 문제가 발생했습니다. 콘솔 로그를 확인해보세요.");
 			e.printStackTrace();
 			return;
 		}
