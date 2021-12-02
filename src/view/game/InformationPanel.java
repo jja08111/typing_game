@@ -173,8 +173,8 @@ public class InformationPanel extends JPanel {
 				stopItem.setEnabled(false);
 				
 				String name = JOptionPane.showInputDialog(msg);
-				// 실패하여 게임이 끝난 경우 달성한 단계는 이전 단계이다.
-				int clearedStage = stage + (isAllClear ? 0 : -1);
+				// 실제로 달성한 단계는 이전 단계이다.
+				int clearedStage = stage - 1;
 				if (clearedStage < 0) clearedStage = 0;
 				
 				if (name != null) {
