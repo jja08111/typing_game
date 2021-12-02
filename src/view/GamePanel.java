@@ -155,6 +155,12 @@ public class GamePanel extends JPanel {
 					final boolean isReadyMode = typingField.isReadyMode();
 					final char typedChar = e.getKeyChar();
 					
+					// 30자 이상 입력은 무시한다.
+					if (typingField.getText().length() > 30) {
+						e.consume();
+						return;
+					}
+					
 					if (typedChar == ' ') {
 						if (isReadyMode) {
 							startGame();
