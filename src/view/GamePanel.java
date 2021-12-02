@@ -155,12 +155,6 @@ public class GamePanel extends JPanel {
 					final boolean isReadyMode = typingField.isReadyMode();
 					final char typedChar = e.getKeyChar();
 					
-					// 30자 이상 입력은 무시한다.
-					if (typingField.getText().length() > WordEditPanel.MAX_WORD_LENGTH) {
-						e.consume();
-						return;
-					}
-					
 					if (typedChar == ' ') {
 						if (isReadyMode) {
 							startGame();
@@ -174,9 +168,6 @@ public class GamePanel extends JPanel {
 						
 						// 공백입력을 무시한다.
 						e.consume();
-					}
-					if (!isReadyMode && typedChar != ' ' && typedChar != '\n') {
-						SoundController.play(Sounds.TYPING);
 					}
 				}
 			});
