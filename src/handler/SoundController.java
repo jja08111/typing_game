@@ -57,6 +57,8 @@ public class SoundController {
 			return new File(DIRECTORY + "success.wav");
 		case ALL_CLEAR:
 			return new File(DIRECTORY + "all_clear.wav");
+		case GAME_OVER:
+			return new File(DIRECTORY + "game_over.wav");
 		default:
 			assert (false);
 			break;

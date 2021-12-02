@@ -95,6 +95,7 @@ public class InformationPanel extends JPanel {
 		lifePanel.updateGageCount(life);
 		
 		if (life <= 0) {
+			SoundController.play(Sounds.GAME_OVER);
 			onGameEnd(Integer.toString(score) + "점으로 게임 오버!\n저장할 이름을 입력하세요.", false);
 		}
 	}
@@ -106,6 +107,7 @@ public class InformationPanel extends JPanel {
 		life = 0;
 		lifePanel.updateGageCount(life);
 		
+		SoundController.play(Sounds.GAME_OVER);
 		onGameEnd(Integer.toString(score) + "점으로 게임 오버!\n저장할 이름을 입력하세요.", false);
 	}
 	
