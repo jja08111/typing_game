@@ -144,6 +144,8 @@ public class WordEditPanel extends TitlePanel {
 	 */
 	private void addWord() {
 		String input = textField.getText();
+		
+		if (input.isBlank()) return;
 		// 텍스트 저장에 성공한 경우만 리시트에도 추가한다. 
 		try {
 			TextSourceHandler.getInstance().add(input);
