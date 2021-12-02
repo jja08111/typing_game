@@ -110,14 +110,13 @@ class IntroPanel extends TitlePanel {
 	}
 	
 	private void addImageLabel(ImageIcon icon, String tooltip, int x, int y) {
-		JLabel imageLabel = new JLabel();
-		imageLabel.setIcon(new ImageIcon(icon.getImage().getScaledInstance(90, 100, Image.SCALE_DEFAULT)));
-		imageLabel.setLocation(x, y);
-		imageLabel.setSize(120, 120);
-		imageLabel.setToolTipText(tooltip);
-		add(imageLabel);
+		CharacterPanel character = new CharacterPanel(icon, 90, 100, 0);
+		character.setLocation(x, y);
+		character.setSize(120, 120);
+		character.setToolTipText(tooltip);
+		add(character);
 		// 나중에 추가된 레이블이 가장 위로 올라오도록 한다.
-		setComponentZOrder(imageLabel, 0);
+		setComponentZOrder(character, 0);
 	}
 	
 	private DefaultButton getButton(String label) {
