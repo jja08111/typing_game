@@ -101,15 +101,15 @@ class IntroPanel extends TitlePanel {
 	}
 	
 	private void initIcons() {
-		addImageLabel(Icons.USER_CHARACTER, "플레이어", 120, 190);
+		addCharacters(Icons.USER_CHARACTER, "플레이어", 120, 190);
 		
-		addImageLabel(Icons.NORMAL_ENEMY, "적", 800, 150);
-		addImageLabel(Icons.SPECIAL_ENEMY, "특별한 적, 이 적을 제거 못하면 바로 게임오버. 죽을 때 적 3개를 만든다.", 730, 190);
-		addImageLabel(Icons.STOP_ITEM_ENEMY, "정지 아이템 적, 이 적을 제거시 모든 적이 3초간 멈춘다.", 850, 220);
-		addImageLabel(Icons.BOMB_ITEM_ENEMY, "폭탄 아이템 적, 이 적을 제거시 3개의 적이 같이 제거된다.", 770, 240);
+		addCharacters(Icons.NORMAL_ENEMY, "적", 800, 150);
+		addCharacters(Icons.SPECIAL_ENEMY, "특별한 적, 이 적을 제거 못하면 바로 게임오버. 죽을 때 적 3개를 만든다.", 730, 190);
+		addCharacters(Icons.STOP_ITEM_ENEMY, "정지 아이템 적, 이 적을 제거시 모든 적이 3초간 멈춘다.", 850, 220);
+		addCharacters(Icons.BOMB_ITEM_ENEMY, "폭탄 아이템 적, 이 적을 제거시 3개의 적이 같이 제거된다.", 770, 240);
 	}
 	
-	private void addImageLabel(ImageIcon icon, String tooltip, int x, int y) {
+	private void addCharacters(ImageIcon icon, String tooltip, int x, int y) {
 		CharacterPanel character = new CharacterPanel(icon, 90, 100, 0);
 		character.setLocation(x, y);
 		character.setSize(120, 120);
