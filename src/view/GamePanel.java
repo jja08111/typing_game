@@ -152,17 +152,16 @@ public class GamePanel extends JPanel {
 			typingField.addKeyListener(new KeyAdapter() {
 				@Override 
 				public void keyTyped(KeyEvent e) {
-					final boolean isReadyMode = typingField.isReadyMode();
 					final char typedChar = e.getKeyChar();
 					
 					if (typedChar == ' ') {
-						if (isReadyMode) {
+						if (typingField.isReadyMode()) {
 							startGame();
 						}
 						
-						if (isReadyMode && stopItem.isEnabled()) {
+						if (typingField.isReadyMode() && stopItem.isEnabled()) {
 							stopItem.setEnabled(false);
-						} else if (!isReadyMode && !stopItem.isEnabled()) {
+						} else if (!typingField.isReadyMode() && !stopItem.isEnabled()) {
 							stopItem.setEnabled(true);
 						}
 						
