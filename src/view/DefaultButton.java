@@ -3,9 +3,12 @@ package view;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.border.LineBorder;
 
+import constant.ColorScheme;
 import handler.SoundController;
 import model.Sounds;
 
@@ -16,6 +19,8 @@ public class DefaultButton extends JButton {
 
 	public DefaultButton(String label) {
 		super(label);
+		
+		setForeground(ColorScheme.PRIMARY_VARIANT);
 		addSoundPlayingToActionListener();
 	}
 	
