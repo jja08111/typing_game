@@ -61,7 +61,7 @@ public class Toast extends JDialog {
 		new Thread(){
 		    public void run() {
 		        try {
-		            Thread.sleep(3000);
+		            Thread.sleep(millisec);
 		            toast.dispose();
 		        } catch (InterruptedException e) {
 		            e.printStackTrace();
