@@ -1,6 +1,5 @@
 package view.game;
 
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import view.game.enemy.EnemyPanel;
