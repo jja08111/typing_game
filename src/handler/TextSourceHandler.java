@@ -12,9 +12,11 @@ import java.util.Vector;
  */
 public class TextSourceHandler {
 	
+	private static final int INIT_WORD_COUNT = 25000;
+	
 	private static final String FILE_NAME = "assets/datas/words.txt";
 	
-	private Vector<String> v = new Vector<String>();
+	private Vector<String> v = new Vector<String>(INIT_WORD_COUNT);
 
 	private TextSourceHandler() {
 		try {
@@ -32,6 +34,10 @@ public class TextSourceHandler {
 					word += (char)c;
 				}
 			}
+			// 마지막 단어를 넣는다.
+			if (!word.isBlank())
+				v.add(word.trim());
+			
 			reader.close();
 		} catch (FileNotFoundException e) { // 파일이 없는 경우 새로 샘플을 만든다.
 			System.out.println("words.txt 파일이 존재하지 않아 샘플 파일이 생성되었습니다.");
@@ -48,13 +54,13 @@ public class TextSourceHandler {
 		private static final TextSourceHandler INSTANCE = new TextSourceHandler(); 
 	}
 	
-	public String getRandom() {
+	public synchronized String getRandom() {
 		int index = (int)(Math.random() * v.size());
 		
 		return v.get(index);
 	}
 	
-	public Vector<String> getAll() {
+	public synchronized Vector<String> getAll() {
 		return v;
 	}
 	
@@ -64,7 +70,7 @@ public class TextSourceHandler {
 	 * @throws IOException 파일 열기에 실패한 경우 던진다.
 	 * @throws IllegalArgumentException 이미 포함된 단어를 전달한 경우 던진다.
 	 */
-	public void add(String word) throws IOException, IllegalArgumentException {
+	public synchronized void add(String word) throws IOException, IllegalArgumentException {
 		word = word.trim();
 		
 		if (v.contains(word))
@@ -79,14 +85,24 @@ public class TextSourceHandler {
 	/**
 	 * 단어 목록 파일에서 단어를 삭제한다.
 	 * @param word 삭제할 단어 
-	 * @throws IOException 파일 입출력에 실패한 경우 던진다.
 	 */
-	public void remove(String word) throws IOException {
-		FileWriter writer = new FileWriter(FILE_NAME);
-		v.remove(word);
-		for (String w : v) {
-			writer.append(w + "\n");
-		}
+	public synchronized void remove(String word) {
+		new Thread() {
+			@Override
+			public void run() {
+				FileWriter writer;
+				try {
+					writer = new FileWriter(FILE_NAME);
+					v.remove(word);
+					for (String w : v) {
+						writer.append(w + "\n");
+					}
+					writer.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}.start();
 	}
 	
 }

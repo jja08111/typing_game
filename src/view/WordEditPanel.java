@@ -116,14 +116,10 @@ public class WordEditPanel extends TitlePanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				String selectedValue = list.getSelectedValue();
-				try {
-					TextSourceHandler.getInstance().remove(selectedValue);
-					model.removeElement(selectedValue);
-					Toast.show("단어 '" + selectedValue + "'이(가) 삭제됨", WordEditPanel.this);
-				} catch (IOException e1) {
-					showFileIOExceptionToast();
-					e1.printStackTrace();
-				}
+			
+				TextSourceHandler.getInstance().remove(selectedValue);
+				model.removeElement(selectedValue);
+				Toast.show("단어 '" + selectedValue + "'이(가) 삭제됨", WordEditPanel.this);
 			}
 		});
 		// 리스트에서 아무것도 선택하지 않은 초기에는 비활성화한다.
