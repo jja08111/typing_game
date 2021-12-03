@@ -181,7 +181,7 @@ public class InformationPanel extends JPanel {
 					try {
 						RecordHandler.save(new RecordItem(name, clearedStage, score));
 					} catch (IOException e) {
-						Toast.show("기록 파일을 수정하려는 도중에 파일 입출력 에러가 발생했습니다. 콘솔 로그를 확인해보세요.", 7000, getComponentPopupMenu());
+						Toast.show("기록 파일을 수정하려는 도중에 파일 입출력 에러가 발생했습니다. 콘솔 로그를 확인해보세요.", 7000, InformationPanel.this);
 						e.printStackTrace();
 					}
 				}
