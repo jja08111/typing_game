@@ -3,15 +3,27 @@ package view.game;
 import java.awt.Color;
 import java.awt.BorderLayout;
 import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.FlowLayout;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.event.ActionEvent;
 import java.io.IOException;
 
+import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JMenuItem;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JSplitPane;
+import javax.swing.JTextField;
 
 import constant.ColorScheme;
+import constant.Icons;
 import constant.TextStyle;
 import handler.EnemyHandler;
 import handler.RecordHandler;
@@ -32,6 +44,8 @@ public class InformationPanel extends JPanel {
 	
 	private static final int MAX_STAGE = 3;
 
+	private final MainFrame mainFrame;
+	
 	private final JMenuItem stopItem;
 	
 	private int life;
@@ -52,7 +66,8 @@ public class InformationPanel extends JPanel {
 
 	private final TypingField typingField;
 	
-	public InformationPanel(TypingField typingField, JMenuItem stopItem) {
+	public InformationPanel(MainFrame mainFrame, TypingField typingField, JMenuItem stopItem) {
+		this.mainFrame = mainFrame;
 		this.typingField = typingField;
 		this.stopItem = stopItem;
 		setBackground(Color.white);
@@ -96,7 +111,7 @@ public class InformationPanel extends JPanel {
 		
 		if (life <= 0) {
 			SoundController.play(Sounds.GAME_OVER);
-			onGameEnd(Integer.toString(score) + "점으로 게임 오버!\n저장할 이름을 입력하세요.", false);
+			onGameEnd(Integer.toString(score) + "점으로 게임 오버!\n저장할 이름을 입력하세요.", Icons.NORMAL_ENEMY, false);
 		}
 	}
 	
@@ -108,7 +123,7 @@ public class InformationPanel extends JPanel {
 		lifePanel.updateGageCount(life);
 		
 		SoundController.play(Sounds.GAME_OVER);
-		onGameEnd(Integer.toString(score) + "점으로 게임 오버!\n저장할 이름을 입력하세요.", false);
+		onGameEnd(Integer.toString(score) + "점으로 게임 오버!\n저장할 이름을 입력하세요.", Icons.SPECIAL_ENEMY, false);
 	}
 	
 	/**
@@ -137,7 +152,7 @@ public class InformationPanel extends JPanel {
 		stage += 1;
 		if (stage > MAX_STAGE) {
 			SoundController.play(Sounds.ALL_CLEAR);
-			onGameEnd("축하합니다! " + Integer.toString(score) + "점으로 클리어 했습니다!\n저장할 이름을 입력하세요.", true);
+			onGameEnd("축하합니다! " + Integer.toString(score) + "점으로 클리어 했습니다!\n저장할 이름을 입력하세요.", Icons.USER_CHARACTER, true);
 		} else {
 			SoundController.play(Sounds.SUCCESS);
 			stagePanel.updateGageCount(stage);
@@ -160,7 +175,7 @@ public class InformationPanel extends JPanel {
 	 * 적들을 지우고 점수를 입력받아 저장한다. 그 후 점수들을 초기화한다.
 	 * @param msg 기록을 저장할 때 입력할 메시지 
 	 */
-	private void onGameEnd(String msg, boolean isAllClear) {
+	private void onGameEnd(String msg, ImageIcon icon, boolean isAllClear) {
 		assert (enemyHandler != null);
 		
 		typingField.changeToReadyMode();
@@ -172,24 +187,102 @@ public class InformationPanel extends JPanel {
 				enemyHandler.clear();
 				stopItem.setEnabled(false);
 				
-				String name = JOptionPane.showInputDialog(msg);
-				// 실제로 달성한 단계는 이전 단계이다.
-				int clearedStage = stage - 1;
-				if (clearedStage < 0) clearedStage = 0;
-				
-				if (name != null) {
-					try {
-						RecordHandler.save(new RecordItem(name, clearedStage, score));
-					} catch (IOException e) {
-						Toast.show("기록 파일을 수정하려는 도중에 파일 입출력 에러가 발생했습니다. 콘솔 로그를 확인해보세요.", 7000, InformationPanel.this);
-						e.printStackTrace();
-					}
-				}
+				new GameEndDialog(mainFrame, msg, icon);
 				
 				init();
 			}
 		};
 		th.start();
+	}
+
+	private class GameEndDialog extends JDialog {
+		
+		private JTextField textField = new JTextField(20);
+		
+		public GameEndDialog(MainFrame mainFrame, String message, ImageIcon icon) {
+			super(mainFrame, "게임 종료", false);
+			setSize(400, 180);
+			setResizable(false);
+			
+			JSplitPane splitPane = new JSplitPane();
+			splitPane.setOrientation(JSplitPane.HORIZONTAL_SPLIT);
+			splitPane.setDividerLocation(120);
+			splitPane.setEnabled(false);
+			splitPane.setBorder(BorderFactory.createEmptyBorder(16, 16, 16, 16));
+			setContentPane(splitPane);
+			
+			JPanel rightPane = new JPanel(new BorderLayout());
+			initRightPane(rightPane, message);
+			
+			splitPane.setLeftComponent(new JLabel(icon));
+			splitPane.setRightComponent(rightPane);
+			setVisible(true);
+		}
+		
+		private void initRightPane(JPanel rightPane, String message) {
+			JPanel northPane = new JPanel(new FlowLayout(FlowLayout.LEFT));
+			rightPane.add(northPane, BorderLayout.NORTH);
+			
+			// 다음 줄로 넘기기 위해 HTML, CSS를 이용했다.
+			message = message.replace("\n", "<br>");
+			JLabel label = new JLabel("<html><body><p style='width: 200px;'>" + message + "</p></body></html>");
+			label.setFont(TextStyle.BODY_TEXT2);
+			label.setSize(200, 40);
+			northPane.add(label);
+
+			JPanel southPane = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+			rightPane.add(southPane, BorderLayout.SOUTH);
+			
+			JButton saveButton = new JButton("저장");
+			southPane.add(saveButton);
+			saveButton.setSize(100, 20);
+			saveButton.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					onClickedSaveButton();
+				}
+			});
+			// 텍스트 필드가 빈 칸일 때는 저장을 할 수 없다. 
+			saveButton.setEnabled(false);
+			
+			JPanel centerPane = new JPanel(new FlowLayout(FlowLayout.LEFT));
+			rightPane.add(centerPane, BorderLayout.CENTER);
+			
+			centerPane.add(textField);
+			textField.setPreferredSize(new Dimension(100, 20));
+			textField.addKeyListener(new KeyAdapter() {
+				@Override 
+				public void keyTyped(KeyEvent e) {
+					// 공백 입력은 무시한다.
+					if (e.getKeyChar() == ' ') {
+						e.consume();
+						return;
+					}
+					
+					// 텍스트 필드가 빈 칸일 때는 저장을 할 수 없다. 
+					if (!saveButton.isEnabled()) {
+						saveButton.setEnabled(true);
+					} else if (textField.getText().isBlank() && saveButton.isEnabled()) {
+						saveButton.setEnabled(false);
+					}
+				}
+			});
+		}
+		
+		private void onClickedSaveButton() {
+			// 실제로 달성한 단계는 이전 단계이다.
+			int clearedStage = stage - 1;
+			if (clearedStage < 0) clearedStage = 0;
+			
+			try {
+				RecordHandler.save(new RecordItem(textField.getText(), clearedStage, score));
+			} catch (IOException exception) {
+				Toast.show("기록 파일을 수정하려는 도중에 파일 입출력 에러가 발생했습니다. 콘솔 로그를 확인해보세요.", 7000, InformationPanel.this);
+				exception.printStackTrace();
+			}
+			GameEndDialog.this.dispose();
+		}
+		
 	}
 	
 }

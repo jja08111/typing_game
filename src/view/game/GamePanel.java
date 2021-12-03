@@ -38,14 +38,17 @@ public class GamePanel extends JPanel {
 
 	private final TypingField typingField = new TypingField(20);
 	
-	private final InformationPanel informationPanel = new InformationPanel(typingField, stopItem);
+	private final InformationPanel informationPanel;
 	
 	private final GameGroundPanel groundPanel = new GameGroundPanel();
 	
-	private final EnemyHandler enemyHandler = new EnemyHandler(groundPanel, informationPanel);
+	private final EnemyHandler enemyHandler;
 
 	public GamePanel(MainFrame mainFrame) {
 		this.mainFrame = mainFrame;
+		informationPanel = new InformationPanel(mainFrame, typingField, stopItem);
+		enemyHandler = new EnemyHandler(groundPanel, informationPanel);
+		 
 		initMainSplitPane();
 		initMenuBar();
 		
