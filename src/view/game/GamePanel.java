@@ -10,7 +10,6 @@ import java.awt.event.ComponentEvent;
 import java.awt.FlowLayout;
 
 import javax.swing.BorderFactory;
-import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
@@ -18,8 +17,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSplitPane;
 import javax.swing.JTextField;
-import javax.swing.SwingUtilities;
-import javax.swing.JFrame;
 
 import handler.EnemyHandler;
 import handler.Navigator;
