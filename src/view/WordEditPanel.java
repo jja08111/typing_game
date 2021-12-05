@@ -74,12 +74,14 @@ public class WordEditPanel extends TitlePanel {
 		textField.addKeyListener(new KeyAdapter() {
 			@Override 
 			public void keyTyped(KeyEvent e) {
-				switch (e.getKeyChar()) {
-				case '\n':
+				char typedChar = e.getKeyChar();
+				if (typedChar == '\n') {
 					addWord();
 					return;
-				case ' ':
-					// 공백입력을 무시한다.
+				}
+				
+				// 공백 입력은 무시한다.
+				if (Character.isWhitespace(typedChar)) {
 					e.consume();
 					return;
 				}
@@ -89,9 +91,14 @@ public class WordEditPanel extends TitlePanel {
 				if (inputLength >= MAX_WORD_LENGTH) 
 					e.consume();
 				
-				// 어느 글자라도 입력된 경우만 추가 버튼을 활성화 시킨다.
 				boolean isAddButtonEnabled = addButton.isEnabled();
-				if (!isAddButtonEnabled)
+
+				// 어느 글자라도 입력된 경우만 추가 버튼을 활성화 시킨다. 이때 엔터키, 백스페이스, 이스케이프, 딜레트 버튼은 예외이다.
+				if (!isAddButtonEnabled 
+						&& typedChar != '\n' 
+						&& typedChar != '\b' 
+						&& typedChar != 0x1b
+						&& typedChar != 127)
 					addButton.setEnabled(true);
 				else if (isAddButtonEnabled && inputLength == 0) {
 					addButton.setEnabled(false);
@@ -140,7 +147,7 @@ public class WordEditPanel extends TitlePanel {
 	}
 	
 	/**
-	 * 텍스트 필드에 입력된 단어를 저장한다.
+	 * 텍스트 필드에 입력된 단어를 저장한다. 입력된 단어가 공백인 경우 무시한다.
 	 */
 	private void addWord() {
 		String input = textField.getText();

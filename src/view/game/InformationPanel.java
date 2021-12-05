@@ -253,8 +253,8 @@ public class InformationPanel extends JPanel {
 			textField.addKeyListener(new KeyAdapter() {
 				@Override 
 				public void keyTyped(KeyEvent e) {
-					// 공백 입력은 무시한다.
-					if (e.getKeyChar() == ' ') {
+					// 문자와 숫자 입력만 허용한다.
+					if (!Character.isLetterOrDigit(e.getKeyChar())) {
 						e.consume();
 						return;
 					}
