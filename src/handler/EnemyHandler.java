@@ -230,6 +230,10 @@ public final class EnemyHandler {
 				return new EnemyCount(10, 2, 2);
 			case 3:
 				return new EnemyCount(10, 3, 3);
+			case 4:
+				return new EnemyCount(10, 4, 4);
+			case 5:
+				return new EnemyCount(10, 5, 5);
 			default:
 				assert false;
 			}
@@ -244,8 +248,10 @@ public final class EnemyHandler {
 			switch (infoPanel.getStage()) {
 			// 10초당 x개를 생성한다.
 			case 1: return 1000 * 10 / 2;
-			case 2: return 1000 * 10 / 4;
-			case 3: return 1000 * 10 / 6;
+			case 2: return 1000 * 10 / 3;
+			case 3: return 1000 * 10 / 4;
+			case 4: return 1000 * 10 / 5;
+			case 5: return 1000 * 10 / 6;
 			default: assert(false);
 			}
 			return -1;

@@ -94,8 +94,10 @@ public class EnemyPanel extends CharacterPanel implements Runnable {
 	private void setDelayPerStage() {
 		switch (infoPanel.getStage()) {
 		case 1: delay = 40; break;
-		case 2: delay = 34; break;
-		case 3: delay = 28; break;
+		case 2: delay = 36; break;
+		case 3: delay = 32; break;
+		case 4: delay = 30; break;
+		case 5: delay = 28; break;
 		default: assert(false);
 		}
 	}

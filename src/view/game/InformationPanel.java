@@ -42,7 +42,7 @@ public class InformationPanel extends JPanel {
 	
 	private static final int MAX_LIFE = 3;
 	
-	private static final int MAX_STAGE = 3;
+	private static final int MAX_STAGE = 5;
 
 	private final MainFrame mainFrame;
 	
@@ -292,7 +292,7 @@ public class InformationPanel extends JPanel {
  */
 class CircleGagePanel extends JPanel {
 	
-	private static final int CIRCLE_RADIUS = 24;
+	private final int CIRCLE_DIAMETER = 20;
 	
 	private static final int HORIZONTAL_PADDING = 2;
 	
@@ -336,7 +336,7 @@ class CircleGagePanel extends JPanel {
 		Component parent = getParent();
 		final int parentWidth = parent.getWidth();
 		// 원의 좌상단을 기준으로 간격을 정한다.
-		final int gap = (parentWidth - 2 * HORIZONTAL_PADDING) / (maxCount - 1) - CIRCLE_RADIUS / 2;
+		final int gap = (parentWidth - 2 * HORIZONTAL_PADDING - CIRCLE_DIAMETER) / (maxCount - 1);
 				
 		g.setColor(color);
 		for (int i = 0; i < maxCount; ++i) {
@@ -344,11 +344,11 @@ class CircleGagePanel extends JPanel {
 			
 			if (i + 1 > count) { // count 이후의 칸은 빈 칸으로 칠한다.
 				g.setColor(Color.lightGray);
-				g.fillOval(x, 0, CIRCLE_RADIUS, CIRCLE_RADIUS);	
+				g.fillOval(x, 0, CIRCLE_DIAMETER, CIRCLE_DIAMETER);	
 				g.setColor(color);
-				g.drawOval(x, 0, CIRCLE_RADIUS, CIRCLE_RADIUS);	
+				g.drawOval(x, 0, CIRCLE_DIAMETER, CIRCLE_DIAMETER);	
 			} else {
-				g.fillOval(x, 0, CIRCLE_RADIUS, CIRCLE_RADIUS);	
+				g.fillOval(x, 0, CIRCLE_DIAMETER, CIRCLE_DIAMETER);	
 			}
 		}
 		
