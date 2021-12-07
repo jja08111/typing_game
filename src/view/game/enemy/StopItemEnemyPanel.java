@@ -24,7 +24,7 @@ public class StopItemEnemyPanel extends ItemEnemyPanel {
 	}
 
 	@Override
-	public void isKilled() {
+	public void onKilled() {
 		SoundController.play(Sounds.KILL_STOP_ITEM);
 		Thread th = new Thread() {
 			@Override

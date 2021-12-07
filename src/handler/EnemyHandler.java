@@ -65,7 +65,7 @@ public final class EnemyHandler {
 	}
 	
 	/**
-	 * word를 key로 가진 적을 제거한다. <strong>여기서 {@link EnemyPanel#isKilled()}함수가 호출된다.</strong> 
+	 * word를 key로 가진 적을 제거한다. <strong>여기서 {@link EnemyPanel#onKilled()}함수가 호출된다.</strong> 
 	 * 이때 게임 패널에서도 제거된다. 만약 해당 적이 마지막 적이었다면 다음 단계로 진입한다.
 	 * @param word 적이 가진 단어
 	 * @return 해당 단어를 가지고 있는 적이 없다면 false를 반환한다. 
@@ -73,7 +73,7 @@ public final class EnemyHandler {
 	public boolean kill(String word) {
 		EnemyPanel enemy = enemyMap.get(word);
 		if (enemy != null) {
-			enemy.isKilled();
+			enemy.onKilled();
 			return remove(word);
 		}
 		return false; 
@@ -108,7 +108,7 @@ public final class EnemyHandler {
 			if (exceptedEnemy == null) return;
 			enemyMap.remove(exceptedEnemy);
 			
-			if (enemyMap.isEmpty()) {
+			if (enemyMap.isEmpty()) { // 예외하는 적만 남은 경우
 				// 예외했던 적을 다시 해쉬맵에 넣는다.
 				enemyMap.put(exceptedEnemy.getWord(), exceptedEnemy);
 				return;

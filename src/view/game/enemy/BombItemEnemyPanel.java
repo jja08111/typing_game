@@ -22,7 +22,7 @@ public class BombItemEnemyPanel extends ItemEnemyPanel {
 	}
 
 	@Override
-	public void isKilled() {
+	public void onKilled() {
 		SoundController.play(Sounds.KILL_BOMB_ITEM);
 		for (int i = 0; i < COUNT; ++i) {
 			handler.removeRandomExcept(getWord());

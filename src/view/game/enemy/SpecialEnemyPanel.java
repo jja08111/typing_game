@@ -51,11 +51,11 @@ public class SpecialEnemyPanel extends EnemyPanel {
 	}
 	
 	/**
-	 * 특별한 적을 제거한다. 이때 3개의 일반 적({@link EnemyPanel})이 생성된다.
+	 * 특별한 적이 제거된다. 이때 3개의 일반 적({@link EnemyPanel})이 생성된다.
 	 */
 	@Override
-	public void isKilled() {
-		super.isKilled();
+	public void onKilled() {
+		super.onKilled();
 		if (giveBirth) {
 			final Random r = new Random();
 			final int angleDiff = 360 / CHILDREN_COUNT;
