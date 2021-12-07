@@ -197,10 +197,16 @@ public class InformationPanel extends JPanel {
 
 	private class GameEndDialog extends JDialog {
 		
+		private final int stage;
+		
+		private final int score;
+		
 		private JTextField textField = new JTextField(20);
 		
 		public GameEndDialog(MainFrame mainFrame, String message, ImageIcon icon) {
 			super(mainFrame, "게임 종료", false);
+			this.stage = InformationPanel.this.stage;
+			this.score = InformationPanel.this.score;
 			setSize(400, 180);
 			setResizable(false);
 			
