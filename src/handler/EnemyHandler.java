@@ -104,9 +104,8 @@ public final class EnemyHandler {
 	public void removeRandomExcept(String word) {
 		synchronized (enemyMap) {
 			// 예외할 적을 해쉬맵에서 빼낸다.
-			EnemyPanel exceptedEnemy = enemyMap.get(word);
+			EnemyPanel exceptedEnemy = enemyMap.remove(word);
 			if (exceptedEnemy == null) return;
-			enemyMap.remove(exceptedEnemy);
 			
 			if (enemyMap.isEmpty()) { // 예외하는 적만 남은 경우
 				// 예외했던 적을 다시 해쉬맵에 넣는다.
