@@ -15,7 +15,7 @@ public class MainFrame extends JFrame {
 	public static final int HEIGHT = 600;
 	
 	public MainFrame() {
-		setTitle("타이핑 게임");
+		setTitle("타이핑 고스트");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(WIDTH, HEIGHT);
 		

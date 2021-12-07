@@ -22,7 +22,7 @@ import view.game.GamePanel;
 public class IntroPanel extends TitlePanel {
 	
 	public IntroPanel(MainFrame mainFrame) {
-		super(mainFrame, "타이핑 게임", new Point(300, 112), false);
+		super(mainFrame, "타이핑 고스트", new Point(300, 112), false);
 		mainFrame.setJMenuBar(null);
 		
 		initIcons();
