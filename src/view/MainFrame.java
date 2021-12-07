@@ -4,20 +4,10 @@ import javax.swing.JFrame;
 
 public class MainFrame extends JFrame {
 	
-	/**
-	 * 프레임의 폭이다. 
-	 */
-	public static final int WIDTH = 1000;
-	
-	/**
-	 * 프레임의 높이이다.
-	 */
-	public static final int HEIGHT = 600;
-	
 	public MainFrame() {
 		setTitle("타이핑 고스트");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setSize(WIDTH, HEIGHT);
+		setSize(1000, 600);
 		
 		getContentPane().add(new IntroPanel(this));
 		
