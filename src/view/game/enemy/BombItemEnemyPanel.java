@@ -7,6 +7,9 @@ import model.Sounds;
 import view.game.InformationPanel;
 import view.game.UserCharacterPanel;
 
+/**
+ * 처리될 때 무작위로 3개의 적들이 동시에 제거되는 아이템 적 클래스이다.
+ */
 public class BombItemEnemyPanel extends ItemEnemyPanel {
 
 	/**

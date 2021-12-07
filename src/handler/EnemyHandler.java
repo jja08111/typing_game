@@ -16,7 +16,7 @@ import model.EnemyCount;
 import model.EnemyType;
 
 /**
- * 적 클래스들을 생성 및 삭제하는 클래스이다.
+ * 적 객체들을 생성 및 삭제하는 클래스이다.
  */
 public final class EnemyHandler {
 	

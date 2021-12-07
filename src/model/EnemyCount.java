@@ -4,7 +4,7 @@ import java.util.Random;
 import java.util.Vector;
 
 /** 
- * 적을 생성할 때 갯수를 세기 위해 이용하는 클래스이다. 
+ * 적을 생성할 때 적의 개수를 카운팅하기 위해 이용하는 클래스이다. 
  */
 public final class EnemyCount {
 
@@ -52,7 +52,7 @@ public final class EnemyCount {
 	}
 	
 	/**
-	 * @return 남은 적 중에서 종류 하나를 골라 반환한다. 남은 갯수가 모두 0인 경우 null을 반환한다.
+	 * @return 남은 적 중에서 종류 하나를 골라 반환한다. 남은 개수가 모두 0인 경우 null을 반환한다.
 	 */
 	public EnemyType getRandomType() {
 		Random random = new Random();
@@ -71,6 +71,9 @@ public final class EnemyCount {
 		return null;
 	}
 	
+	/**
+	 * @return 더이상 남은 개수가 0인 경우 true를 반환한다.
+	 */
 	public boolean isEmpty() {
 		return normal == 0 && special == 0 && item == 0;
 	}

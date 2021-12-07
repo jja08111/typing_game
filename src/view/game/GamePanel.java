@@ -25,6 +25,9 @@ import model.Sounds;
 import view.IntroPanel;
 import view.MainFrame;
 
+/**
+ * 실제 게임을 진행하는 페이지를 보이는 패널이다.
+ */
 public class GamePanel extends JPanel {
 	
 	private final MainFrame mainFrame;

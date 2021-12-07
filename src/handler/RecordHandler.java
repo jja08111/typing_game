@@ -8,6 +8,9 @@ import java.util.Vector;
 
 import model.RecordItem;
 
+/**
+ * 기록을 저장하고 읽어오는 클래스이다.
+ */
 public class RecordHandler {
 	
 	private static final String FILE_NAME = "assets/datas/record.txt";

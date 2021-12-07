@@ -3,6 +3,9 @@ package view.game;
 import constant.Icons;
 import view.component.CharacterPanel;
 
+/**
+ * 플레이어의 캐릭터를 보이는 패널이다.
+ */
 public class UserCharacterPanel extends CharacterPanel {
 
 	public UserCharacterPanel() {

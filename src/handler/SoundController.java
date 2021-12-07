@@ -8,6 +8,9 @@ import javax.sound.sampled.Clip;
 
 import model.Sounds;
 
+/**
+ * 효과음을 재생하기 위한 클래스이다.
+ */
 public class SoundController {
 
 	private static final String DIRECTORY = "assets/sounds/";

@@ -8,6 +8,9 @@ import javax.swing.SwingUtilities;
 
 import view.MainFrame;
 
+/**
+ * 게임 화면에서 페이지 전환을 담당하는 클래스이다.
+ */
 public class Navigator {
 	
 	private JFrame rootFrame;

@@ -19,6 +19,9 @@ import view.component.DefaultButton;
 import view.component.TitlePanel;
 import view.game.GamePanel;
 
+/**
+ * 앱을 실행했을 때 제일 먼저 보이는 진입 화면이다.
+ */
 public class IntroPanel extends TitlePanel {
 	
 	public IntroPanel(MainFrame mainFrame) {

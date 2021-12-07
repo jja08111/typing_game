@@ -28,6 +28,9 @@ import handler.Toast;
 import view.component.DefaultButton;
 import view.component.TitlePanel;
 
+/**
+ * 게임 진행시 나타나는 단어 목록을 편집할 수 있는 화면이다.
+ */
 public class WordEditPanel extends TitlePanel {
 	
 	public static final int MAX_WORD_LENGTH = 30;

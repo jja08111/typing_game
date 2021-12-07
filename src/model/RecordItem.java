@@ -3,6 +3,9 @@ package model;
 import java.util.Comparator;
 import java.util.Vector;
 
+/**
+ * 게임 기록을 저장할 때 단위로서 사용되는 클래스이다.
+ */
 public class RecordItem implements Comparable<RecordItem> {
 	
 	/**

@@ -27,6 +27,9 @@ import model.RecordItem;
 import view.component.CharacterPanel;
 import view.component.TitlePanel;
 
+/**
+ * 게임 기록을 확인할 수 있는 화면을 보이는 패널이다.
+ */
 public class RecordPanel extends TitlePanel {
 
 	Vector<RecordItem> records;

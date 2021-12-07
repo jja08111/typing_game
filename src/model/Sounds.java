@@ -1,5 +1,8 @@
 package model;
 
+/**
+ * 효과음의 유형을 모아놓았다.
+ */
 public enum Sounds {
 	/**
 	 * 버튼을 클릭했을 때 재생할 소리이다.

@@ -12,6 +12,9 @@ import javax.swing.SwingUtilities;
 
 import constant.TextStyle;
 
+/**
+ * 간단한 메시지를 사용자에게 전달하기 위한 클래스이다.
+ */
 public class Toast extends JDialog {
 	
 	private Toast() {

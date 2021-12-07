@@ -34,7 +34,7 @@ import model.Sounds;
 import view.MainFrame;
 
 /**
- * {@link MainFrame} 오른쪽에 위치할 패널이다. 
+ * {@link GamePanel} 오른쪽에 위치할 패널이다. 
  * 
  * 이곳에서 남은 생명, 점수, 현재 단계를 보여준다.
  */
