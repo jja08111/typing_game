@@ -1,13 +1,5 @@
-/util/
-/view/
-/model/
-/constants/
-/controller/
-/handler/
-/constant/
-/thread/
-/thread.class
-/util.class
-/utils/
-record.txt
 /.DS_Store
+/constant/
+/handler/
+/model/
+/view/
