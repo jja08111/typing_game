@@ -20,19 +20,19 @@ import view.component.TitlePanel;
 import view.game.GamePanel;
 
 /**
- * ì•±ì„ ì‹¤í–‰í–ˆì„ ë•Œ ì œì¼ ë¨¼ì € ë³´ì´ëŠ” ì§„ì… í™”ë©´ì´ë‹¤.
+ * ¾ÛÀ» ½ÇÇàÇßÀ» ¶§ Á¦ÀÏ ¸ÕÀú º¸ÀÌ´Â ÁøÀÔ È­¸éÀÌ´Ù.
  */
 public class IntroPanel extends TitlePanel {
 	
 	public IntroPanel(MainFrame mainFrame) {
-		super(mainFrame, "íƒ€ì´í•‘ ê³ ìŠ¤íŠ¸", new Point(300, 112), false);
+		super(mainFrame, "Å¸ÀÌÇÎ °í½ºÆ®", new Point(300, 112), false);
 		mainFrame.setJMenuBar(null);
 		
 		initIcons();
 		
-		DefaultButton wordEditButton = getButton("ë‹¨ì–´í¸ì§‘");
-		DefaultButton recordButton = getButton("ê¸°ë¡");
-		DefaultButton startButton = getButton("ê²Œì„ì‹œì‘");
+		DefaultButton wordEditButton = getButton("´Ü¾îÆíÁı");
+		DefaultButton recordButton = getButton("±â·Ï");
+		DefaultButton startButton = getButton("°ÔÀÓ½ÃÀÛ");
 		
 		JPanel buttonBarPanel = new JPanel();
 		buttonBarPanel.setSize(200, 300);
@@ -62,7 +62,7 @@ public class IntroPanel extends TitlePanel {
 				Navigator.to(IntroPanel.this, new GamePanel(mainFrame));
 			}
 		});
-		// ì¸íŠ¸ë¡œ í™”ë©´ ì§„ì…ì‹œ ì‹œì‘ ë²„íŠ¼ì— í¬ì»¤ìŠ¤ê°€ ê°€ë„ë¡ í•œë‹¤.
+		// ÀÎÆ®·Î È­¸é ÁøÀÔ½Ã ½ÃÀÛ ¹öÆ°¿¡ Æ÷Ä¿½º°¡ °¡µµ·Ï ÇÑ´Ù.
 		addComponentListener(new ComponentAdapter() {
 			@Override
 			public void componentResized(ComponentEvent e) {
@@ -73,12 +73,12 @@ public class IntroPanel extends TitlePanel {
 	}
 	
 	private void initIcons() {
-		addCharacters(Icons.USER_CHARACTER, "í”Œë ˆì´ì–´", 120, 190);
+		addCharacters(Icons.USER_CHARACTER, "ÇÃ·¹ÀÌ¾î", 120, 190);
 		
-		addCharacters(Icons.NORMAL_ENEMY, "ì ", 800, 150);
-		addCharacters(Icons.SPECIAL_ENEMY, "íŠ¹ë³„í•œ ì , ì´ ì ì„ ì œê±° ëª»í•˜ë©´ ë°”ë¡œ ê²Œì„ì˜¤ë²„. ì£½ì„ ë•Œ ì  3ê°œë¥¼ ë§Œë“ ë‹¤.", 730, 190);
-		addCharacters(Icons.STOP_ITEM_ENEMY, "ì •ì§€ ì•„ì´í…œ ì , ì´ ì ì„ ì œê±°ì‹œ ëª¨ë“  ì ì´ 3ì´ˆê°„ ë©ˆì¶˜ë‹¤.", 850, 220);
-		addCharacters(Icons.BOMB_ITEM_ENEMY, "í­íƒ„ ì•„ì´í…œ ì , ì´ ì ì„ ì œê±°ì‹œ 3ê°œì˜ ì ì´ ê°™ì´ ì œê±°ëœë‹¤.", 770, 240);
+		addCharacters(Icons.NORMAL_ENEMY, "Àû", 800, 150);
+		addCharacters(Icons.SPECIAL_ENEMY, "Æ¯º°ÇÑ Àû, ÀÌ ÀûÀ» Á¦°Å ¸øÇÏ¸é ¹Ù·Î °ÔÀÓ¿À¹ö. Á×À» ¶§ Àû 3°³¸¦ ¸¸µç´Ù.", 730, 190);
+		addCharacters(Icons.STOP_ITEM_ENEMY, "Á¤Áö ¾ÆÀÌÅÛ Àû, ÀÌ ÀûÀ» Á¦°Å½Ã ¸ğµç ÀûÀÌ 3ÃÊ°£ ¸ØÃá´Ù.", 850, 220);
+		addCharacters(Icons.BOMB_ITEM_ENEMY, "ÆøÅº ¾ÆÀÌÅÛ Àû, ÀÌ ÀûÀ» Á¦°Å½Ã 3°³ÀÇ ÀûÀÌ °°ÀÌ Á¦°ÅµÈ´Ù.", 770, 240);
 	}
 	
 	private void addCharacters(ImageIcon icon, String tooltip, int x, int y) {
@@ -87,7 +87,7 @@ public class IntroPanel extends TitlePanel {
 		character.setSize(120, 120);
 		character.setToolTipText(tooltip);
 		add(character);
-		// ë‚˜ì¤‘ì— ì¶”ê°€ëœ ë ˆì´ë¸”ì´ ê°€ì¥ ìœ„ë¡œ ì˜¬ë¼ì˜¤ë„ë¡ í•œë‹¤.
+		// ³ªÁß¿¡ Ãß°¡µÈ ·¹ÀÌºíÀÌ °¡Àå À§·Î ¿Ã¶ó¿Àµµ·Ï ÇÑ´Ù.
 		setComponentZOrder(character, 0);
 	}
 	

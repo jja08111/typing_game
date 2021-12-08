@@ -1,7 +1,7 @@
 package model;
 
 /**
- * ì ë“¤ì˜ ìœ í˜•ì´ë‹¤. ê° í´ëž˜ìŠ¤ë¥¼ í†µí•´ ìžì„¸í•œ ì‚¬í•­ì„ í™•ì¸ í•  ìˆ˜ ìžˆë‹¤.
+ * ÀûµéÀÇ À¯ÇüÀÌ´Ù. °¢ Å¬·¡½º¸¦ ÅëÇØ ÀÚ¼¼ÇÑ »çÇ×À» È®ÀÎ ÇÒ ¼ö ÀÖ´Ù.
  */
 public enum EnemyType { 
 	NORMAL, 

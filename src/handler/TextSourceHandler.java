@@ -7,8 +7,8 @@ import java.io.IOException;
 import java.util.Vector;
 
 /**
- * í…ìŠ¤íŠ¸ ì†ŒìŠ¤ë“¤ì„ ì½ì–´ì˜¤ê³  ì¶”ê°€ ì‚­ì œí•˜ëŠ” í´ë˜ìŠ¤ì´ë‹¤.
- * ì‹±ê¸€í†¤ìœ¼ë¡œ êµ¬í˜„í•œ ì´ìœ ëŠ” í•œ ë²ˆë§Œ ëª¨ë“  ë‹¨ì–´ ì†ŒìŠ¤ë¥¼ ì½ì–´ì˜¤ê¸° ìœ„í•´ì„œì´ë‹¤. Lazy holder íŒ¨í„´ìœ¼ë¡œ êµ¬í˜„í–ˆë‹¤. 
+ * ÅØ½ºÆ® ¼Ò½ºµéÀ» ÀĞ¾î¿À°í Ãß°¡ »èÁ¦ÇÏ´Â Å¬·¡½ºÀÌ´Ù.
+ * ½Ì±ÛÅæÀ¸·Î ±¸ÇöÇÑ ÀÌÀ¯´Â ÇÑ ¹ø¸¸ ¸ğµç ´Ü¾î ¼Ò½º¸¦ ÀĞ¾î¿À±â À§ÇØ¼­ÀÌ´Ù. Lazy holder ÆĞÅÏÀ¸·Î ±¸ÇöÇß´Ù. 
  */
 public class TextSourceHandler {
 	
@@ -25,22 +25,22 @@ public class TextSourceHandler {
 			String word = "";
 			int c;
 			while ((c = reader.read()) != -1) {
-				// ë‹¨ì–´ì˜ ëì„ ë§Œë‚˜ë©´ ë‹¨ì–´ ëª©ë¡ì— ë„£ëŠ”ë‹¤. 
+				// ´Ü¾îÀÇ ³¡À» ¸¸³ª¸é ´Ü¾î ¸ñ·Ï¿¡ ³Ö´Â´Ù. 
 				if ((char)c == '\n') {
-					// í…ìŠ¤íŠ¸ì˜ `\r`ì„ í¬í•¨í•œ ì•, ë’¤ ê³µë°±ì„ ì œê±°í•œë‹¤.
+					// ÅØ½ºÆ®ÀÇ `\r`À» Æ÷ÇÔÇÑ ¾Õ, µÚ °ø¹éÀ» Á¦°ÅÇÑ´Ù.
 					v.add(word.trim());
 					word = "";
 				} else {
 					word += (char)c;
 				}
 			}
-			// ë§ˆì§€ë§‰ ë‹¨ì–´ë¥¼ ë„£ëŠ”ë‹¤.
+			// ¸¶Áö¸· ´Ü¾î¸¦ ³Ö´Â´Ù.
 			if (!word.isBlank())
 				v.add(word.trim());
 			
 			reader.close();
-		} catch (FileNotFoundException e) { // íŒŒì¼ì´ ì—†ëŠ” ê²½ìš° ìƒˆë¡œ ìƒ˜í”Œì„ ë§Œë“ ë‹¤.
-			System.out.println("words.txt íŒŒì¼ì´ ì¡´ì¬í•˜ì§€ ì•Šì•„ ìƒ˜í”Œ íŒŒì¼ì´ ìƒì„±ë˜ì—ˆìŠµë‹ˆë‹¤.");
+		} catch (FileNotFoundException e) { // ÆÄÀÏÀÌ ¾ø´Â °æ¿ì »õ·Î »ùÇÃÀ» ¸¸µç´Ù.
+			System.out.println("words.txt ÆÄÀÏÀÌ Á¸ÀçÇÏÁö ¾Ê¾Æ »ùÇÃ ÆÄÀÏÀÌ »ı¼ºµÇ¾ú½À´Ï´Ù.");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -65,26 +65,26 @@ public class TextSourceHandler {
 	}
 	
 	/**
-	 * ë‹¨ì–´ ëª©ë¡ íŒŒì¼ì— ìƒˆë¡œìš´ ë‹¨ì–´ë¥¼ ì¶”ê°€í•œë‹¤.
-	 * @param word ìƒˆë¡œ ì¶”ê°€í•  ë‹¨ì–´ 
-	 * @throws IOException íŒŒì¼ ì—´ê¸°ì— ì‹¤íŒ¨í•œ ê²½ìš° ë˜ì§„ë‹¤.
-	 * @throws IllegalArgumentException ì´ë¯¸ í¬í•¨ëœ ë‹¨ì–´ë¥¼ ì „ë‹¬í•œ ê²½ìš° ë˜ì§„ë‹¤.
+	 * ´Ü¾î ¸ñ·Ï ÆÄÀÏ¿¡ »õ·Î¿î ´Ü¾î¸¦ Ãß°¡ÇÑ´Ù.
+	 * @param word »õ·Î Ãß°¡ÇÒ ´Ü¾î 
+	 * @throws IOException ÆÄÀÏ ¿­±â¿¡ ½ÇÆĞÇÑ °æ¿ì ´øÁø´Ù.
+	 * @throws IllegalArgumentException ÀÌ¹Ì Æ÷ÇÔµÈ ´Ü¾î¸¦ Àü´ŞÇÑ °æ¿ì ´øÁø´Ù.
 	 */
 	public synchronized void add(String word) throws IOException, IllegalArgumentException {
 		word = word.trim();
 		
 		if (v.contains(word))
-			throw new IllegalArgumentException("ì´ë¯¸ í¬í•¨ëœ ë‹¨ì–´ì…ë‹ˆë‹¤.");
+			throw new IllegalArgumentException("ÀÌ¹Ì Æ÷ÇÔµÈ ´Ü¾îÀÔ´Ï´Ù.");
 		v.add(word);
-		// append ëª¨ë“œë¡œ íŒŒì¼ì„ ì—°ë‹¤.
+		// append ¸ğµå·Î ÆÄÀÏÀ» ¿¬´Ù.
 		FileWriter writer = new FileWriter(FILE_NAME, true);
 		writer.write(word + "\n");
 		writer.close();
 	}
 	
 	/**
-	 * ë‹¨ì–´ ëª©ë¡ íŒŒì¼ì—ì„œ ë‹¨ì–´ë¥¼ ì‚­ì œí•œë‹¤.
-	 * @param word ì‚­ì œí•  ë‹¨ì–´ 
+	 * ´Ü¾î ¸ñ·Ï ÆÄÀÏ¿¡¼­ ´Ü¾î¸¦ »èÁ¦ÇÑ´Ù.
+	 * @param word »èÁ¦ÇÒ ´Ü¾î 
 	 */
 	public synchronized void remove(String word) {
 		new Thread() {

@@ -13,7 +13,7 @@ import javax.swing.SwingUtilities;
 import constant.TextStyle;
 
 /**
- * ê°„ë‹¨í•œ ë©”ì‹œì§€ë¥¼ ì‚¬ìš©ìì—ê²Œ ì „ë‹¬í•˜ê¸° ìœ„í•œ í´ë˜ìŠ¤ì´ë‹¤.
+ * °£´ÜÇÑ ¸Ş½ÃÁö¸¦ »ç¿ëÀÚ¿¡°Ô Àü´ŞÇÏ±â À§ÇÑ Å¬·¡½ºÀÌ´Ù.
  */
 public class Toast extends JDialog {
 	
@@ -22,21 +22,21 @@ public class Toast extends JDialog {
 	}
 	
 	/**
-	 * í† ìŠ¤íŠ¸ ë©”ì‹œì§€ë¥¼ ì „ë‹¬í•œ ë°€ë¦¬ì´ˆë™ì•ˆ ë„ìš´ë‹¤.
-	 * @param msg ë³´ì¼ ë©”ì‹œì§€ 
-	 * @param millisec í† ìŠ¤íŠ¸ë¥¼ ë„ìš¸ ë°€ë¦¬ì´ˆ ë‹¨ìœ„ ê¸°ê°„ 
-	 * @param contextComponent {@link JFrame}ë¥¼ ì–»ê¸°ìœ„í•´ ì‚¬ìš©í•  ì»´í¬ë„ŒíŠ¸ì´ë‹¤. ë£¨íŠ¸ í”„ë ˆì„ê³¼ ì—°ê²°ì´ ë˜ì–´ìˆì–´ì•¼ í•œë‹¤.
+	 * Åä½ºÆ® ¸Ş½ÃÁö¸¦ Àü´ŞÇÑ ¹Ğ¸®ÃÊµ¿¾È ¶ç¿î´Ù.
+	 * @param msg º¸ÀÏ ¸Ş½ÃÁö 
+	 * @param millisec Åä½ºÆ®¸¦ ¶ç¿ï ¹Ğ¸®ÃÊ ´ÜÀ§ ±â°£ 
+	 * @param contextComponent {@link JFrame}¸¦ ¾ò±âÀ§ÇØ »ç¿ëÇÒ ÄÄÆ÷³ÍÆ®ÀÌ´Ù. ·çÆ® ÇÁ·¹ÀÓ°ú ¿¬°áÀÌ µÇ¾îÀÖ¾î¾ß ÇÑ´Ù.
 	 */
 	public static void show(String msg, int millisec, JComponent contextComponent) {
 		JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(contextComponent);
 		if (frame == null) { 
-			System.out.println("ë„¤ë¹„ê²Œì´í„°ì˜ rootFrameì´ ì´ˆê¸°í™” ë˜ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤. ì»´í¬ë„ŒíŠ¸ê°€ ë¶€ëª¨ì™€ ì—°ê²°ë˜ê¸° ì „ì— ì‚¬ìš©í–ˆëŠ”ì§€ í™•ì¸í•˜ì„¸ìš”.");
+			System.out.println("³×ºñ°ÔÀÌÅÍÀÇ rootFrameÀÌ ÃÊ±âÈ­ µÇÁö ¾Ê¾Ò½À´Ï´Ù. ÄÄÆ÷³ÍÆ®°¡ ºÎ¸ğ¿Í ¿¬°áµÇ±â Àü¿¡ »ç¿ëÇß´ÂÁö È®ÀÎÇÏ¼¼¿ä.");
 			return;
 		}
 		
 		Toast toast = new Toast();
 		
-		// ë‹¤ì´ì–´ë¡œê·¸ì˜ ìœˆë„ìš° ë°”ë¥¼ ë³´ì´ì§€ ì•Šê²Œ í•œë‹¤.
+		// ´ÙÀÌ¾î·Î±×ÀÇ À©µµ¿ì ¹Ù¸¦ º¸ÀÌÁö ¾Ê°Ô ÇÑ´Ù.
 		toast.setUndecorated(true);
 		
 		toast.getContentPane().setLayout(new BorderLayout(0, 0));
@@ -51,10 +51,10 @@ public class Toast extends JDialog {
 		toastLabel.setForeground(Color.WHITE);
 		
 		toast.setAlwaysOnTop(true);
-		// í† ìŠ¤íŠ¸ í¬ê¸°ë¥¼ ì •í•œë‹¤.
+		// Åä½ºÆ® Å©±â¸¦ Á¤ÇÑ´Ù.
 		toast.setBounds(100, 100, toastLabel.getPreferredSize().width + 20, 32);
 		
-		// ìœˆë„ìš°ì˜ ì¤‘ì•™ í•˜ë‹¨ë¶€ì— ìœ„ì¹˜ì‹œí‚¨ë‹¤.
+		// À©µµ¿ìÀÇ Áß¾Ó ÇÏ´ÜºÎ¿¡ À§Ä¡½ÃÅ²´Ù.
 		int y = frame.getY() + frame.getHeight() / 2 - toast.getSize().height / 2;
 		int x = frame.getX() + frame.getWidth() / 2 - toast.getSize().width / 2;
 		toast.setLocation(x, y + y / 2);
@@ -74,9 +74,9 @@ public class Toast extends JDialog {
 	}
 	
 	/**
-	 * í† ìŠ¤íŠ¸ ë©”ì‹œì§€ë¥¼ 3ì´ˆê°„ ë„ìš´ë‹¤.
-	 * @param msg ë³´ì¼ ë©”ì‹œì§€ 
-	 * @param contextComponent {@link JFrame}ë¥¼ ì–»ê¸°ìœ„í•´ ì‚¬ìš©í•  ì»´í¬ë„ŒíŠ¸ì´ë‹¤. ë£¨íŠ¸ í”„ë ˆì„ê³¼ ì—°ê²°ì´ ë˜ì–´ìˆì–´ì•¼ í•œë‹¤.
+	 * Åä½ºÆ® ¸Ş½ÃÁö¸¦ 3ÃÊ°£ ¶ç¿î´Ù.
+	 * @param msg º¸ÀÏ ¸Ş½ÃÁö 
+	 * @param contextComponent {@link JFrame}¸¦ ¾ò±âÀ§ÇØ »ç¿ëÇÒ ÄÄÆ÷³ÍÆ®ÀÌ´Ù. ·çÆ® ÇÁ·¹ÀÓ°ú ¿¬°áÀÌ µÇ¾îÀÖ¾î¾ß ÇÑ´Ù.
 	 */
 	public static void show(String msg, JComponent contextComponent) {
 		show(msg, 3000, contextComponent);

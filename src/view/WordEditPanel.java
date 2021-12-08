@@ -29,7 +29,7 @@ import view.component.DefaultButton;
 import view.component.TitlePanel;
 
 /**
- * ê²Œì„ ì§„í–‰ì‹œ ë‚˜íƒ€ë‚˜ëŠ” ë‹¨ì–´ ëª©ë¡ì„ í¸ì§‘í•  ìˆ˜ ìˆëŠ” í™”ë©´ì´ë‹¤.
+ * °ÔÀÓ ÁøÇà½Ã ³ªÅ¸³ª´Â ´Ü¾î ¸ñ·ÏÀ» ÆíÁıÇÒ ¼ö ÀÖ´Â È­¸éÀÌ´Ù.
  */
 public class WordEditPanel extends TitlePanel {
 	
@@ -43,12 +43,12 @@ public class WordEditPanel extends TitlePanel {
 	
 	private final JPanel buttonPane = new JPanel();
 	
-	private final DefaultButton addButton = new DefaultButton("ì¶”ê°€");
+	private final DefaultButton addButton = new DefaultButton("Ãß°¡");
 	
-	private final DefaultButton removeButton  = new DefaultButton("ì‚­ì œ");
+	private final DefaultButton removeButton  = new DefaultButton("»èÁ¦");
 	
 	public WordEditPanel(MainFrame mainFrame) {
-		super(mainFrame, "ë‹¨ì–´ í¸ì§‘", true);
+		super(mainFrame, "´Ü¾î ÆíÁı", true);
 		
 		initScrollPane();
 		initTextField();
@@ -56,7 +56,7 @@ public class WordEditPanel extends TitlePanel {
 		initRemoveButton();
 		initButtonPane();
 		
-		// í…ìŠ¤íŠ¸ í•„ë“œì— í¬ì»¤ìŠ¤ë¥¼ ì¤€ë‹¤.
+		// ÅØ½ºÆ® ÇÊµå¿¡ Æ÷Ä¿½º¸¦ ÁØ´Ù.
 		addComponentListener(new ComponentAdapter() {
 			@Override
 			public void componentResized(ComponentEvent e) {
@@ -83,20 +83,20 @@ public class WordEditPanel extends TitlePanel {
 					return;
 				}
 				
-				// ê³µë°± ì…ë ¥ì€ ë¬´ì‹œí•œë‹¤.
+				// °ø¹é ÀÔ·ÂÀº ¹«½ÃÇÑ´Ù.
 				if (Character.isWhitespace(typedChar)) {
 					e.consume();
 					return;
 				}
 				
 				int inputLength = textField.getText().length();
-				// 20ì ì´ìƒì€ ì…ë ¥í•  ìˆ˜ ì—†ê²Œ í•œë‹¤.
+				// 20ÀÚ ÀÌ»óÀº ÀÔ·ÂÇÒ ¼ö ¾ø°Ô ÇÑ´Ù.
 				if (inputLength >= MAX_WORD_LENGTH) 
 					e.consume();
 				
 				boolean isAddButtonEnabled = addButton.isEnabled();
 
-				// ì–´ëŠ ê¸€ìë¼ë„ ì…ë ¥ëœ ê²½ìš°ë§Œ ì¶”ê°€ ë²„íŠ¼ì„ í™œì„±í™” ì‹œí‚¨ë‹¤. ì´ë•Œ ì—”í„°í‚¤, ë°±ìŠ¤í˜ì´ìŠ¤, ì´ìŠ¤ì¼€ì´í”„, ë”œë ˆíŠ¸ ë²„íŠ¼ì€ ì˜ˆì™¸ì´ë‹¤.
+				// ¾î´À ±ÛÀÚ¶óµµ ÀÔ·ÂµÈ °æ¿ì¸¸ Ãß°¡ ¹öÆ°À» È°¼ºÈ­ ½ÃÅ²´Ù. ÀÌ¶§ ¿£ÅÍÅ°, ¹é½ºÆäÀÌ½º, ÀÌ½ºÄÉÀÌÇÁ, µô·¹Æ® ¹öÆ°Àº ¿¹¿ÜÀÌ´Ù.
 				if (!isAddButtonEnabled 
 						&& typedChar != '\n' 
 						&& typedChar != '\b' 
@@ -117,7 +117,7 @@ public class WordEditPanel extends TitlePanel {
 				addWord();
 			}
 		});
-		// ì´ˆê¸°ì—ëŠ” ê³µë°±ì„ ì…ë ¥í•˜ì§€ ëª»í•˜ë„ë¡ ë¹„í™œì„±í™”í•œë‹¤.
+		// ÃÊ±â¿¡´Â °ø¹éÀ» ÀÔ·ÂÇÏÁö ¸øÇÏµµ·Ï ºñÈ°¼ºÈ­ÇÑ´Ù.
 		addButton.setEnabled(false);
 	}
 	
@@ -129,10 +129,10 @@ public class WordEditPanel extends TitlePanel {
 			
 				TextSourceHandler.getInstance().remove(selectedValue);
 				model.removeElement(selectedValue);
-				Toast.show("ë‹¨ì–´ '" + selectedValue + "'ì´(ê°€) ì‚­ì œë¨", WordEditPanel.this);
+				Toast.show("´Ü¾î '" + selectedValue + "'ÀÌ(°¡) »èÁ¦µÊ", WordEditPanel.this);
 			}
 		});
-		// ë¦¬ìŠ¤íŠ¸ì—ì„œ ì•„ë¬´ê²ƒë„ ì„ íƒí•˜ì§€ ì•Šì€ ì´ˆê¸°ì—ëŠ” ë¹„í™œì„±í™”í•œë‹¤.
+		// ¸®½ºÆ®¿¡¼­ ¾Æ¹«°Íµµ ¼±ÅÃÇÏÁö ¾ÊÀº ÃÊ±â¿¡´Â ºñÈ°¼ºÈ­ÇÑ´Ù.
 		removeButton.setEnabled(false);
 	}
 	
@@ -150,20 +150,20 @@ public class WordEditPanel extends TitlePanel {
 	}
 	
 	/**
-	 * í…ìŠ¤íŠ¸ í•„ë“œì— ì…ë ¥ëœ ë‹¨ì–´ë¥¼ ì €ì¥í•œë‹¤. ì…ë ¥ëœ ë‹¨ì–´ê°€ ê³µë°±ì¸ ê²½ìš° ë¬´ì‹œí•œë‹¤.
+	 * ÅØ½ºÆ® ÇÊµå¿¡ ÀÔ·ÂµÈ ´Ü¾î¸¦ ÀúÀåÇÑ´Ù. ÀÔ·ÂµÈ ´Ü¾î°¡ °ø¹éÀÎ °æ¿ì ¹«½ÃÇÑ´Ù.
 	 */
 	private void addWord() {
 		String input = textField.getText();
 		
 		if (input.isBlank()) return;
-		// í…ìŠ¤íŠ¸ ì €ì¥ì— ì„±ê³µí•œ ê²½ìš°ë§Œ ë¦¬ì‹œíŠ¸ì—ë„ ì¶”ê°€í•œë‹¤. 
+		// ÅØ½ºÆ® ÀúÀå¿¡ ¼º°øÇÑ °æ¿ì¸¸ ¸®½ÃÆ®¿¡µµ Ãß°¡ÇÑ´Ù. 
 		try {
 			TextSourceHandler.getInstance().add(input);
 			
 			model.add(model.getSize(), input);	
-			// ìƒˆë¡œ ì¶”ê°€ëœ ë‹¨ì–´ê°€ ë³´ì´ê²Œ ìŠ¤í¬ë¡¤ ìœ„ì¹˜ë¥¼ ë°”ê¾¼ë‹¤.
+			// »õ·Î Ãß°¡µÈ ´Ü¾î°¡ º¸ÀÌ°Ô ½ºÅ©·Ñ À§Ä¡¸¦ ¹Ù²Û´Ù.
 			list.ensureIndexIsVisible(model.getSize() - 1);
-			Toast.show("ë‹¨ì–´ ì¶”ê°€ë¨", 2000, WordEditPanel.this);
+			Toast.show("´Ü¾î Ãß°¡µÊ", 2000, WordEditPanel.this);
 		} catch (IllegalArgumentException e1) {
 			Toast.show(e1.getMessage(), WordEditPanel.this);
 		} catch (IOException e1) {
@@ -176,7 +176,7 @@ public class WordEditPanel extends TitlePanel {
 	}
 	
 	private void showFileIOExceptionToast() {
-		Toast.show("íŒŒì¼ ì…ì¶œë ¥ ì—ëŸ¬ê°€ ë°œìƒí–ˆìŠµë‹ˆë‹¤. ì½˜ì†” ì°½ì—ì„œ ì—ëŸ¬ ë‚´ìš©ì„ í™•ì¸í•  ìˆ˜ ìˆìŠµë‹ˆë‹¤.", 7000, WordEditPanel.this);
+		Toast.show("ÆÄÀÏ ÀÔÃâ·Â ¿¡·¯°¡ ¹ß»ıÇß½À´Ï´Ù. ÄÜ¼Ö Ã¢¿¡¼­ ¿¡·¯ ³»¿ëÀ» È®ÀÎÇÒ ¼ö ÀÖ½À´Ï´Ù.", 7000, WordEditPanel.this);
 	}
 	
 	private class WordList extends JList<String> {
@@ -185,12 +185,12 @@ public class WordEditPanel extends TitlePanel {
 			super(model);
 			setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 			
-			model.addElement("ë¡œë”©ì¤‘...");
+			model.addElement("·ÎµùÁß...");
 			new Thread() {
 				@Override 
 				public void run() {
 					Vector<String> list = TextSourceHandler.getInstance().getAll();
-					// "ë¡œë”©ì¤‘..." ë¬¸êµ¬ë¥¼ ì§€ìš´ë‹¤.
+					// "·ÎµùÁß..." ¹®±¸¸¦ Áö¿î´Ù.
 					model.remove(0);
 					
 					model.addAll(list);

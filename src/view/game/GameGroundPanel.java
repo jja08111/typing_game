@@ -5,8 +5,8 @@ import javax.swing.JPanel;
 import view.game.enemy.EnemyPanel;
 
 /**
- * {@link UserCharacterPanel}ê³¼ {@link EnemyHandler}ë¥¼ í†µí•´ 
- * ìƒì„±ëœ {@link EnemyPanel}ë“¤ì´ ìˆë‹¤.  
+ * {@link UserCharacterPanel}°ú {@link EnemyHandler}¸¦ ÅëÇØ 
+ * »ı¼ºµÈ {@link EnemyPanel}µéÀÌ ÀÖ´Ù.  
  */
 public class GameGroundPanel extends JPanel {
 

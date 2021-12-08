@@ -26,15 +26,15 @@ import view.IntroPanel;
 import view.MainFrame;
 
 /**
- * ì‹¤ì œ ê²Œì„ì„ ì§„í–‰í•˜ëŠ” í˜ì´ì§€ë¥¼ ë³´ì´ëŠ” íŒ¨ë„ì´ë‹¤.
+ * ½ÇÁ¦ °ÔÀÓÀ» ÁøÇàÇÏ´Â ÆäÀÌÁö¸¦ º¸ÀÌ´Â ÆĞ³ÎÀÌ´Ù.
  */
 public class GamePanel extends JPanel {
 	
 	private final MainFrame mainFrame;
 	
-	private final JMenuItem stopItem = new JMenuItem("ê²Œì„ ì·¨ì†Œ");
+	private final JMenuItem stopItem = new JMenuItem("°ÔÀÓ Ãë¼Ò");
 	
-	private final JMenuItem exitItem = new JMenuItem("ë©”ì¸ìœ¼ë¡œ ëŒì•„ê°€ê¸°");
+	private final JMenuItem exitItem = new JMenuItem("¸ŞÀÎÀ¸·Î µ¹¾Æ°¡±â");
 
 	private final TypingField typingField = new TypingField(20);
 	
@@ -62,8 +62,8 @@ public class GamePanel extends JPanel {
 	}
 	
 	/**
-	 * JSplitPaneì„ ìƒì„±í•˜ì—¬ contentPaneì˜ CENTERì— ë¶€ì°©í•œë‹¤. 
-	 * ì™¼ìª½ì—ëŠ” {@link GameGroundPanel}ê³¼ {@link InputPanel}ì„ ë°°ì¹˜í•˜ê³  ì˜¤ë¥¸ìª½ì—ëŠ” {@link InformationPanel}ì„ ë°°ì¹˜í•œë‹¤.
+	 * JSplitPaneÀ» »ı¼ºÇÏ¿© contentPaneÀÇ CENTER¿¡ ºÎÂøÇÑ´Ù. 
+	 * ¿ŞÂÊ¿¡´Â {@link GameGroundPanel}°ú {@link InputPanel}À» ¹èÄ¡ÇÏ°í ¿À¸¥ÂÊ¿¡´Â {@link InformationPanel}À» ¹èÄ¡ÇÑ´Ù.
 	 */
 	public void initMainSplitPane() {
 		JSplitPane hPane = new JSplitPane();
@@ -78,7 +78,7 @@ public class GamePanel extends JPanel {
 		
 		JPanel vPane = new JPanel();
 		vPane.setLayout(new BorderLayout());
-		// Paddingì„ ëª¨ë“  ë°©í–¥ì— 8ì”© ë¶€ì—¬í•œë‹¤.
+		// PaddingÀ» ¸ğµç ¹æÇâ¿¡ 8¾¿ ºÎ¿©ÇÑ´Ù.
 		vPane.setBorder(BorderFactory.createEmptyBorder(8, 8, 8, 8));
 		vPane.add(groundPanel, BorderLayout.CENTER);
 		vPane.add(new InputPanel(), BorderLayout.SOUTH);
@@ -93,12 +93,12 @@ public class GamePanel extends JPanel {
 		JMenuBar menuBar = new JMenuBar();
 		mainFrame.setJMenuBar(menuBar);
 		
-		JMenu fileMenu = new JMenu("ë©”ë‰´");
+		JMenu fileMenu = new JMenu("¸Ş´º");
 		fileMenu.add(stopItem);
 		fileMenu.addSeparator();
 		fileMenu.add(exitItem);
 		
-		// ê²Œì„ì„ ì‹œì‘í•˜ì§€ ì•Šì€ ì´ˆê¸°ì—ëŠ” ë¹„í™œì„±í™”í•œë‹¤.
+		// °ÔÀÓÀ» ½ÃÀÛÇÏÁö ¾ÊÀº ÃÊ±â¿¡´Â ºñÈ°¼ºÈ­ÇÑ´Ù.
 		stopItem.setEnabled(false);
 		stopItem.addActionListener(new ActionListener() {
 			@Override
@@ -106,7 +106,7 @@ public class GamePanel extends JPanel {
 				new Thread() {
 					@Override
 					public void run() {
-						int result = JOptionPane.showConfirmDialog(null, "ê²Œì„ì„ ì·¨ì†Œí•˜ë©° ì§„í–‰ì¤‘ì¸ ë‚´ìš©ì€ ì €ì¥ë˜ì§€ ì•ŠìŠµë‹ˆë‹¤.", "í™•ì¸", JOptionPane.YES_NO_OPTION);
+						int result = JOptionPane.showConfirmDialog(null, "°ÔÀÓÀ» Ãë¼ÒÇÏ¸ç ÁøÇàÁßÀÎ ³»¿ëÀº ÀúÀåµÇÁö ¾Ê½À´Ï´Ù.", "È®ÀÎ", JOptionPane.YES_NO_OPTION);
 						if (result == JOptionPane.YES_OPTION) {
 							enemyHandler.stopGenThread();
 							enemyHandler.clear();
@@ -128,7 +128,7 @@ public class GamePanel extends JPanel {
 					new Thread() {
 						@Override
 						public void run() {
-							int result = JOptionPane.showConfirmDialog(null, "ê²Œì„ì€ ì·¨ì†Œë˜ë©° ì§„í–‰ì¤‘ì¸ ë‚´ìš©ì€ ì €ì¥ë˜ì§€ ì•ŠìŠµë‹ˆë‹¤.", "í™•ì¸", JOptionPane.YES_NO_OPTION);
+							int result = JOptionPane.showConfirmDialog(null, "°ÔÀÓÀº Ãë¼ÒµÇ¸ç ÁøÇàÁßÀÎ ³»¿ëÀº ÀúÀåµÇÁö ¾Ê½À´Ï´Ù.", "È®ÀÎ", JOptionPane.YES_NO_OPTION);
 							if (result == JOptionPane.YES_OPTION) {
 								enemyHandler.stopGenThread();
 								enemyHandler.clear();
@@ -170,7 +170,7 @@ public class GamePanel extends JPanel {
 							stopItem.setEnabled(true);
 						}
 						
-						// ê³µë°±ì…ë ¥ì„ ë¬´ì‹œí•œë‹¤.
+						// °ø¹éÀÔ·ÂÀ» ¹«½ÃÇÑ´Ù.
 						e.consume();
 					}
 				}
@@ -182,17 +182,17 @@ public class GamePanel extends JPanel {
 					String inputWord = t.getText();
 					final boolean isReadyMode = typingField.isReadyMode();
 					
-					// ê²Œì„ì´ ì§„í–‰ì¤‘ì¸ ê²½ìš°
+					// °ÔÀÓÀÌ ÁøÇàÁßÀÎ °æ¿ì
 					if (!isReadyMode) {
-						// ë¹ˆ ì¹¸ì¼ ë•Œ ì—”í„°í‚¤ë¥¼ ì…ë ¥í•œ ê²½ìš° ë¬´ì‹œí•œë‹¤.
+						// ºó Ä­ÀÏ ¶§ ¿£ÅÍÅ°¸¦ ÀÔ·ÂÇÑ °æ¿ì ¹«½ÃÇÑ´Ù.
 						if (typingField.getText().isEmpty()) return;
-						// í…ìŠ¤íŠ¸ í•„ë“œ ë‚´ìš©ì„ ë¹„ìš´ë‹¤.
+						// ÅØ½ºÆ® ÇÊµå ³»¿ëÀ» ºñ¿î´Ù.
 						t.setText("");
 					}
 					
-					if (enemyHandler.kill(inputWord)) { // ì‚¬ìš©ìê°€ ë‹¨ì–´ ë§ì¶”ê¸° ì„±ê³µí•œ ê²½ìš° 
+					if (enemyHandler.kill(inputWord)) { // »ç¿ëÀÚ°¡ ´Ü¾î ¸ÂÃß±â ¼º°øÇÑ °æ¿ì 
 						informationPanel.increaseScore();
-					} else { // í•´ë‹¹ ë‹¨ì–´ê°€ ì—†ëŠ” ê²½ìš° 
+					} else { // ÇØ´ç ´Ü¾î°¡ ¾ø´Â °æ¿ì 
 						if (!isReadyMode) {
 							informationPanel.decreaseScore();
 							SoundController.play(Sounds.WRONG);

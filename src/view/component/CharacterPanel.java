@@ -9,36 +9,36 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 /**
- * ìºë¦­í„°ë¥¼ ë‚˜íƒ€ë‚´ëŠ” íŒ¨ë„ì´ë‹¤. 
+ * Ä³¸¯ÅÍ¸¦ ³ªÅ¸³»´Â ÆĞ³ÎÀÌ´Ù. 
  */
 public class CharacterPanel extends JPanel {
 	
 	protected final JLabel imageLabel;
 	
 	/**
-	 * ì•„ì´ì½˜ìœ¼ë¡œ ë³´ì´ëŠ” ìºë¦­í„° íŒ¨ë„ì„ ìƒì„±í•œë‹¤. ì´ë¯¸ì§€ì˜ ë„ˆë¹„ì™€ ë†’ì´ëŠ” 60ì´ë‹¤. ìƒë‹¨ íŒ¨ë”©ì€ 20ì´ë‹¤.
-	 * @param imageIcon ìºë¦­í„°ì˜ ì•„ì´ì½˜ 
+	 * ¾ÆÀÌÄÜÀ¸·Î º¸ÀÌ´Â Ä³¸¯ÅÍ ÆĞ³ÎÀ» »ı¼ºÇÑ´Ù. ÀÌ¹ÌÁöÀÇ ³Êºñ¿Í ³ôÀÌ´Â 60ÀÌ´Ù. »ó´Ü ÆĞµùÀº 20ÀÌ´Ù.
+	 * @param imageIcon Ä³¸¯ÅÍÀÇ ¾ÆÀÌÄÜ 
 	 */
 	public CharacterPanel(ImageIcon imageIcon) {
 		this(imageIcon, 60, 20);
 	}
 	
 	/**
-	 * ì•„ì´ì½˜ìœ¼ë¡œ ë³´ì´ëŠ” ìºë¦­í„° íŒ¨ë„ì„ ìƒì„±í•œë‹¤.
-	 * @param imageIcon ìºë¦­í„°ì˜ ì•„ì´ì½˜ 
-	 * @param size ì´ë¯¸ì§€ì˜ ë„ˆë¹„ì™€ ë†’ì´ 
-	 * @param topPadding ìƒë‹¨ë¶€ì˜ ì—¬ë°± í¬ê¸°
+	 * ¾ÆÀÌÄÜÀ¸·Î º¸ÀÌ´Â Ä³¸¯ÅÍ ÆĞ³ÎÀ» »ı¼ºÇÑ´Ù.
+	 * @param imageIcon Ä³¸¯ÅÍÀÇ ¾ÆÀÌÄÜ 
+	 * @param size ÀÌ¹ÌÁöÀÇ ³Êºñ¿Í ³ôÀÌ 
+	 * @param topPadding »ó´ÜºÎÀÇ ¿©¹é Å©±â
 	 */
 	public CharacterPanel(ImageIcon imageIcon, int size, int topPadding) {
 		this(imageIcon, size, size, topPadding);
 	}
 	
 	/**
-	 * ì•„ì´ì½˜ìœ¼ë¡œ ë³´ì´ëŠ” ìºë¦­í„° íŒ¨ë„ì„ ìƒì„±í•œë‹¤.
-	 * @param imageIcon ìºë¦­í„°ì˜ ì•„ì´ì½˜ 
-	 * @param width ì´ë¯¸ì§€ì˜ ë„ˆë¹„
-	 * @param height ì´ë¯¸ì§€ì˜ ë†’ì´ 
-	 * @param topPadding ìƒë‹¨ë¶€ì˜ ì—¬ë°± í¬ê¸°
+	 * ¾ÆÀÌÄÜÀ¸·Î º¸ÀÌ´Â Ä³¸¯ÅÍ ÆĞ³ÎÀ» »ı¼ºÇÑ´Ù.
+	 * @param imageIcon Ä³¸¯ÅÍÀÇ ¾ÆÀÌÄÜ 
+	 * @param width ÀÌ¹ÌÁöÀÇ ³Êºñ
+	 * @param height ÀÌ¹ÌÁöÀÇ ³ôÀÌ 
+	 * @param topPadding »ó´ÜºÎÀÇ ¿©¹é Å©±â
 	 */
 	public CharacterPanel(ImageIcon imageIcon, int width, int height, int topPadding) {
 		this.imageLabel = new JLabel();

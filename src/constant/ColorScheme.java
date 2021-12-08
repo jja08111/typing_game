@@ -3,42 +3,42 @@ package constant;
 import java.awt.Color;
 
 /**
- * ì•±ì˜ í¬ì¸íŠ¸ ìƒ‰ìƒë“¤ì„ ì •ì˜í•˜ëŠ” í´ëž˜ìŠ¤ì´ë‹¤.
+ * ¾ÛÀÇ Æ÷ÀÎÆ® »ö»óµéÀ» Á¤ÀÇÇÏ´Â Å¬·¡½ºÀÌ´Ù.
  */
 public final class ColorScheme {
 	
 	/**
-	 * ì•±ì˜ ì£¼ í¬ì¸íŠ¸ ìƒ‰ìƒì´ë‹¤. ì–´ë‘ìš´ ë‚¨ìƒ‰ê³¼ ë¹„ìŠ·í•˜ë‹¤.
+	 * ¾ÛÀÇ ÁÖ Æ÷ÀÎÆ® »ö»óÀÌ´Ù. ¾îµÎ¿î ³²»ö°ú ºñ½ÁÇÏ´Ù.
 	 */
 	public static final Color PRIMARY = new Color(23, 63, 95);
 	
 	/**
-	 * {@link ColorScheme#PRIMARY}ë³´ë‹¤ ì–´ë‘ìš´ ìƒ‰ìƒì´ë‹¤.
+	 * {@link ColorScheme#PRIMARY}º¸´Ù ¾îµÎ¿î »ö»óÀÌ´Ù.
 	 */
 	public static final Color PRIMARY_VARIANT = new Color(0, 25, 53);
 	
 	/**
-	 * ì•±ì˜ ë‘ ë²ˆì§¸ í¬ì¸íŠ¸ ìƒ‰ìƒì´ë‹¤. ì˜¤ëžœì§€ìƒ‰ê³¼ ìœ ì‚¬í•˜ë‹¤.
+	 * ¾ÛÀÇ µÎ ¹øÂ° Æ÷ÀÎÆ® »ö»óÀÌ´Ù. ¿À·£Áö»ö°ú À¯»çÇÏ´Ù.
 	 */
 	public static final Color SECONDARY = new Color(237, 85, 59);
 	
 	/**
-	 * {@link ColorScheme#SECONDARY}ë³´ë‹¤ ì–´ë‘ìš´ ìƒ‰ìƒì´ë‹¤.
+	 * {@link ColorScheme#SECONDARY}º¸´Ù ¾îµÎ¿î »ö»óÀÌ´Ù.
 	 */
 	public static final Color SECONDARY_VARIANT = new Color(180, 29, 17);
 	
 	/**
-	 * {@link ColorScheme#PRIMARY} ìœ„ì— ìžˆëŠ” ì»´í¬ë„ŒíŠ¸ì˜ ìƒ‰ìƒì´ë‹¤. ì˜ˆë¥¼ ë“¤ì–´ JLabelì´ ìžˆë‹¤.
+	 * {@link ColorScheme#PRIMARY} À§¿¡ ÀÖ´Â ÄÄÆ÷³ÍÆ®ÀÇ »ö»óÀÌ´Ù. ¿¹¸¦ µé¾î JLabelÀÌ ÀÖ´Ù.
 	 */
 	public static final Color ON_PRIMARY = Color.white;
 	
 	/**
-	 * {@link ColorScheme#SECONDARY} ìœ„ì— ìžˆëŠ” ì»´í¬ë„ŒíŠ¸ì˜ ìƒ‰ìƒì´ë‹¤. ì˜ˆë¥¼ ë“¤ì–´ JLabelì´ ìžˆë‹¤.
+	 * {@link ColorScheme#SECONDARY} À§¿¡ ÀÖ´Â ÄÄÆ÷³ÍÆ®ÀÇ »ö»óÀÌ´Ù. ¿¹¸¦ µé¾î JLabelÀÌ ÀÖ´Ù.
 	 */
 	public static final Color ON_SECONDARY = Color.white;
 	
 	/**
-	 * ì£½ìœ¼ë©´ ë©ˆì¶”ê±°ë‚˜ ì ì´ 3ê°œ ì‚¬ë¼ì§€ëŠ” ì  ê°ì²´ì˜ í…ìŠ¤íŠ¸ ë°°ê²½ ìƒ‰ìƒìœ¼ë¡œ ì´ìš©í•œë‹¤.
+	 * Á×À¸¸é ¸ØÃß°Å³ª ÀûÀÌ 3°³ »ç¶óÁö´Â Àû °´Ã¼ÀÇ ÅØ½ºÆ® ¹è°æ »ö»óÀ¸·Î ÀÌ¿ëÇÑ´Ù.
 	 */
 	public static final Color ITEM_ENEMY_BACKGROUND = new Color(24, 68, 64);
 	

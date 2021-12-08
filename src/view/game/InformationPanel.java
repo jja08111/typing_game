@@ -34,9 +34,9 @@ import model.Sounds;
 import view.MainFrame;
 
 /**
- * {@link GamePanel} ì˜¤ë¥¸ìª½ì— ìœ„ì¹˜í•  íŒ¨ë„ì´ë‹¤. 
+ * {@link GamePanel} ¿À¸¥ÂÊ¿¡ À§Ä¡ÇÒ ÆĞ³ÎÀÌ´Ù. 
  * 
- * ì´ê³³ì—ì„œ ë‚¨ì€ ìƒëª…, ì ìˆ˜, í˜„ì¬ ë‹¨ê³„ë¥¼ ë³´ì—¬ì¤€ë‹¤.
+ * ÀÌ°÷¿¡¼­ ³²Àº »ı¸í, Á¡¼ö, ÇöÀç ´Ü°è¸¦ º¸¿©ÁØ´Ù.
  */
 public class InformationPanel extends JPanel {
 	
@@ -55,12 +55,12 @@ public class InformationPanel extends JPanel {
 	private int stage;
 
 	private final CircleCountLabelPanel lifePanel = 
-			new CircleCountLabelPanel("ìƒëª…", ColorScheme.SECONDARY, life, MAX_LIFE);
+			new CircleCountLabelPanel("»ı¸í", ColorScheme.SECONDARY, life, MAX_LIFE);
 	
-	private final ScoreLabelPanel scorePanel = new ScoreLabelPanel("ì ìˆ˜", score);
+	private final ScoreLabelPanel scorePanel = new ScoreLabelPanel("Á¡¼ö", score);
 	
 	private final CircleCountLabelPanel stagePanel = 
-			new CircleCountLabelPanel("ë‹¨ê³„", ColorScheme.PRIMARY, stage, MAX_STAGE);
+			new CircleCountLabelPanel("´Ü°è", ColorScheme.PRIMARY, stage, MAX_STAGE);
 	
 	private EnemyHandler enemyHandler;
 
@@ -103,7 +103,7 @@ public class InformationPanel extends JPanel {
 	}
 	
 	/**
-	 * ìƒëª…ì„ í•˜ë‚˜ ê°ì†Œí•œë‹¤.
+	 * »ı¸íÀ» ÇÏ³ª °¨¼ÒÇÑ´Ù.
 	 */
 	public void decreaseLife() {
 		life -= 1;
@@ -111,23 +111,23 @@ public class InformationPanel extends JPanel {
 		
 		if (life <= 0) {
 			SoundController.play(Sounds.GAME_OVER);
-			onGameEnd(Integer.toString(score) + "ì ìœ¼ë¡œ ê²Œì„ ì˜¤ë²„!\nì €ì¥í•  ì´ë¦„ì„ ì…ë ¥í•˜ì„¸ìš”.", Icons.NORMAL_ENEMY, false);
+			onGameEnd(Integer.toString(score) + "Á¡À¸·Î °ÔÀÓ ¿À¹ö!\nÀúÀåÇÒ ÀÌ¸§À» ÀÔ·ÂÇÏ¼¼¿ä.", Icons.NORMAL_ENEMY, false);
 		}
 	}
 	
 	/**
-	 * ìƒëª…ì„ ëª¨ë‘ ê°ì†Œí•˜ê³  ê²Œì„ì€ ì˜¤ë²„ëœë‹¤.
+	 * »ı¸íÀ» ¸ğµÎ °¨¼ÒÇÏ°í °ÔÀÓÀº ¿À¹öµÈ´Ù.
 	 */
 	public void decreaseLifeToZero() {
 		life = 0;
 		lifePanel.updateGageCount(life);
 		
 		SoundController.play(Sounds.GAME_OVER);
-		onGameEnd(Integer.toString(score) + "ì ìœ¼ë¡œ ê²Œì„ ì˜¤ë²„!\nì €ì¥í•  ì´ë¦„ì„ ì…ë ¥í•˜ì„¸ìš”.", Icons.SPECIAL_ENEMY, false);
+		onGameEnd(Integer.toString(score) + "Á¡À¸·Î °ÔÀÓ ¿À¹ö!\nÀúÀåÇÒ ÀÌ¸§À» ÀÔ·ÂÇÏ¼¼¿ä.", Icons.SPECIAL_ENEMY, false);
 	}
 	
 	/**
-	 * ì ìˆ˜ë¥¼ 10ì  ì˜¬ë¦°ë‹¤.
+	 * Á¡¼ö¸¦ 10Á¡ ¿Ã¸°´Ù.
 	 */
 	public void increaseScore() {
 		score += 10;
@@ -135,7 +135,7 @@ public class InformationPanel extends JPanel {
 	}
 	
 	/**
-	 * ì ìˆ˜ë¥¼ 5ì  ê°ì†Œí•œë‹¤.
+	 * Á¡¼ö¸¦ 5Á¡ °¨¼ÒÇÑ´Ù.
 	 */
 	public void decreaseScore() {
 		score -= 5;
@@ -146,20 +146,20 @@ public class InformationPanel extends JPanel {
 	}
 	
 	/**
-	 * ë‹¨ê³„ë¥¼ í•˜ë‚˜ ì˜¬ë¦°ë‹¤. ë§ˆì§€ë§‰ ë‹¨ê³„ì—ì„œ ì´ í•¨ìˆ˜ë¥¼ ì‹¤í–‰í•˜ë©´ ê²Œì„ í´ë¦¬ì–´ ì—”ë”©ì´ ë‚˜ì˜¨ë‹¤.
+	 * ´Ü°è¸¦ ÇÏ³ª ¿Ã¸°´Ù. ¸¶Áö¸· ´Ü°è¿¡¼­ ÀÌ ÇÔ¼ö¸¦ ½ÇÇàÇÏ¸é °ÔÀÓ Å¬¸®¾î ¿£µùÀÌ ³ª¿Â´Ù.
 	 */
 	public void increaseStage() {
 		stage += 1;
 		if (stage > MAX_STAGE) {
 			SoundController.play(Sounds.ALL_CLEAR);
-			onGameEnd("ì¶•í•˜í•©ë‹ˆë‹¤! " + Integer.toString(score) + "ì ìœ¼ë¡œ í´ë¦¬ì–´ í–ˆìŠµë‹ˆë‹¤!\nì €ì¥í•  ì´ë¦„ì„ ì…ë ¥í•˜ì„¸ìš”.", Icons.USER_CHARACTER, true);
+			onGameEnd("ÃàÇÏÇÕ´Ï´Ù! " + Integer.toString(score) + "Á¡À¸·Î Å¬¸®¾î Çß½À´Ï´Ù!\nÀúÀåÇÒ ÀÌ¸§À» ÀÔ·ÂÇÏ¼¼¿ä.", Icons.USER_CHARACTER, true);
 		} else {
 			SoundController.play(Sounds.SUCCESS);
 			stagePanel.updateGageCount(stage);
 			new Thread() {
 				@Override
 				public void run() {
-					typingField.changeToReadyMode("ìŠ¤í˜ì´ìŠ¤ë°”ë¥¼ ëˆŒëŸ¬ ë‹¤ìŒ ë‹¨ê³„ ì‹œì‘");					
+					typingField.changeToReadyMode("½ºÆäÀÌ½º¹Ù¸¦ ´­·¯ ´ÙÀ½ ´Ü°è ½ÃÀÛ");					
 				}
 			}.start();
 		}
@@ -170,10 +170,10 @@ public class InformationPanel extends JPanel {
 	}
 	
 	/**
-	 * ìƒëª…ì„ ëª¨ë‘ ìƒê±°ë‚˜ ê²Œì„ì„ ëª¨ë‘ í•´ê²°í•˜ì—¬ ê²Œì„ì´ ëë‚œ ê²½ìš° ì‹¤í–‰í•˜ëŠ” í•¨ìˆ˜ì´ë‹¤. 
+	 * »ı¸íÀ» ¸ğµÎ ÀÒ°Å³ª °ÔÀÓÀ» ¸ğµÎ ÇØ°áÇÏ¿© °ÔÀÓÀÌ ³¡³­ °æ¿ì ½ÇÇàÇÏ´Â ÇÔ¼öÀÌ´Ù. 
 	 * 
-	 * ì ë“¤ì„ ì§€ìš°ê³  ì ìˆ˜ë¥¼ ì…ë ¥ë°›ì•„ ì €ì¥í•œë‹¤. ê·¸ í›„ ì ìˆ˜ë“¤ì„ ì´ˆê¸°í™”í•œë‹¤.
-	 * @param msg ê¸°ë¡ì„ ì €ì¥í•  ë•Œ ì…ë ¥í•  ë©”ì‹œì§€ 
+	 * ÀûµéÀ» Áö¿ì°í Á¡¼ö¸¦ ÀÔ·Â¹Ş¾Æ ÀúÀåÇÑ´Ù. ±× ÈÄ Á¡¼öµéÀ» ÃÊ±âÈ­ÇÑ´Ù.
+	 * @param msg ±â·ÏÀ» ÀúÀåÇÒ ¶§ ÀÔ·ÂÇÒ ¸Ş½ÃÁö 
 	 */
 	private void onGameEnd(String msg, ImageIcon icon, boolean isAllClear) {
 		assert (enemyHandler != null);
@@ -204,7 +204,7 @@ public class InformationPanel extends JPanel {
 		private JTextField textField = new JTextField(20);
 		
 		public GameEndDialog(MainFrame mainFrame, String message, ImageIcon icon) {
-			super(mainFrame, "ê²Œì„ ì¢…ë£Œ", false);
+			super(mainFrame, "°ÔÀÓ Á¾·á", false);
 			this.stage = InformationPanel.this.stage;
 			this.score = InformationPanel.this.score;
 			setSize(400, 180);
@@ -229,7 +229,7 @@ public class InformationPanel extends JPanel {
 			JPanel northPane = new JPanel(new FlowLayout(FlowLayout.LEFT));
 			rightPane.add(northPane, BorderLayout.NORTH);
 			
-			// ë‹¤ìŒ ì¤„ë¡œ ë„˜ê¸°ê¸° ìœ„í•´ HTML, CSSë¥¼ ì´ìš©í–ˆë‹¤.
+			// ´ÙÀ½ ÁÙ·Î ³Ñ±â±â À§ÇØ HTML, CSS¸¦ ÀÌ¿ëÇß´Ù.
 			message = message.replace("\n", "<br>");
 			JLabel label = new JLabel("<html><body><p style='width: 200px;'>" + message + "</p></body></html>");
 			label.setFont(TextStyle.BODY_TEXT2);
@@ -239,7 +239,7 @@ public class InformationPanel extends JPanel {
 			JPanel southPane = new JPanel(new FlowLayout(FlowLayout.RIGHT));
 			rightPane.add(southPane, BorderLayout.SOUTH);
 			
-			JButton saveButton = new JButton("ì €ì¥");
+			JButton saveButton = new JButton("ÀúÀå");
 			southPane.add(saveButton);
 			saveButton.setSize(100, 20);
 			saveButton.addActionListener(new ActionListener() {
@@ -248,7 +248,7 @@ public class InformationPanel extends JPanel {
 					onClickedSaveButton();
 				}
 			});
-			// í…ìŠ¤íŠ¸ í•„ë“œê°€ ë¹ˆ ì¹¸ì¼ ë•ŒëŠ” ì €ì¥ì„ í•  ìˆ˜ ì—†ë‹¤. 
+			// ÅØ½ºÆ® ÇÊµå°¡ ºó Ä­ÀÏ ¶§´Â ÀúÀåÀ» ÇÒ ¼ö ¾ø´Ù. 
 			saveButton.setEnabled(false);
 			
 			JPanel centerPane = new JPanel(new FlowLayout(FlowLayout.LEFT));
@@ -259,13 +259,13 @@ public class InformationPanel extends JPanel {
 			textField.addKeyListener(new KeyAdapter() {
 				@Override 
 				public void keyTyped(KeyEvent e) {
-					// ë¬¸ìì™€ ìˆ«ì ì…ë ¥ë§Œ í—ˆìš©í•œë‹¤.
+					// ¹®ÀÚ¿Í ¼ıÀÚ ÀÔ·Â¸¸ Çã¿ëÇÑ´Ù.
 					if (!Character.isLetterOrDigit(e.getKeyChar())) {
 						e.consume();
 						return;
 					}
 					
-					// í…ìŠ¤íŠ¸ í•„ë“œê°€ ë¹ˆ ì¹¸ì¼ ë•ŒëŠ” ì €ì¥ì„ í•  ìˆ˜ ì—†ë‹¤. 
+					// ÅØ½ºÆ® ÇÊµå°¡ ºó Ä­ÀÏ ¶§´Â ÀúÀåÀ» ÇÒ ¼ö ¾ø´Ù. 
 					if (!saveButton.isEnabled()) {
 						saveButton.setEnabled(true);
 					} else if (textField.getText().isBlank() && saveButton.isEnabled()) {
@@ -276,14 +276,14 @@ public class InformationPanel extends JPanel {
 		}
 		
 		private void onClickedSaveButton() {
-			// ì‹¤ì œë¡œ ë‹¬ì„±í•œ ë‹¨ê³„ëŠ” ì´ì „ ë‹¨ê³„ì´ë‹¤.
+			// ½ÇÁ¦·Î ´Ş¼ºÇÑ ´Ü°è´Â ÀÌÀü ´Ü°èÀÌ´Ù.
 			int clearedStage = stage - 1;
 			if (clearedStage < 0) clearedStage = 0;
 			
 			try {
 				RecordHandler.save(new RecordItem(textField.getText(), clearedStage, score));
 			} catch (IOException exception) {
-				Toast.show("ê¸°ë¡ íŒŒì¼ì„ ìˆ˜ì •í•˜ë ¤ëŠ” ë„ì¤‘ì— íŒŒì¼ ì…ì¶œë ¥ ì—ëŸ¬ê°€ ë°œìƒí–ˆìŠµë‹ˆë‹¤. ì½˜ì†” ë¡œê·¸ë¥¼ í™•ì¸í•´ë³´ì„¸ìš”.", 7000, InformationPanel.this);
+				Toast.show("±â·Ï ÆÄÀÏÀ» ¼öÁ¤ÇÏ·Á´Â µµÁß¿¡ ÆÄÀÏ ÀÔÃâ·Â ¿¡·¯°¡ ¹ß»ıÇß½À´Ï´Ù. ÄÜ¼Ö ·Î±×¸¦ È®ÀÎÇØº¸¼¼¿ä.", 7000, InformationPanel.this);
 				exception.printStackTrace();
 			}
 			GameEndDialog.this.dispose();
@@ -294,7 +294,7 @@ public class InformationPanel extends JPanel {
 }
 
 /**
- * ì›ë“¤ë¡œ ì ìˆ˜ë¥¼ ë‚˜íƒ€ë‚´ëŠ” íŒ¨ë„ì´ë‹¤.
+ * ¿øµé·Î Á¡¼ö¸¦ ³ªÅ¸³»´Â ÆĞ³ÎÀÌ´Ù.
  */
 class CircleGagePanel extends JPanel {
 	
@@ -317,14 +317,14 @@ class CircleGagePanel extends JPanel {
 	}
 	
 	/**
-	 * í˜„ì¬ ì°¨ ìˆëŠ” ì›ì˜ ê°¯ìˆ˜ë¥¼ ì„¤ì •í•œë‹¤.
+	 * ÇöÀç Â÷ ÀÖ´Â ¿øÀÇ °¹¼ö¸¦ ¼³Á¤ÇÑ´Ù.
 	 */
 	public void setCount(int count) {
 		this.count = count;
 	}
 	
 	/**
-	 * í˜„ì¬ ì°¨ ìˆëŠ” ì›ì˜ ê°¯ìˆ˜ë¥¼ ì„¤ì •í•˜ê³  repaint í•œë‹¤.
+	 * ÇöÀç Â÷ ÀÖ´Â ¿øÀÇ °¹¼ö¸¦ ¼³Á¤ÇÏ°í repaint ÇÑ´Ù.
 	 */
 	public void updateCount(int count) {
 		setCount(count);
@@ -341,14 +341,14 @@ class CircleGagePanel extends JPanel {
 		
 		Component parent = getParent();
 		final int parentWidth = parent.getWidth();
-		// ì›ì˜ ì¢Œìƒë‹¨ì„ ê¸°ì¤€ìœ¼ë¡œ ê°„ê²©ì„ ì •í•œë‹¤.
+		// ¿øÀÇ ÁÂ»ó´ÜÀ» ±âÁØÀ¸·Î °£°İÀ» Á¤ÇÑ´Ù.
 		final int gap = (parentWidth - 2 * HORIZONTAL_PADDING - CIRCLE_DIAMETER) / (maxCount - 1);
 				
 		g.setColor(color);
 		for (int i = 0; i < maxCount; ++i) {
 			int x = i * gap + HORIZONTAL_PADDING;
 			
-			if (i + 1 > count) { // count ì´í›„ì˜ ì¹¸ì€ ë¹ˆ ì¹¸ìœ¼ë¡œ ì¹ í•œë‹¤.
+			if (i + 1 > count) { // count ÀÌÈÄÀÇ Ä­Àº ºó Ä­À¸·Î Ä¥ÇÑ´Ù.
 				g.setColor(Color.lightGray);
 				g.fillOval(x, 0, CIRCLE_DIAMETER, CIRCLE_DIAMETER);	
 				g.setColor(color);
@@ -362,16 +362,16 @@ class CircleGagePanel extends JPanel {
 }
 
 /**
- * ìƒë‹¨ì— ë ˆì´ë¸”ì„ ê°€ì§€ê³  ì¤‘ì•™ì— ì›ìœ¼ë¡œ ì¹´ìš´íŠ¸ë¥¼ ë³´ì´ëŠ” íŒ¨ë„ì´ë‹¤.
+ * »ó´Ü¿¡ ·¹ÀÌºíÀ» °¡Áö°í Áß¾Ó¿¡ ¿øÀ¸·Î Ä«¿îÆ®¸¦ º¸ÀÌ´Â ÆĞ³ÎÀÌ´Ù.
  */
 class CircleCountLabelPanel extends LabelPanel {
 	
 	private CircleGagePanel gage;
 	
 	/**
-	 * @param title íƒ€ì´í‹€ë¡œ ë³´ì¼ í…ìŠ¤íŠ¸ë¥¼ ì§€ì •í•œë‹¤.
-	 * @param score ì›í˜• ì´ë¯¸ì§€ê°€ ëª‡ê°œ ì±„ì›Œì ¸ ìˆëŠ” ì§€ ì •í•œë‹¤.
-	 * @param maxScore ìµœëŒ€ ëª‡ ê°œê¹Œì§€ ì±„ìš¸ ìˆ˜ ìˆëŠ” ì§€ ì •í•œë‹¤.
+	 * @param title Å¸ÀÌÆ²·Î º¸ÀÏ ÅØ½ºÆ®¸¦ ÁöÁ¤ÇÑ´Ù.
+	 * @param score ¿øÇü ÀÌ¹ÌÁö°¡ ¸î°³ Ã¤¿öÁ® ÀÖ´Â Áö Á¤ÇÑ´Ù.
+	 * @param maxScore ÃÖ´ë ¸î °³±îÁö Ã¤¿ï ¼ö ÀÖ´Â Áö Á¤ÇÑ´Ù.
 	 */
 	public CircleCountLabelPanel(String title, Color color, int score, int maxScore) {
 		super(title, score);
@@ -393,7 +393,7 @@ class CircleCountLabelPanel extends LabelPanel {
 }
 
 /**
- * ì¤‘ì•™ì— ì •ìˆ˜ë¡œ ë˜ì–´ìˆëŠ” ì ìˆ˜ë¥¼ ë‘ê³ , ìœ„ìª½ì—ëŠ” íƒ€ì´í‹€ì„ ê°€ì§„ íŒ¨ë„ì´ë‹¤.
+ * Áß¾Ó¿¡ Á¤¼ö·Î µÇ¾îÀÖ´Â Á¡¼ö¸¦ µÎ°í, À§ÂÊ¿¡´Â Å¸ÀÌÆ²À» °¡Áø ÆĞ³ÎÀÌ´Ù.
  */
 class ScoreLabelPanel extends LabelPanel {
 	
@@ -420,8 +420,8 @@ class ScoreLabelPanel extends LabelPanel {
 }
 
 /**
- * ìƒë‹¨ì— ë ˆì´ë¸”ì„ ê°€ì§€ê³  ì•„ë˜ì— ì ìˆ˜ë¥¼ ê°–ëŠ” ì¶”ìƒ íŒ¨ë„ì´ë‹¤. 
- * ë°˜ë“œì‹œ {@link LabelPanel#initBottomComponent(int)}ë¥¼ êµ¬í˜„í•´ì•¼ í•œë‹¤.
+ * »ó´Ü¿¡ ·¹ÀÌºíÀ» °¡Áö°í ¾Æ·¡¿¡ Á¡¼ö¸¦ °®´Â Ãß»ó ÆĞ³ÎÀÌ´Ù. 
+ * ¹İµå½Ã {@link LabelPanel#initBottomComponent(int)}¸¦ ±¸ÇöÇØ¾ß ÇÑ´Ù.
  */
 abstract class LabelPanel extends JPanel {
 	
@@ -436,7 +436,7 @@ abstract class LabelPanel extends JPanel {
 		titleLabel.setText(title);
 		titleLabel.setHorizontalAlignment(JLabel.CENTER);
 		titleLabel.setForeground(Color.gray);
-		// í°íŠ¸ ì‚¬ì´ì¦ˆë¥¼ ë³€ê²½í•œë‹¤.
+		// ÆùÆ® »çÀÌÁî¸¦ º¯°æÇÑ´Ù.
 		titleLabel.setFont(TextStyle.HEADLINE6);
 		
 		setLayout(new BorderLayout(0, 12));
@@ -446,8 +446,8 @@ abstract class LabelPanel extends JPanel {
 	}
 	
 	/**
-	 * {@link LabelPanel} í´ë˜ìŠ¤ë¥¼ ìƒì„±ì‹œ íŒ¨ë„ ì¤‘ì•™ì— ë¶€ì°© í•  ì»´í¬ë„ŒíŠ¸ë¥¼ ì´ˆê¸°í™”í•œë‹¤.
-	 * @return íŒ¨ë„ ì¤‘ì•™ì— ë¶€ì°©í•  ì»´í¬ë„ŒíŠ¸ 
+	 * {@link LabelPanel} Å¬·¡½º¸¦ »ı¼º½Ã ÆĞ³Î Áß¾Ó¿¡ ºÎÂø ÇÒ ÄÄÆ÷³ÍÆ®¸¦ ÃÊ±âÈ­ÇÑ´Ù.
+	 * @return ÆĞ³Î Áß¾Ó¿¡ ºÎÂøÇÒ ÄÄÆ÷³ÍÆ® 
 	 */
 	public abstract Component initBottomComponent(int score);
 }

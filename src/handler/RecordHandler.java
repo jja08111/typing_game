@@ -9,16 +9,16 @@ import java.util.Vector;
 import model.RecordItem;
 
 /**
- * ê¸°ë¡ì„ ì €ì¥í•˜ê³  ì½ì–´ì˜¤ëŠ” í´ë˜ìŠ¤ì´ë‹¤.
+ * ±â·ÏÀ» ÀúÀåÇÏ°í ÀĞ¾î¿À´Â Å¬·¡½ºÀÌ´Ù.
  */
 public class RecordHandler {
 	
 	private static final String FILE_NAME = "assets/datas/record.txt";
 	
 	/**
-	 * ê¸°ë¡ ë°ì´í„°ë¥¼ ì €ì¥í•œë‹¤.
-	 * @param item ìƒˆë¡œ ì €ì¥í•  ê¸°ë¡ ë°ì´í„°ì´ë‹¤.
-	 * @throws IOException íŒŒì¼ì„ ì—´ê³  ì“°ëŠ” ê³¼ì •ì—ì„œ íŒŒì¼ ì…ì¶œë ¥ ì˜ˆì™¸ ë°œìƒì‹œ ë˜ì§„ë‹¤.
+	 * ±â·Ï µ¥ÀÌÅÍ¸¦ ÀúÀåÇÑ´Ù.
+	 * @param item »õ·Î ÀúÀåÇÒ ±â·Ï µ¥ÀÌÅÍÀÌ´Ù.
+	 * @throws IOException ÆÄÀÏÀ» ¿­°í ¾²´Â °úÁ¤¿¡¼­ ÆÄÀÏ ÀÔÃâ·Â ¿¹¿Ü ¹ß»ı½Ã ´øÁø´Ù.
 	 */
 	public static void save(RecordItem item) throws IOException {
 		FileWriter writer = new FileWriter(FILE_NAME, true);
@@ -31,9 +31,9 @@ public class RecordHandler {
 	}
 	
 	/**
-	 * ì €ì¥ëœ ëª¨ë“  ê¸°ë¡ì„ ë²¡í„°ë¡œ ë°˜í™˜í•œë‹¤.
-	 * @return ë²¡í„°ë¡œ ëœ ì €ì¥ëœ ëª¨ë“  ê¸°ë¡
-	 * @throws IOException íŒŒì¼ì„ ì—´ê³  ì½ëŠ” ê³¼ì •ì—ì„œ íŒŒì¼ ì…ì¶œë ¥ ì˜ˆì™¸ ë°œìƒì‹œ ë˜ì§„ë‹¤.
+	 * ÀúÀåµÈ ¸ğµç ±â·ÏÀ» º¤ÅÍ·Î ¹İÈ¯ÇÑ´Ù.
+	 * @return º¤ÅÍ·Î µÈ ÀúÀåµÈ ¸ğµç ±â·Ï
+	 * @throws IOException ÆÄÀÏÀ» ¿­°í ÀĞ´Â °úÁ¤¿¡¼­ ÆÄÀÏ ÀÔÃâ·Â ¿¹¿Ü ¹ß»ı½Ã ´øÁø´Ù.
 	 */
 	public static Vector<RecordItem> readAll() throws IOException {
 		FileReader reader;
@@ -45,9 +45,9 @@ public class RecordHandler {
 			int c;
 			
 			while ((c = reader.read()) != -1) {
-				// ë¬¸ì¥ì˜ ëì„ ë§Œë‚˜ë©´ ë¬¸ì¥ì„ ë³€í™˜í•˜ì—¬ ë„£ëŠ”ë‹¤.
+				// ¹®ÀåÀÇ ³¡À» ¸¸³ª¸é ¹®ÀåÀ» º¯È¯ÇÏ¿© ³Ö´Â´Ù.
 				if ((char)c == '\n') {
-					// `\r`ì„ í¬í•¨í•œ ì•, ë’¤ ê³µë°±ì„ ì œê±°í•œ ë¬¸ìì—´ë¡œë¶€í„° ê°ì²´ë¥¼ ì–»ëŠ”ë‹¤.
+					// `\r`À» Æ÷ÇÔÇÑ ¾Õ, µÚ °ø¹éÀ» Á¦°ÅÇÑ ¹®ÀÚ¿­·ÎºÎÅÍ °´Ã¼¸¦ ¾ò´Â´Ù.
 					RecordItem item = RecordItem.parse(str.trim());
 					result.add(item);
 					str = "";

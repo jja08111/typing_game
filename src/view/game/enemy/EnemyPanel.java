@@ -18,10 +18,10 @@ import view.game.InformationPanel;
 import view.game.UserCharacterPanel;
 
 /**
- * ì ì„ í‘œí˜„í•˜ëŠ” íŒ¨ë„ì´ë‹¤. 
+ * ÀûÀ» Ç¥ÇöÇÏ´Â ÆĞ³ÎÀÌ´Ù. 
  * 
- * ì ë§ˆë‹¤ ê°ìì˜ ì“°ë ˆë“œë¥¼ í†µí•´ ì›€ì§ì¸ë‹¤. ë‹¨ì–´ë¥¼ ê°€ì§€ê³  ìˆìœ¼ë©° {@link EnemyHandler}ë¥¼ í†µí•´ 
- * ìƒì„±, ì‚­ì œëœë‹¤.
+ * Àû¸¶´Ù °¢ÀÚÀÇ ¾²·¹µå¸¦ ÅëÇØ ¿òÁ÷ÀÎ´Ù. ´Ü¾î¸¦ °¡Áö°í ÀÖÀ¸¸ç {@link EnemyHandler}¸¦ ÅëÇØ 
+ * »ı¼º, »èÁ¦µÈ´Ù.
  */
 public class EnemyPanel extends CharacterPanel implements Runnable {
 	
@@ -36,23 +36,23 @@ public class EnemyPanel extends CharacterPanel implements Runnable {
 	protected final InformationPanel infoPanel;
 	
 	/**
-	 * ì ì˜ ì›€ì§ì„ ì†ë„ë¥¼ ê²°ì •í•˜ëŠ” ë°€ë¦¬ì´ˆ ë‹¨ìœ„ ë”œë ˆì´ì´ë‹¤.
+	 * ÀûÀÇ ¿òÁ÷ÀÓ ¼Óµµ¸¦ °áÁ¤ÇÏ´Â ¹Ğ¸®ÃÊ ´ÜÀ§ µô·¹ÀÌÀÌ´Ù.
 	 */
 	private int delay;
 	
 	private boolean isMovingEnabled = true;
 	
 	/**
-	 * ê²Œì„ ë‹¨ê³„ì— ë§ëŠ” ì ì„ ìƒì„±í•œë‹¤. ìƒì„±ì‹œ ëœë¤ í…ìŠ¤íŠ¸ê°€ ìƒì„±ëœë‹¤. <br>
-	 * í¬ê¸°ëŠ” ê²°ì •ì´ ë˜ë‚˜ <strong>ìœ„ì¹˜ëŠ” ê²°ì •ì´ ì•ˆë˜ì—ˆê¸° ë•Œë¬¸ì— ë”°ë¡œ ì§€ì •í•´ì£¼ì–´ì•¼ í•œë‹¤.<strong>
+	 * °ÔÀÓ ´Ü°è¿¡ ¸Â´Â ÀûÀ» »ı¼ºÇÑ´Ù. »ı¼º½Ã ·£´ı ÅØ½ºÆ®°¡ »ı¼ºµÈ´Ù. <br>
+	 * Å©±â´Â °áÁ¤ÀÌ µÇ³ª <strong>À§Ä¡´Â °áÁ¤ÀÌ ¾ÈµÇ¾ú±â ¶§¹®¿¡ µû·Î ÁöÁ¤ÇØÁÖ¾î¾ß ÇÑ´Ù.<strong>
 	 */
 	public EnemyPanel(EnemyHandler handler, UserCharacterPanel userPanel, InformationPanel infoPanel) {
 		this(Icons.NORMAL_ENEMY, handler, userPanel, infoPanel);
 	}
 	
 	/**
-	 * ê²Œì„ ë‹¨ê³„ì— ë§ëŠ” ì ì„ ìƒì„±í•œë‹¤. ì•„ì´ì½˜ì„ í†µí•´ ì ì˜ ì´ë¯¸ì§€ë¥¼ ì§€ì •í•  ìˆ˜ ìˆë‹¤. ìƒì„±ì‹œ ëœë¤ í…ìŠ¤íŠ¸ê°€ ìƒì„±ëœë‹¤. <br>
-	 * í¬ê¸°ëŠ” ê²°ì •ì´ ë˜ë‚˜ <strong>ìœ„ì¹˜ëŠ” ê²°ì •ì´ ì•ˆë˜ì—ˆê¸° ë•Œë¬¸ì— ë”°ë¡œ ì§€ì •í•´ì£¼ì–´ì•¼ í•œë‹¤.<strong>
+	 * °ÔÀÓ ´Ü°è¿¡ ¸Â´Â ÀûÀ» »ı¼ºÇÑ´Ù. ¾ÆÀÌÄÜÀ» ÅëÇØ ÀûÀÇ ÀÌ¹ÌÁö¸¦ ÁöÁ¤ÇÒ ¼ö ÀÖ´Ù. »ı¼º½Ã ·£´ı ÅØ½ºÆ®°¡ »ı¼ºµÈ´Ù. <br>
+	 * Å©±â´Â °áÁ¤ÀÌ µÇ³ª <strong>À§Ä¡´Â °áÁ¤ÀÌ ¾ÈµÇ¾ú±â ¶§¹®¿¡ µû·Î ÁöÁ¤ÇØÁÖ¾î¾ß ÇÑ´Ù.<strong>
 	 */
 	public EnemyPanel(ImageIcon icon, EnemyHandler handler, UserCharacterPanel userPanel, InformationPanel infoPanel) {
 		super(icon);
@@ -72,21 +72,21 @@ public class EnemyPanel extends CharacterPanel implements Runnable {
 		
 		setLayout(null);
 		final int height = wordLabel.getHeight() + imageLabel.getHeight();
-		// ë‹¨ì–´ë¥¼ ë³´ì´ëŠ” ë ˆì´ë¸”ì˜ ë„ˆë¹„ê°€ ì´ë¯¸ì§€ë³´ë‹¤ ë„“ì€ ê²½ìš° ì´ë¯¸ì§€ë¥¼ ë‹¨ì–´ê°€ ë³´ì´ëŠ” ë ˆì´ë¸” ì¤‘ì•™ì— ë‘”ë‹¤.
+		// ´Ü¾î¸¦ º¸ÀÌ´Â ·¹ÀÌºíÀÇ ³Êºñ°¡ ÀÌ¹ÌÁöº¸´Ù ³ĞÀº °æ¿ì ÀÌ¹ÌÁö¸¦ ´Ü¾î°¡ º¸ÀÌ´Â ·¹ÀÌºí Áß¾Ó¿¡ µĞ´Ù.
 		if (wordLabel.getWidth() > imageLabel.getWidth()) {
 			setSize(wordLabel.getWidth(), height);
 			imageLabel.setLocation((wordLabel.getWidth() - imageLabel.getWidth()) / 2, wordLabel.getHeight());
-		} else { // ë°˜ëŒ€ì˜ ê²½ìš° ë‹¨ì–´ë¥¼ ë³´ì´ëŠ” ë ˆì´ë¸”ì„ ì´ë¯¸ì§€ ë ˆì´ë¸” ì¤‘ì•™ì— ë‘”ë‹¤. 
+		} else { // ¹İ´ëÀÇ °æ¿ì ´Ü¾î¸¦ º¸ÀÌ´Â ·¹ÀÌºíÀ» ÀÌ¹ÌÁö ·¹ÀÌºí Áß¾Ó¿¡ µĞ´Ù. 
 			setSize(imageLabel.getWidth(), height);
 			wordLabel.setLocation((imageLabel.getWidth() - wordLabel.getWidth()) / 2, 0);
 		}
 		
 		add(wordLabel);
-		// ë‹¨ì–´ë¥¼ ìœ„ìª½ì— ë°°ì¹˜í•œë‹¤.
+		// ´Ü¾î¸¦ À§ÂÊ¿¡ ¹èÄ¡ÇÑ´Ù.
 		setComponentZOrder(wordLabel, 0);
 		
 		thread = new Thread(this);
-		// ë””ë²„ê¹…ì„ ìœ„í•´ ìŠ¤ë ˆë“œ ì´ë¦„ì„ ë³€ê²½í•œë‹¤.
+		// µğ¹ö±ëÀ» À§ÇØ ½º·¹µå ÀÌ¸§À» º¯°æÇÑ´Ù.
 		thread.setName(getClass().getSimpleName() + "-" + word);
 		thread.start();
 	}
@@ -103,7 +103,7 @@ public class EnemyPanel extends CharacterPanel implements Runnable {
 	}
 	
 	/**
-	 * ì ì´ ê°€ì§„ ë‹¨ì–´ë¥¼ ë°˜í™˜í•œë‹¤.
+	 * ÀûÀÌ °¡Áø ´Ü¾î¸¦ ¹İÈ¯ÇÑ´Ù.
 	 */
 	public String getWord() {
 		return wordLabel.getText();
@@ -118,7 +118,7 @@ public class EnemyPanel extends CharacterPanel implements Runnable {
 	}
 	
 	/**
-	 * ì  ì¸ìŠ¤í„´ìŠ¤ë¥¼ ë¶€ëª¨ ì»¨í…Œì´ë„ˆë¡œë¶€í„° ì œê±°í•˜ë©° ì´ë•Œ ìŠ¤ë ˆë“œê°€ ì¢…ë£Œëœë‹¤.
+	 * Àû ÀÎ½ºÅÏ½º¸¦ ºÎ¸ğ ÄÁÅ×ÀÌ³Ê·ÎºÎÅÍ Á¦°ÅÇÏ¸ç ÀÌ¶§ ½º·¹µå°¡ Á¾·áµÈ´Ù.
 	 */
 	public void removeThisFromParent() {
 		Container parent = getParent();
@@ -129,10 +129,10 @@ public class EnemyPanel extends CharacterPanel implements Runnable {
 	}
 	
 	/**
-	 * í”Œë ˆì´ì–´ê°€ ë‹¨ì–´ë¥¼ ì…ë ¥í•˜ì—¬ ì´ ì  ê°ì²´ê°€ ì œê±°ë  ë•Œ í˜¸ì¶œë˜ëŠ” í•¨ìˆ˜ì´ë©° ì  ê°ì²´ê°€ ì£½ëŠ” ìŒí–¥ì„ ì¬ìƒí•œë‹¤.
-	 * ì •í™•íˆ {@link EnemyHandler#kill(String)} í•¨ìˆ˜ì—ì„œ í˜¸ì¶œëœë‹¤.
+	 * ÇÃ·¹ÀÌ¾î°¡ ´Ü¾î¸¦ ÀÔ·ÂÇÏ¿© ÀÌ Àû °´Ã¼°¡ Á¦°ÅµÉ ¶§ È£ÃâµÇ´Â ÇÔ¼öÀÌ¸ç Àû °´Ã¼°¡ Á×´Â À½ÇâÀ» Àç»ıÇÑ´Ù.
+	 * Á¤È®È÷ {@link EnemyHandler#kill(String)} ÇÔ¼ö¿¡¼­ È£ÃâµÈ´Ù.
 	 * 
-	 * ì£¼ë¡œ ì´ í´ë˜ìŠ¤ë¥¼ ìƒì†í•˜ì—¬ íŠ¹ë³„í•œ ì ì„ ë§Œë“¤ ë•Œ ì´ í•¨ìˆ˜ë¥¼ ì˜¤ë²„ë¼ì´ë”©í•˜ì—¬ êµ¬í˜„í•œë‹¤. 
+	 * ÁÖ·Î ÀÌ Å¬·¡½º¸¦ »ó¼ÓÇÏ¿© Æ¯º°ÇÑ ÀûÀ» ¸¸µé ¶§ ÀÌ ÇÔ¼ö¸¦ ¿À¹ö¶óÀÌµùÇÏ¿© ±¸ÇöÇÑ´Ù. 
 	 */
 	public void onKilled() {
 		SoundController.play(Sounds.KILL);
@@ -147,7 +147,7 @@ public class EnemyPanel extends CharacterPanel implements Runnable {
 	}
 	
 	/**
-	 * í”Œë ˆì´ì–´ê°€ ì´ ì ì„ ì œê±°í•˜ì§€ ëª»í•´ í”Œë ˆì´ì–´ì™€ ì¶©ëŒí•œ ê²½ìš° í˜¸ì¶œ ë˜ëŠ” í•¨ìˆ˜ì´ë‹¤.
+	 * ÇÃ·¹ÀÌ¾î°¡ ÀÌ ÀûÀ» Á¦°ÅÇÏÁö ¸øÇØ ÇÃ·¹ÀÌ¾î¿Í Ãæµ¹ÇÑ °æ¿ì È£Ãâ µÇ´Â ÇÔ¼öÀÌ´Ù.
 	 */
 	protected void onCollidedWithUser() {
 		SoundController.play(Sounds.COLLIDE);
@@ -162,15 +162,15 @@ public class EnemyPanel extends CharacterPanel implements Runnable {
 		while(true) {
 			try {
 				Thread.sleep(delay);
-			} catch (InterruptedException e) { // ì˜ˆì™¸ ë°œìƒì‹œ ìŠ¤ë ˆë“œ ì¢…ë£Œ
+			} catch (InterruptedException e) { // ¿¹¿Ü ¹ß»ı½Ã ½º·¹µå Á¾·á
 				removeThisFromHandler();
 				return;
 			}
-			// ì´ë¯¸ íŒ¨ë„ì´ í™”ë©´ìƒì—ì„œ ì‚¬ë¼ì¡ŒìŒì—ë„ ì“°ë ˆë“œê°€ ì‚´ì•„ìˆëŠ” ê²½ìš° ì¢…ë£Œ
+			// ÀÌ¹Ì ÆĞ³ÎÀÌ È­¸é»ó¿¡¼­ »ç¶óÁ³À½¿¡µµ ¾²·¹µå°¡ »ì¾ÆÀÖ´Â °æ¿ì Á¾·á
 			if (getParent() == null) {
 				return;
 			}
-			// ì¢Œì¸¡ìœ¼ë¡œ ì´ë™í•œë‹¤.
+			// ÁÂÃøÀ¸·Î ÀÌµ¿ÇÑ´Ù.
 			if (isMovingEnabled)
 				setLocation(getX() - 1, getY());
 			

@@ -8,12 +8,12 @@ import view.game.InformationPanel;
 import view.game.UserCharacterPanel;
 
 /**
- * ì²˜ë¦¬ë  ë•Œ ë¬´ì‘ìœ„ë¡œ 3ê°œì˜ ì ë“¤ì´ ë™ì‹œì— ì œê±°ë˜ëŠ” ì•„ì´í…œ ì  í´ë˜ìŠ¤ì´ë‹¤.
+ * Ã³¸®µÉ ¶§ ¹«ÀÛÀ§·Î 3°³ÀÇ ÀûµéÀÌ µ¿½Ã¿¡ Á¦°ÅµÇ´Â ¾ÆÀÌÅÛ Àû Å¬·¡½ºÀÌ´Ù.
  */
 public class BombItemEnemyPanel extends ItemEnemyPanel {
 
 	/**
-	 * ì´ ì ì´ ì£½ì„ ë•Œ ì œê±°ë  ì ì˜ ê°¯ìˆ˜ì´ë‹¤.
+	 * ÀÌ ÀûÀÌ Á×À» ¶§ Á¦°ÅµÉ ÀûÀÇ °¹¼öÀÌ´Ù.
 	 */
 	private static final int COUNT = 3;
 	

@@ -9,15 +9,15 @@ import javax.sound.sampled.Clip;
 import model.Sounds;
 
 /**
- * íš¨ê³¼ìŒì„ ì¬ìƒí•˜ê¸° ìœ„í•œ í´ë˜ìŠ¤ì´ë‹¤.
+ * È¿°úÀ½À» Àç»ıÇÏ±â À§ÇÑ Å¬·¡½ºÀÌ´Ù.
  */
 public class SoundController {
 
 	private static final String DIRECTORY = "assets/sounds/";
 	
 	/**
-	 * {@code sound}ì— í•´ë‹¹í•˜ëŠ” ì†Œë¦¬ë¥¼ ìƒˆë¡œìš´ ìŠ¤ë ˆë“œì—ì„œ ì¬ìƒí•œë‹¤.
-	 * @param sound ì¬ìƒí•  ì†Œë¦¬
+	 * {@code sound}¿¡ ÇØ´çÇÏ´Â ¼Ò¸®¸¦ »õ·Î¿î ½º·¹µå¿¡¼­ Àç»ıÇÑ´Ù.
+	 * @param sound Àç»ıÇÒ ¼Ò¸®
 	 */
 	public static void play(Sounds sound) {
 		new Thread() {

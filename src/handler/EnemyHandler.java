@@ -16,12 +16,12 @@ import model.EnemyCount;
 import model.EnemyType;
 
 /**
- * ì  ê°ì²´ë“¤ì„ ìƒì„± ë° ì‚­ì œí•˜ëŠ” í´ë˜ìŠ¤ì´ë‹¤.
+ * Àû °´Ã¼µéÀ» »ı¼º ¹× »èÁ¦ÇÏ´Â Å¬·¡½ºÀÌ´Ù.
  */
 public final class EnemyHandler {
 	
 	/**
-	 * ìƒˆë¡œìš´ ëœë¤ ë‹¨ì–´ë¥¼ ë§Œë“œëŠ” ë³€ìˆ˜ì´ë‹¤.
+	 * »õ·Î¿î ·£´ı ´Ü¾î¸¦ ¸¸µå´Â º¯¼öÀÌ´Ù.
 	 */
 	private static final TextSourceHandler textSource = TextSourceHandler.getInstance();
 	
@@ -30,7 +30,7 @@ public final class EnemyHandler {
 	private EnemyGenerationThread generationThread;
 	
 	/**
-	 * ì ì´ ìƒì„±ë  x ì¢Œí‘œ ìœ„ì¹˜ì´ë‹¤.
+	 * ÀûÀÌ »ı¼ºµÉ x ÁÂÇ¥ À§Ä¡ÀÌ´Ù.
 	 */
 	private Integer x;
 	
@@ -43,8 +43,8 @@ public final class EnemyHandler {
 	private boolean isGenerating = false;
 	
 	/**
-	 * ì ë“¤ì„ ë‹¤ë£¨ëŠ” í´ë˜ìŠ¤ë¥¼ ìƒì„±í•œë‹¤. ê²Œì„ íŒ¨ë„ì— ë§ê²Œ ì  ìƒì„± ìœ„ì¹˜ë¥¼ ì§€ì •í•œë‹¤.
-	 * @param gamePanel ê²Œì„ íŒ¨ë„ ê°ì²´ ì¸ìŠ¤í„´ìŠ¤ 
+	 * ÀûµéÀ» ´Ù·ç´Â Å¬·¡½º¸¦ »ı¼ºÇÑ´Ù. °ÔÀÓ ÆĞ³Î¿¡ ¸Â°Ô Àû »ı¼º À§Ä¡¸¦ ÁöÁ¤ÇÑ´Ù.
+	 * @param gamePanel °ÔÀÓ ÆĞ³Î °´Ã¼ ÀÎ½ºÅÏ½º 
 	 */
 	public EnemyHandler(GameGroundPanel gamePanel, InformationPanel infoPanel) {
 		this.gameGroundPanel = gamePanel;
@@ -52,7 +52,7 @@ public final class EnemyHandler {
 	}
 	
 	/**
-	 * ìƒì„± ìŠ¤ë ˆë“œì™€ ë³„ë„ë¡œ ì§€ì •í•œ ìœ„ì¹˜ì— ìƒˆë¡œìš´ ì¼ë°˜ ì ì„ 1ê°œ ìƒì„±í•œë‹¤. 
+	 * »ı¼º ½º·¹µå¿Í º°µµ·Î ÁöÁ¤ÇÑ À§Ä¡¿¡ »õ·Î¿î ÀÏ¹İ ÀûÀ» 1°³ »ı¼ºÇÑ´Ù. 
 	 */
 	public void createNormalAt(int x, int y) {
 		EnemyPanel newEnemy = new EnemyPanel(this, gameGroundPanel.getUserPanel(), infoPanel);
@@ -65,10 +65,10 @@ public final class EnemyHandler {
 	}
 	
 	/**
-	 * wordë¥¼ keyë¡œ ê°€ì§„ ì ì„ ì œê±°í•œë‹¤. <strong>ì—¬ê¸°ì„œ {@link EnemyPanel#onKilled()}í•¨ìˆ˜ê°€ í˜¸ì¶œëœë‹¤.</strong> 
-	 * ì´ë•Œ ê²Œì„ íŒ¨ë„ì—ì„œë„ ì œê±°ëœë‹¤. ë§Œì•½ í•´ë‹¹ ì ì´ ë§ˆì§€ë§‰ ì ì´ì—ˆë‹¤ë©´ ë‹¤ìŒ ë‹¨ê³„ë¡œ ì§„ì…í•œë‹¤.
-	 * @param word ì ì´ ê°€ì§„ ë‹¨ì–´
-	 * @return í•´ë‹¹ ë‹¨ì–´ë¥¼ ê°€ì§€ê³  ìˆëŠ” ì ì´ ì—†ë‹¤ë©´ falseë¥¼ ë°˜í™˜í•œë‹¤. 
+	 * word¸¦ key·Î °¡Áø ÀûÀ» Á¦°ÅÇÑ´Ù. <strong>¿©±â¼­ {@link EnemyPanel#onKilled()}ÇÔ¼ö°¡ È£ÃâµÈ´Ù.</strong> 
+	 * ÀÌ¶§ °ÔÀÓ ÆĞ³Î¿¡¼­µµ Á¦°ÅµÈ´Ù. ¸¸¾à ÇØ´ç ÀûÀÌ ¸¶Áö¸· ÀûÀÌ¾ú´Ù¸é ´ÙÀ½ ´Ü°è·Î ÁøÀÔÇÑ´Ù.
+	 * @param word ÀûÀÌ °¡Áø ´Ü¾î
+	 * @return ÇØ´ç ´Ü¾î¸¦ °¡Áö°í ÀÖ´Â ÀûÀÌ ¾ø´Ù¸é false¸¦ ¹İÈ¯ÇÑ´Ù. 
 	 */
 	public boolean kill(String word) {
 		EnemyPanel enemy = enemyMap.get(word);
@@ -80,10 +80,10 @@ public final class EnemyHandler {
 	}
 	
 	/**
-	 * wordë¥¼ keyë¡œ ê°€ì§„ ì ì„ ì‚­ì œí•œë‹¤. ì´ë•Œ ê²Œì„ íŒ¨ë„ì—ì„œë„ ì œê±°ëœë‹¤. 
-	 * ë§Œì•½ í•´ë‹¹ ì ì´ ë§ˆì§€ë§‰ ì ì´ì—ˆë‹¤ë©´ ë‹¤ìŒ ë‹¨ê³„ë¡œ ì§„ì…í•œë‹¤.
-	 * @param word ì ì´ ê°€ì§„ ë‹¨ì–´
-	 * @return í•´ë‹¹ ë‹¨ì–´ë¥¼ ê°€ì§€ê³  ìˆëŠ” ì ì´ ì—†ë‹¤ë©´ falseë¥¼ ë°˜í™˜í•œë‹¤. 
+	 * word¸¦ key·Î °¡Áø ÀûÀ» »èÁ¦ÇÑ´Ù. ÀÌ¶§ °ÔÀÓ ÆĞ³Î¿¡¼­µµ Á¦°ÅµÈ´Ù. 
+	 * ¸¸¾à ÇØ´ç ÀûÀÌ ¸¶Áö¸· ÀûÀÌ¾ú´Ù¸é ´ÙÀ½ ´Ü°è·Î ÁøÀÔÇÑ´Ù.
+	 * @param word ÀûÀÌ °¡Áø ´Ü¾î
+	 * @return ÇØ´ç ´Ü¾î¸¦ °¡Áö°í ÀÖ´Â ÀûÀÌ ¾ø´Ù¸é false¸¦ ¹İÈ¯ÇÑ´Ù. 
 	 */
 	public boolean remove(String word) {
 		synchronized (enemyMap) {
@@ -98,17 +98,17 @@ public final class EnemyHandler {
 	}
 	
 	/**
-	 * í•´ë‹¹ ë‹¨ì–´ë¥¼ ê°€ì§„ ì ì„ ì œì™¸í•˜ê³  ë¬´ì‘ìœ„ë¡œ ì ì„ í•˜ë‚˜ ì œê±°í•œë‹¤. 
-	 * @param word ì œê±°í•˜ì§€ ì•Šì„ ì ì´ ê°€ì§„ ë‹¨ì–´
+	 * ÇØ´ç ´Ü¾î¸¦ °¡Áø ÀûÀ» Á¦¿ÜÇÏ°í ¹«ÀÛÀ§·Î ÀûÀ» ÇÏ³ª Á¦°ÅÇÑ´Ù. 
+	 * @param word Á¦°ÅÇÏÁö ¾ÊÀ» ÀûÀÌ °¡Áø ´Ü¾î
 	 */
 	public void removeRandomExcept(String word) {
 		synchronized (enemyMap) {
-			// ì˜ˆì™¸í•  ì ì„ í•´ì‰¬ë§µì—ì„œ ë¹¼ë‚¸ë‹¤.
+			// ¿¹¿ÜÇÒ ÀûÀ» ÇØ½¬¸Ê¿¡¼­ »©³½´Ù.
 			EnemyPanel exceptedEnemy = enemyMap.remove(word);
 			if (exceptedEnemy == null) return;
 			
-			if (enemyMap.isEmpty()) { // ì˜ˆì™¸í•˜ëŠ” ì ë§Œ ë‚¨ì€ ê²½ìš°
-				// ì˜ˆì™¸í–ˆë˜ ì ì„ ë‹¤ì‹œ í•´ì‰¬ë§µì— ë„£ëŠ”ë‹¤.
+			if (enemyMap.isEmpty()) { // ¿¹¿ÜÇÏ´Â Àû¸¸ ³²Àº °æ¿ì
+				// ¿¹¿ÜÇß´ø ÀûÀ» ´Ù½Ã ÇØ½¬¸Ê¿¡ ³Ö´Â´Ù.
 				enemyMap.put(exceptedEnemy.getWord(), exceptedEnemy);
 				return;
 			}
@@ -118,14 +118,14 @@ public final class EnemyHandler {
 			randomEnemy.removeThisFromParent();
 			enemyMap.remove(randomEnemy.getWord());
 			
-			// ì˜ˆì™¸í–ˆë˜ ì ì„ ë‹¤ì‹œ í•´ì‰¬ë§µì— ë„£ëŠ”ë‹¤.
+			// ¿¹¿ÜÇß´ø ÀûÀ» ´Ù½Ã ÇØ½¬¸Ê¿¡ ³Ö´Â´Ù.
 			enemyMap.put(exceptedEnemy.getWord(), exceptedEnemy);
 		}
 		checkIfStageIsCleared();
 	}
 	
 	/**
-	 * í˜„ì œ ë‹¨ê³„ë¥¼ í´ë¦¬ì–´ í–ˆëŠ”ì§€ í™•ì¸í•˜ê³  í´ë¦¬ì–´ í–ˆë‹¤ë©´ ë‹¤ìŒ ë‹¨ê³„ë¡œ ì§„ì…í•œë‹¤.
+	 * ÇöÁ¦ ´Ü°è¸¦ Å¬¸®¾î Çß´ÂÁö È®ÀÎÇÏ°í Å¬¸®¾î Çß´Ù¸é ´ÙÀ½ ´Ü°è·Î ÁøÀÔÇÑ´Ù.
 	 */
 	private void checkIfStageIsCleared() {
 		if (generationThread.getRemainCount().isEmpty() && enemyMap.isEmpty()) {
@@ -135,12 +135,12 @@ public final class EnemyHandler {
 	}
 	
 	/**
-	 * ëª¨ë“  ì ì„ ì‚­ì œí•˜ê³  í™”ë©´ì—ì„œë„ ì§€ìš´ë‹¤.
+	 * ¸ğµç ÀûÀ» »èÁ¦ÇÏ°í È­¸é¿¡¼­µµ Áö¿î´Ù.
 	 */
 	public void clear() {
 		synchronized (enemyMap) {
 			enemyMap.values().forEach(enemyPanel -> {
-				// CuncurrentModificationExceptionì´ ë°œìƒí•˜ë¯€ë¡œ ì´ë¥¼ ë§‰ê¸° ìœ„í•´ 3ê°œì˜ ì ì„ ë§Œë“¤ì§€ ì•Šë„ë¡ í•´ì¤€ë‹¤.
+				// CuncurrentModificationExceptionÀÌ ¹ß»ıÇÏ¹Ç·Î ÀÌ¸¦ ¸·±â À§ÇØ 3°³ÀÇ ÀûÀ» ¸¸µéÁö ¾Êµµ·Ï ÇØÁØ´Ù.
 				if (enemyPanel instanceof SpecialEnemyPanel) {
 					((SpecialEnemyPanel)enemyPanel).doNotGiveBirth();
 				}
@@ -151,7 +151,7 @@ public final class EnemyHandler {
 	}
 	
 	/**
-	 * ì ë“¤ì„ ìƒì„±í•˜ëŠ” ì“°ë ˆë“œë¥¼ ì‹œì‘í•œë‹¤.
+	 * ÀûµéÀ» »ı¼ºÇÏ´Â ¾²·¹µå¸¦ ½ÃÀÛÇÑ´Ù.
 	 */
 	public void startGenThread() {
 		if (isGenerating) return;
@@ -160,7 +160,7 @@ public final class EnemyHandler {
 	}
 	
 	/**
-	 * ì ë“¤ì„ ìƒì„±í•˜ë˜ ì“°ë ˆë“œë¥¼ ì¢…ë£Œí•œë‹¤.
+	 * ÀûµéÀ» »ı¼ºÇÏ´ø ¾²·¹µå¸¦ Á¾·áÇÑ´Ù.
 	 */
 	public void stopGenThread() {
 		if (!isGenerating) return;
@@ -180,7 +180,7 @@ public final class EnemyHandler {
 	}
 	
 	/**
-	 * ë¬´ì‘ìœ„ ë‹¨ì–´ë¥¼ ì–»ëŠ”ë‹¤. ì´ë•Œ ì¤‘ë³µë˜ì§€ ì•ŠëŠ” ë‹¨ì–´ë¥¼ ì–»ëŠ”ë‹¤.
+	 * ¹«ÀÛÀ§ ´Ü¾î¸¦ ¾ò´Â´Ù. ÀÌ¶§ Áßº¹µÇÁö ¾Ê´Â ´Ü¾î¸¦ ¾ò´Â´Ù.
 	 */
 	public String getRandomWord() {
 		String word;
@@ -193,31 +193,31 @@ public final class EnemyHandler {
 	}
 	
 	/**
-	 * ì ì„ ì¼ì •í•œ ì£¼ê¸°ë§ˆë‹¤ ìƒì„±í•˜ëŠ” ì“°ë ˆë“œì´ë‹¤. ì ì„ ëª¨ë‘ ìƒì„±í•˜ë©´ ì¢…ë£Œëœë‹¤.
-	 * ë‹¨ê³„ë§ˆë‹¤ ì ì˜ ê°¯ìˆ˜, ì ì´ ì¶œí˜„í•˜ëŠ” ì†ë„ê°€ ë‹¤ë¥´ë‹¤. 
+	 * ÀûÀ» ÀÏÁ¤ÇÑ ÁÖ±â¸¶´Ù »ı¼ºÇÏ´Â ¾²·¹µåÀÌ´Ù. ÀûÀ» ¸ğµÎ »ı¼ºÇÏ¸é Á¾·áµÈ´Ù.
+	 * ´Ü°è¸¶´Ù ÀûÀÇ °¹¼ö, ÀûÀÌ ÃâÇöÇÏ´Â ¼Óµµ°¡ ´Ù¸£´Ù. 
 	 */
 	private class EnemyGenerationThread extends Thread {
 		
 		/**
-		 * ì ì„ ìƒì„±í•  ë•Œ ì¶”ê°€ë¡œ ë”œë ˆì´í•  ëœë¤í•œ ë”œë ˆì´ ë²”ìœ„ì´ë‹¤. 
+		 * ÀûÀ» »ı¼ºÇÒ ¶§ Ãß°¡·Î µô·¹ÀÌÇÒ ·£´ıÇÑ µô·¹ÀÌ ¹üÀ§ÀÌ´Ù. 
 		 */
 		private static final int RANGE = 300;
 		
 		/**
-		 * ì ì„ ìƒì„±í•˜ëŠ” ì†ë„ë¥¼ ì¡°ì ˆí•  ë³€ìˆ˜ì´ë‹¤. {@link EnemyGenerationThread.RANGE} ë³€ìˆ˜ì™€ 
-		 * [delay, delay + RANGE] ë²”ìœ„ì˜ ëœë¤í•œ ë”œë ˆì´ê°€ ìƒì„±ëœë‹¤. 
+		 * ÀûÀ» »ı¼ºÇÏ´Â ¼Óµµ¸¦ Á¶ÀıÇÒ º¯¼öÀÌ´Ù. {@link EnemyGenerationThread.RANGE} º¯¼ö¿Í 
+		 * [delay, delay + RANGE] ¹üÀ§ÀÇ ·£´ıÇÑ µô·¹ÀÌ°¡ »ı¼ºµÈ´Ù. 
 		 */
 		private final int delay;
 		
 		/**
-		 * ì¶”ê°€ë¡œ ìƒì„±í•˜ì•¼ í•  ì ì˜ ê°œìˆ˜ì´ë‹¤.
+		 * Ãß°¡·Î »ı¼ºÇÏ¾ß ÇÒ ÀûÀÇ °³¼öÀÌ´Ù.
 		 */
 		private EnemyCount remainCount;
 		
 		public EnemyGenerationThread() {
 			this.remainCount = getEnemyCountPer();
 			this.delay = getDelayPerStage();
-			// ìŠ¤ë ˆë“œ ì´ë¦„ì„ ì§€ì •í•œë‹¤.
+			// ½º·¹µå ÀÌ¸§À» ÁöÁ¤ÇÑ´Ù.
 			setName(getClass().getSimpleName() + "-" + Integer.toString(delay));
 		}
 		
@@ -245,7 +245,7 @@ public final class EnemyHandler {
 		
 		private int getDelayPerStage() {
 			switch (infoPanel.getStage()) {
-			// 10ì´ˆë‹¹ xê°œë¥¼ ìƒì„±í•œë‹¤.
+			// 10ÃÊ´ç x°³¸¦ »ı¼ºÇÑ´Ù.
 			case 1: return 1000 * 10 / 2;
 			case 2: return 1000 * 10 / 3;
 			case 3: return 1000 * 10 / 4;
@@ -261,14 +261,14 @@ public final class EnemyHandler {
 		}
 		
 		/**
-		 * ìƒˆë¡œìš´ ì ì„ 1ê°œ ìƒì„±í•œë‹¤. 
-		 * ìƒì„±ì‹œ ëœë¤ìœ¼ë¡œ y ìœ„ì¹˜ê°€ ì§€ì •ë˜ë©° ë‹¨ì–´ë„ ë¬´ì‘ìœ„ë¡œ ì„ íƒëœë‹¤.  
-		 * @param type ìƒì„±í•  ì ì˜ íƒ€ì…
+		 * »õ·Î¿î ÀûÀ» 1°³ »ı¼ºÇÑ´Ù. 
+		 * »ı¼º½Ã ·£´ıÀ¸·Î y À§Ä¡°¡ ÁöÁ¤µÇ¸ç ´Ü¾îµµ ¹«ÀÛÀ§·Î ¼±ÅÃµÈ´Ù.  
+		 * @param type »ı¼ºÇÒ ÀûÀÇ Å¸ÀÔ
 		 */
 		private void create(EnemyType type) {
-			// gameGroundPanelì˜ í¬ê¸°ê°€ ê²°ì •ë˜ê³  ë‚˜ì„œ ìœ„ì¹˜ë¥¼ ì •í•˜ê¸° ìœ„í•´ ëŠ¦ê²Œ ì´ˆê¸°í™”ë¥¼ í•œë‹¤.
+			// gameGroundPanelÀÇ Å©±â°¡ °áÁ¤µÇ°í ³ª¼­ À§Ä¡¸¦ Á¤ÇÏ±â À§ÇØ ´Ê°Ô ÃÊ±âÈ­¸¦ ÇÑ´Ù.
 			if (x == null) {
-				// í™”ë©´ ë°–ìœ¼ë¡œ ì  ì‹œì‘ x ìœ„ì¹˜ë¥¼ ì„¤ì •í•œë‹¤.
+				// È­¸é ¹ÛÀ¸·Î Àû ½ÃÀÛ x À§Ä¡¸¦ ¼³Á¤ÇÑ´Ù.
 				x = gameGroundPanel.getWidth();
 			}
 			final UserCharacterPanel userPanel = gameGroundPanel.getUserPanel();
@@ -313,11 +313,11 @@ public final class EnemyHandler {
 				create(remainCount.getRandomType());
 				try {
 					sleep(getRandomDelay());
-				} catch (InterruptedException e) { // ì¸í„°ëŸ½íŠ¸ ë°œìƒì‹œ ìŠ¤ë ˆë“œ ì¢…ë£Œ
+				} catch (InterruptedException e) { // ÀÎÅÍ·´Æ® ¹ß»ı½Ã ½º·¹µå Á¾·á
 					break;
 				}
 
-				if (remainCount.isEmpty()) { // ì ì„ ëª¨ë‘ ìƒì„±í•˜ë©´ ì¢…ë£Œí•œë‹¤.
+				if (remainCount.isEmpty()) { // ÀûÀ» ¸ğµÎ »ı¼ºÇÏ¸é Á¾·áÇÑ´Ù.
 					break;
 				}
 			}

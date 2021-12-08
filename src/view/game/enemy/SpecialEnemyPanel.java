@@ -13,27 +13,27 @@ import view.game.InformationPanel;
 import view.game.UserCharacterPanel;
 
 /**
- * ì£½ì„ ë•Œ {@link EnemyPanel}ì„ 3ê°œ ìƒì„±í•˜ëŠ” ì ì´ë‹¤. ì´ ì ì„ ì œê±°í•˜ì§€ ëª»í•´ ì¶©ëŒí•˜ëŠ” ê²½ìš° ê³§ë°”ë¡œ ê²Œì„ì€ ì¢…ë£Œëœë‹¤.
+ * Á×À» ¶§ {@link EnemyPanel}À» 3°³ »ı¼ºÇÏ´Â ÀûÀÌ´Ù. ÀÌ ÀûÀ» Á¦°ÅÇÏÁö ¸øÇØ Ãæµ¹ÇÏ´Â °æ¿ì °ğ¹Ù·Î °ÔÀÓÀº Á¾·áµÈ´Ù.
  */
 public class SpecialEnemyPanel extends EnemyPanel {
 
 	/**
-	 * ì´ íŠ¹ë³„í•œ ì ì´ ì£½ì€ ê²½ìš° ìƒˆë¡œ ìƒì„±í•  ìƒˆë¡œìš´ ì ë“¤ì˜ ìœ„ì¹˜ë¥¼ ê²°ì •í•˜ê¸° ìœ„í•´ ì‚¬ìš©í•˜ëŠ” ì›ì˜ ë°˜ì§€ë¦„ì´ë‹¤.
+	 * ÀÌ Æ¯º°ÇÑ ÀûÀÌ Á×Àº °æ¿ì »õ·Î »ı¼ºÇÒ »õ·Î¿î ÀûµéÀÇ À§Ä¡¸¦ °áÁ¤ÇÏ±â À§ÇØ »ç¿ëÇÏ´Â ¿øÀÇ ¹İÁö¸§ÀÌ´Ù.
 	 */
 	private static final double RADIUS = 50.0;
 	
 	/**
-	 * ì´ íŠ¹ë³„í•œ ì ì´ ì£½ì€ ê²½ìš° ìƒˆë¡œ ìƒì„±í•  ìƒˆë¡œìš´ ì ë“¤ì˜ ê°¯ìˆ˜ì´ë‹¤.
+	 * ÀÌ Æ¯º°ÇÑ ÀûÀÌ Á×Àº °æ¿ì »õ·Î »ı¼ºÇÒ »õ·Î¿î ÀûµéÀÇ °¹¼öÀÌ´Ù.
 	 */
 	private static final int CHILDREN_COUNT = 3;
 	
 	/**
-	 * ì£½ì„ ë•Œ ì¼ë°˜ ì  3ê°œë¥¼ ìƒì„±í•˜ëŠ” ì—¬ë¶€ë¥¼ ì§€ì •í•œë‹¤.
+	 * Á×À» ¶§ ÀÏ¹İ Àû 3°³¸¦ »ı¼ºÇÏ´Â ¿©ºÎ¸¦ ÁöÁ¤ÇÑ´Ù.
 	 */
 	private boolean giveBirth = true;
 	
 	/**
-	 * ì£½ì„ ë•Œ 3ê°œì˜ {@link EnemyPanel}ì„ ìƒì„±í•˜ëŠ” íŠ¹ë³„í•œ ì ì„ ìƒì„±í•œë‹¤.
+	 * Á×À» ¶§ 3°³ÀÇ {@link EnemyPanel}À» »ı¼ºÇÏ´Â Æ¯º°ÇÑ ÀûÀ» »ı¼ºÇÑ´Ù.
 	 */
 	public SpecialEnemyPanel(EnemyHandler handler, UserCharacterPanel userPanel, InformationPanel infoPanel) {
 		super(Icons.SPECIAL_ENEMY, handler, userPanel, infoPanel);
@@ -44,14 +44,14 @@ public class SpecialEnemyPanel extends EnemyPanel {
 	}
 
 	/**
-	 * ì£½ì„ ë•Œ ì¼ë°˜ ì  3ê°œë¥¼ ìƒì„±í•˜ì§€ ì•Šë„ë¡ í•œë‹¤.
+	 * Á×À» ¶§ ÀÏ¹İ Àû 3°³¸¦ »ı¼ºÇÏÁö ¾Êµµ·Ï ÇÑ´Ù.
 	 */
 	public void doNotGiveBirth() {
 		giveBirth = false;
 	}
 	
 	/**
-	 * íŠ¹ë³„í•œ ì ì´ ì œê±°ëœë‹¤. ì´ë•Œ 3ê°œì˜ ì¼ë°˜ ì ({@link EnemyPanel})ì´ ìƒì„±ëœë‹¤.
+	 * Æ¯º°ÇÑ ÀûÀÌ Á¦°ÅµÈ´Ù. ÀÌ¶§ 3°³ÀÇ ÀÏ¹İ Àû({@link EnemyPanel})ÀÌ »ı¼ºµÈ´Ù.
 	 */
 	@Override
 	public void onKilled() {
@@ -68,7 +68,7 @@ public class SpecialEnemyPanel extends EnemyPanel {
 			for (int i = 0; i < CHILDREN_COUNT; ++i) {
 				Point center = new Point(getX() + getWidth() / 2, getY() + getHeight() / 2);
 				
-				// ë²”ìœ„ë¥¼ ë²—ì–´ë‚˜ì§€ ì•Šê²Œ í•œë‹¤.
+				// ¹üÀ§¸¦ ¹ş¾î³ªÁö ¾Ê°Ô ÇÑ´Ù.
 				center.y = Math.max(center.y, minY + (int)RADIUS);
 				center.y = Math.min(center.y, maxY - (int)RADIUS);
 				
@@ -82,7 +82,7 @@ public class SpecialEnemyPanel extends EnemyPanel {
 	}
 	
 	/**
-	 * íŠ¹ë³„í•œ ì ì€ í”Œë ˆì´ì–´ì™€ ì¶©ëŒí•œ ê²½ìš° ê²Œì„ì´ ì¢…ë£Œëœë‹¤.
+	 * Æ¯º°ÇÑ ÀûÀº ÇÃ·¹ÀÌ¾î¿Í Ãæµ¹ÇÑ °æ¿ì °ÔÀÓÀÌ Á¾·áµÈ´Ù.
 	 */
 	@Override
 	protected void onCollidedWithUser() {
@@ -93,9 +93,9 @@ public class SpecialEnemyPanel extends EnemyPanel {
 	}
 	
 	/**
-	 * ë°˜ì§€ë¦„ì´ {@code RADIUS}ì¸ ì›ì˜ ë°©ì •ì‹ì„ ì´ìš©í•˜ì—¬ í•´ë‹¹ ê°ë„ì— ìˆëŠ” ì¢Œí‘œë¥¼ êµ¬í•œë‹¤.
-	 * @param angle ê°ë„
-	 * @return ë°©ì •ì‹ì— ê°’ì„ ë„£ì€ ê²°ê³¼ 
+	 * ¹İÁö¸§ÀÌ {@code RADIUS}ÀÎ ¿øÀÇ ¹æÁ¤½ÄÀ» ÀÌ¿ëÇÏ¿© ÇØ´ç °¢µµ¿¡ ÀÖ´Â ÁÂÇ¥¸¦ ±¸ÇÑ´Ù.
+	 * @param angle °¢µµ
+	 * @return ¹æÁ¤½Ä¿¡ °ªÀ» ³ÖÀº °á°ú 
 	 */
 	private Point getCirclePoint(Point center, int angle) {
 		double radianAngle = Math.toRadians(angle);

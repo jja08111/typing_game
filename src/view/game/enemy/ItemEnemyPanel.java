@@ -11,8 +11,8 @@ import view.game.InformationPanel;
 import view.game.UserCharacterPanel;
 
 /**
- * ì£½ëŠ” ê²½ìš° í”Œë ˆì´ì–´ì—ê²Œ ì¢‹ì€ í˜„ìƒì„ ì œê³µí•˜ëŠ” ì¶”ìƒ ê°ì²´ì´ë‹¤.
- * {@link EnemyPanel}ê³¼ ë¹„êµí•´ì„œ ë°°ê²½ê³¼ í…ìŠ¤íŠ¸ ìƒ‰ìƒë§Œ ë‹¤ë¥´ë‹¤.
+ * Á×´Â °æ¿ì ÇÃ·¹ÀÌ¾î¿¡°Ô ÁÁÀº Çö»óÀ» Á¦°øÇÏ´Â Ãß»ó °´Ã¼ÀÌ´Ù.
+ * {@link EnemyPanel}°ú ºñ±³ÇØ¼­ ¹è°æ°ú ÅØ½ºÆ® »ö»ó¸¸ ´Ù¸£´Ù.
  */
 public abstract class ItemEnemyPanel extends EnemyPanel {
 

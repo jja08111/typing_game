@@ -4,7 +4,7 @@ import java.util.Random;
 import java.util.Vector;
 
 /** 
- * ì ì„ ìƒì„±í•  ë•Œ ì ì˜ ê°œìˆ˜ë¥¼ ì¹´ìš´íŒ…í•˜ê¸° ìœ„í•´ ì´ìš©í•˜ëŠ” í´ë˜ìŠ¤ì´ë‹¤. 
+ * ÀûÀ» »ı¼ºÇÒ ¶§ ÀûÀÇ °³¼ö¸¦ Ä«¿îÆÃÇÏ±â À§ÇØ ÀÌ¿ëÇÏ´Â Å¬·¡½ºÀÌ´Ù. 
  */
 public final class EnemyCount {
 
@@ -52,7 +52,7 @@ public final class EnemyCount {
 	}
 	
 	/**
-	 * @return ë‚¨ì€ ì  ì¤‘ì—ì„œ ì¢…ë¥˜ í•˜ë‚˜ë¥¼ ê³¨ë¼ ë°˜í™˜í•œë‹¤. ë‚¨ì€ ê°œìˆ˜ê°€ ëª¨ë‘ 0ì¸ ê²½ìš° nullì„ ë°˜í™˜í•œë‹¤.
+	 * @return ³²Àº Àû Áß¿¡¼­ Á¾·ù ÇÏ³ª¸¦ °ñ¶ó ¹İÈ¯ÇÑ´Ù. ³²Àº °³¼ö°¡ ¸ğµÎ 0ÀÎ °æ¿ì nullÀ» ¹İÈ¯ÇÑ´Ù.
 	 */
 	public EnemyType getRandomType() {
 		Random random = new Random();
@@ -72,7 +72,7 @@ public final class EnemyCount {
 	}
 	
 	/**
-	 * @return ë”ì´ìƒ ë‚¨ì€ ê°œìˆ˜ê°€ 0ì¸ ê²½ìš° trueë¥¼ ë°˜í™˜í•œë‹¤.
+	 * @return ´õÀÌ»ó ³²Àº °³¼ö°¡ 0ÀÎ °æ¿ì true¸¦ ¹İÈ¯ÇÑ´Ù.
 	 */
 	public boolean isEmpty() {
 		return normal == 0 && special == 0 && item == 0;

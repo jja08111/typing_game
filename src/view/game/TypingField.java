@@ -14,15 +14,15 @@ import model.Sounds;
 import view.WordEditPanel;
 
 /**
- * í…ìŠ¤íŠ¸ í•„ë“œ ëª¨ë“œì™€, í…ìŠ¤íŠ¸ íŽ¸ì§‘ì´ ë¶ˆê°€ëŠ¥í•œ ìƒíƒœì¸ ëŒ€ê¸°ëª¨ë“œë¡œ ì „í™˜ì´ ë˜ëŠ” ê°ì²´ì´ë‹¤. <br>
- * ì‹¬í”Œëª¨ë“œë¡œ ì „í™˜ì‹œ ìŠ¤íŽ˜ì´ìŠ¤ë°”ë¥¼ ëˆŒëŸ¬ ê²Œìž„ ì‹œìž‘ì´ë¼ëŠ” í…ìŠ¤íŠ¸ê°€ ê³ ì •ëœë‹¤.<br><br>
- * <b>{@link GamePanel}ì—ì„œ ë¦¬ìŠ¤ë„ˆë¥¼ ë“±ë¡í•˜ì—¬ ì‚¬ìš©ì¤‘ì´ë‹¤.</b>
+ * ÅØ½ºÆ® ÇÊµå ¸ðµå¿Í, ÅØ½ºÆ® ÆíÁýÀÌ ºÒ°¡´ÉÇÑ »óÅÂÀÎ ´ë±â¸ðµå·Î ÀüÈ¯ÀÌ µÇ´Â °´Ã¼ÀÌ´Ù. <br>
+ * ½ÉÇÃ¸ðµå·Î ÀüÈ¯½Ã ½ºÆäÀÌ½º¹Ù¸¦ ´­·¯ °ÔÀÓ ½ÃÀÛÀÌ¶ó´Â ÅØ½ºÆ®°¡ °íÁ¤µÈ´Ù.<br><br>
+ * <b>{@link GamePanel}¿¡¼­ ¸®½º³Ê¸¦ µî·ÏÇÏ¿© »ç¿ëÁßÀÌ´Ù.</b>
  */
 public class TypingField extends JTextField {
 	
 	/**
-	 * 30ìž ì´ìƒ ìž…ë ¥ì„ í•˜ì§€ ëª»í•˜ê³  ì—”í„°í‚¤ì™€ ìŠ¤íŽ˜ì´ìŠ¤ë°”ëŠ” ìž…ë ¥í•˜ì§€ ëª»í•˜ëŠ” í…ìŠ¤íŠ¸ í•„ë“œë¥¼ ìƒì„±í•œë‹¤.
-	 * @param columns í…ìŠ¤íŠ¸ í•„ë“œì˜ ë„ˆë¹„ë¥¼ ì§€ì •í•  ë³€ìˆ˜
+	 * 30ÀÚ ÀÌ»ó ÀÔ·ÂÀ» ÇÏÁö ¸øÇÏ°í ¿£ÅÍÅ°¿Í ½ºÆäÀÌ½º¹Ù´Â ÀÔ·ÂÇÏÁö ¸øÇÏ´Â ÅØ½ºÆ® ÇÊµå¸¦ »ý¼ºÇÑ´Ù.
+	 * @param columns ÅØ½ºÆ® ÇÊµåÀÇ ³Êºñ¸¦ ÁöÁ¤ÇÒ º¯¼ö
 	 */
 	public TypingField(int columns) {
 		super(columns);
@@ -35,7 +35,7 @@ public class TypingField extends JTextField {
 			public void keyTyped(KeyEvent e) {
 				final char typedChar = e.getKeyChar();
 				
-				// 30ìž ì´ìƒ ìž…ë ¥ì€ ë¬´ì‹œí•œë‹¤.
+				// 30ÀÚ ÀÌ»ó ÀÔ·ÂÀº ¹«½ÃÇÑ´Ù.
 				if (getText().length() > WordEditPanel.MAX_WORD_LENGTH) {
 					e.consume();
 					return;
@@ -48,21 +48,21 @@ public class TypingField extends JTextField {
 	}
 	
 	/**
-	 * í˜„ìž¬ í…ìŠ¤íŠ¸ê°€ ê³ ì •ë˜ì–´ìžˆëŠ” ëŒ€ê¸°ëª¨ë“œì¸ì§€ ì—¬ë¶€ë¥¼ ë°˜í™˜í•œë‹¤.
+	 * ÇöÀç ÅØ½ºÆ®°¡ °íÁ¤µÇ¾îÀÖ´Â ´ë±â¸ðµåÀÎÁö ¿©ºÎ¸¦ ¹ÝÈ¯ÇÑ´Ù.
 	 */
 	public boolean isReadyMode() {
 		return !isEditable();
 	}
 	
 	/**
-	 * ê²Œìž„ì„ ëŒ€ê¸°í•˜ëŠ” ëª¨ë“œë¡œ ì „í™˜í•˜ê³  "ìŠ¤íŽ˜ì´ìŠ¤ë°”ë¥¼ ëˆŒëŸ¬ ê²Œìž„ ì‹œìž‘" ë¬¸êµ¬ë¥¼ í…ìŠ¤íŠ¸ì— ë„£ëŠ”ë‹¤.
+	 * °ÔÀÓÀ» ´ë±âÇÏ´Â ¸ðµå·Î ÀüÈ¯ÇÏ°í "½ºÆäÀÌ½º¹Ù¸¦ ´­·¯ °ÔÀÓ ½ÃÀÛ" ¹®±¸¸¦ ÅØ½ºÆ®¿¡ ³Ö´Â´Ù.
 	 */
 	public void changeToReadyMode() {
-		changeToReadyMode("ìŠ¤íŽ˜ì´ìŠ¤ë°”ë¥¼ ëˆŒëŸ¬ ê²Œìž„ ì‹œìž‘");
+		changeToReadyMode("½ºÆäÀÌ½º¹Ù¸¦ ´­·¯ °ÔÀÓ ½ÃÀÛ");
 	}
 	
 	/**
-	 * ê²Œìž„ì„ ëŒ€ê¸°í•˜ëŠ” ëª¨ë“œë¡œ ì „í™˜í•˜ê³  ì „ë‹¬ëœ ë¬¸ìžì—´ì„ í…ìŠ¤íŠ¸ì— ë„£ëŠ”ë‹¤.
+	 * °ÔÀÓÀ» ´ë±âÇÏ´Â ¸ðµå·Î ÀüÈ¯ÇÏ°í Àü´ÞµÈ ¹®ÀÚ¿­À» ÅØ½ºÆ®¿¡ ³Ö´Â´Ù.
 	 */
 	public void changeToReadyMode(String msg) {
 		setText(msg);
@@ -74,7 +74,7 @@ public class TypingField extends JTextField {
 	}
 	
 	/**
-	 * í…ìŠ¤íŠ¸ í•„ë“œ ëª¨ë“œë¡œ ì „í™˜í•˜ê³  í…ìŠ¤íŠ¸ë¥¼ ë¹ˆì¹¸ìœ¼ë¡œ ë°”ê¾¼ë‹¤.
+	 * ÅØ½ºÆ® ÇÊµå ¸ðµå·Î ÀüÈ¯ÇÏ°í ÅØ½ºÆ®¸¦ ºóÄ­À¸·Î ¹Ù²Û´Ù.
 	 */
 	public void changeToTextFieldMode() {
 		setEditable(true);

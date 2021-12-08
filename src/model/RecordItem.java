@@ -4,30 +4,30 @@ import java.util.Comparator;
 import java.util.Vector;
 
 /**
- * ê²Œì„ ê¸°ë¡ì„ ì €ì¥í•  ë•Œ ë‹¨ìœ„ë¡œì„œ ì‚¬ìš©ë˜ëŠ” í´ë˜ìŠ¤ì´ë‹¤.
+ * °ÔÀÓ ±â·ÏÀ» ÀúÀåÇÒ ¶§ ´ÜÀ§·Î¼­ »ç¿ëµÇ´Â Å¬·¡½ºÀÌ´Ù.
  */
 public class RecordItem implements Comparable<RecordItem> {
 	
 	/**
-	 * ê¸°ë¡ì„ ë‹¬ì„±í•œ ì‚¬ëŒì˜ ì´ë¦„ì´ë‹¤.
+	 * ±â·ÏÀ» ´Ş¼ºÇÑ »ç¶÷ÀÇ ÀÌ¸§ÀÌ´Ù.
 	 */
 	private final String name;
 	
 	/**
-	 * ê¸°ë¡ì„ ë‹¬ì„±í•œ ë‹¨ê³„ì´ë‹¤.
+	 * ±â·ÏÀ» ´Ş¼ºÇÑ ´Ü°èÀÌ´Ù.
 	 */
 	private final int stage;
 	
 	/**
-	 * ê¸°ë¡ì„ ë‹¬ì„±í•œ ì ìˆ˜ì´ë‹¤.
+	 * ±â·ÏÀ» ´Ş¼ºÇÑ Á¡¼öÀÌ´Ù.
 	 */
 	private final int score;
 	
 	/**
-	 * ê¸°ë¡ ë‹¨ìœ„ê°€ ë˜ëŠ” ê°ì²´ë¥¼ ìƒì„±í•œë‹¤.
-	 * @param name ì´ë¦„ 
-	 * @param stage í•´ê²°í•œ ë‹¨ê³„ 
-	 * @param score ë‹¬ì„±í•œ ì ìˆ˜ 
+	 * ±â·Ï ´ÜÀ§°¡ µÇ´Â °´Ã¼¸¦ »ı¼ºÇÑ´Ù.
+	 * @param name ÀÌ¸§ 
+	 * @param stage ÇØ°áÇÑ ´Ü°è 
+	 * @param score ´Ş¼ºÇÑ Á¡¼ö 
 	 */
 	public RecordItem(String name, int stage, int score) {
 		this.name = name;
@@ -45,10 +45,10 @@ public class RecordItem implements Comparable<RecordItem> {
 	}
 	
 	/**
-	 * ë¬¸ìì—´ì„ ì´ ê°ì²´ë¡œ ë³€í™˜í•˜ì—¬ ë°˜í™˜í•œë‹¤. í˜•ì‹ì€ "name stage score"ì´ë‹¤. 
-	 * í˜•ì‹ì— ë§ì§€ ì•ŠëŠ” ê²½ìš° nullì„ ë°˜í™˜í•œë‹¤.
-	 * @param string ë³€í™˜í•  ë¬¸ìì—´
-	 * @return í˜•ì‹ì— ë§ìœ¼ë©´ ê°ì²´ ë°˜í™˜í•˜ê³ , ë§ì§€ ì•Šìœ¼ë©´ nullì„ ë°˜í™˜í•œë‹¤.
+	 * ¹®ÀÚ¿­À» ÀÌ °´Ã¼·Î º¯È¯ÇÏ¿© ¹İÈ¯ÇÑ´Ù. Çü½ÄÀº "name stage score"ÀÌ´Ù. 
+	 * Çü½Ä¿¡ ¸ÂÁö ¾Ê´Â °æ¿ì nullÀ» ¹İÈ¯ÇÑ´Ù.
+	 * @param string º¯È¯ÇÒ ¹®ÀÚ¿­
+	 * @return Çü½Ä¿¡ ¸ÂÀ¸¸é °´Ã¼ ¹İÈ¯ÇÏ°í, ¸ÂÁö ¾ÊÀ¸¸é nullÀ» ¹İÈ¯ÇÑ´Ù.
 	 */
 	public static RecordItem parse(String string) {
 		String[] arrString = string.split(" ");
@@ -65,7 +65,7 @@ public class RecordItem implements Comparable<RecordItem> {
 	}
 
 	/**
-	 * ì´ë¦„, ì ìˆ˜, ë‹¨ê³„ë¡œ ì´ë£¨ì–´ì§„ 1ì°¨ì› ë²¡í„°ë¥¼ ë°˜í™˜í•œë‹¤. 
+	 * ÀÌ¸§, Á¡¼ö, ´Ü°è·Î ÀÌ·ç¾îÁø 1Â÷¿ø º¤ÅÍ¸¦ ¹İÈ¯ÇÑ´Ù. 
 	 */
 	public Vector<Object> toVector() {
 		Vector<Object> result = new Vector<Object>(3);
@@ -76,10 +76,10 @@ public class RecordItem implements Comparable<RecordItem> {
 	}
 	
 	/**
-	 * ì ìˆ˜, ë‹¨ê³„, ì´ë¦„ ìˆœìœ¼ë¡œ ë¹„êµí•˜ì—¬ ê²°ê³¼ë¥¼ ë°˜í™˜í•œë‹¤. 
-	 * ì ìˆ˜ì™€ ë‹¨ê³„ëŠ” ë‚´ë¦¼ì°¨ìˆœìœ¼ë¡œ, ì´ë¦„ì€ ì˜¤ë¦„ì°¨ìˆœìœ¼ë¡œ ë¹„êµí•œë‹¤.
-	 * @param other ë¹„êµí•  ë‹¤ë¥¸ ê°ì²´ 
-	 * @return ë¹„êµí•œ ê²°ê³¼ë¥¼ ë°˜í™˜í•œë‹¤.
+	 * Á¡¼ö, ´Ü°è, ÀÌ¸§ ¼øÀ¸·Î ºñ±³ÇÏ¿© °á°ú¸¦ ¹İÈ¯ÇÑ´Ù. 
+	 * Á¡¼ö¿Í ´Ü°è´Â ³»¸²Â÷¼øÀ¸·Î, ÀÌ¸§Àº ¿À¸§Â÷¼øÀ¸·Î ºñ±³ÇÑ´Ù.
+	 * @param other ºñ±³ÇÒ ´Ù¸¥ °´Ã¼ 
+	 * @return ºñ±³ÇÑ °á°ú¸¦ ¹İÈ¯ÇÑ´Ù.
 	 */
 	@Override
 	public int compareTo(RecordItem other) {

@@ -9,7 +9,7 @@ import javax.swing.SwingUtilities;
 import view.MainFrame;
 
 /**
- * ê²Œì„ í™”ë©´ì—ì„œ í˜ì´ì§€ ì „í™˜ì„ ë‹´ë‹¹í•˜ëŠ” í´ë˜ìŠ¤ì´ë‹¤.
+ * °ÔÀÓ È­¸é¿¡¼­ ÆäÀÌÁö ÀüÈ¯À» ´ã´çÇÏ´Â Å¬·¡½ºÀÌ´Ù.
  */
 public class Navigator {
 	
@@ -20,21 +20,21 @@ public class Navigator {
 	}
 	
 	/**
-	 * {@code contextComponent}ê°€ ì†í•œ í”„ë ˆì„ì„ ê°€ì§€ê³  ìˆëŠ” {@link Navigator} ì¸ìŠ¤í„´ìŠ¤ë¥¼ ë°˜í™˜í•œë‹¤.
-	 * @param contextComponent í”„ë ˆì„ì´ ì†í•œ ì»´í¬ë„ŒíŠ¸ 
-	 * @return {@link Navigator} ì¸ìŠ¤í„´ìŠ¤
+	 * {@code contextComponent}°¡ ¼ÓÇÑ ÇÁ·¹ÀÓÀ» °¡Áö°í ÀÖ´Â {@link Navigator} ÀÎ½ºÅÏ½º¸¦ ¹İÈ¯ÇÑ´Ù.
+	 * @param contextComponent ÇÁ·¹ÀÓÀÌ ¼ÓÇÑ ÄÄÆ÷³ÍÆ® 
+	 * @return {@link Navigator} ÀÎ½ºÅÏ½º
 	 */
 	public static Navigator of(JComponent contextComponent) {
 		return new Navigator((JFrame) SwingUtilities.getWindowAncestor(contextComponent));
 	}
 	
 	/**
-	 * {@code component}ìœ¼ë¡œ í™”ë©´ì„ ì „í™˜í•œë‹¤. 
-	 * @param component ì „í™˜í•  ì»´í¬ë„ŒíŠ¸ 
+	 * {@code component}À¸·Î È­¸éÀ» ÀüÈ¯ÇÑ´Ù. 
+	 * @param component ÀüÈ¯ÇÒ ÄÄÆ÷³ÍÆ® 
 	 */
 	public void to(JComponent component) {
 		if (rootFrame == null) {
-			System.out.println("ë„¤ë¹„ê²Œì´í„°ì˜ rootFrameì´ ì´ˆê¸°í™” ë˜ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤. ì»´í¬ë„ŒíŠ¸ê°€ ë¶€ëª¨ì™€ ì—°ê²°ë˜ê¸° ì „ì— ì‚¬ìš©í–ˆëŠ”ì§€ í™•ì¸í•˜ì„¸ìš”.");
+			System.out.println("³×ºñ°ÔÀÌÅÍÀÇ rootFrameÀÌ ÃÊ±âÈ­ µÇÁö ¾Ê¾Ò½À´Ï´Ù. ÄÄÆ÷³ÍÆ®°¡ ºÎ¸ğ¿Í ¿¬°áµÇ±â Àü¿¡ »ç¿ëÇß´ÂÁö È®ÀÎÇÏ¼¼¿ä.");
 			return;
 		}
 		Container c = rootFrame.getContentPane();
@@ -45,9 +45,9 @@ public class Navigator {
 	}
 	
 	/**
-	 * {@code contextComponent}ê°€ ì†í•œ í”„ë ˆì„ì—ì„œ {@code target}ìœ¼ë¡œ í™”ë©´ì„ ì „í™˜í•œë‹¤. 
-	 * @param contextComponent í”„ë ˆì„ì´ ì†í•œ ì»´í¬ë„ŒíŠ¸ 
-	 * @param target ì „í™˜í•  ì»´í¬ë„ŒíŠ¸ 
+	 * {@code contextComponent}°¡ ¼ÓÇÑ ÇÁ·¹ÀÓ¿¡¼­ {@code target}À¸·Î È­¸éÀ» ÀüÈ¯ÇÑ´Ù. 
+	 * @param contextComponent ÇÁ·¹ÀÓÀÌ ¼ÓÇÑ ÄÄÆ÷³ÍÆ® 
+	 * @param target ÀüÈ¯ÇÒ ÄÄÆ÷³ÍÆ® 
 	 */
 	public static void to(JComponent contextComponent, JComponent target) {
 		Navigator.of(contextComponent).to(target);

@@ -3,8 +3,8 @@ package constant;
 import java.awt.Font;
 
 /**
- * ëª¨ë“  ë·°ì—ì„œ ì‚¬ìš©í•  í…ìŠ¤íŠ¸ ìŠ¤íƒ€ì¼ì´ë‹¤. ì—¬ê¸°ì— ìˆëŠ” ìŠ¤íƒ€ì¼ë§Œ ì‚¬ìš©ëœë‹¤.
- * https://material.io/design/typography/the-type-system.html#type-scale ì—ì„œ ìƒì„±í•œ ìŠ¤íƒ€ì¼ì„ ì°¸ê³ í–ˆë‹¤.
+ * ¸ğµç ºä¿¡¼­ »ç¿ëÇÒ ÅØ½ºÆ® ½ºÅ¸ÀÏÀÌ´Ù. ¿©±â¿¡ ÀÖ´Â ½ºÅ¸ÀÏ¸¸ »ç¿ëµÈ´Ù.
+ * https://material.io/design/typography/the-type-system.html#type-scale ¿¡¼­ »ı¼ºÇÑ ½ºÅ¸ÀÏÀ» Âü°íÇß´Ù.
  */
 public final class TextStyle {
 	

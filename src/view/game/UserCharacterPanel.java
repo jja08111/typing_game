@@ -4,7 +4,7 @@ import constant.Icons;
 import view.component.CharacterPanel;
 
 /**
- * í”Œë ˆì´ì–´ì˜ ìºë¦­í„°ë¥¼ ë³´ì´ëŠ” íŒ¨ë„ì´ë‹¤.
+ * ÇÃ·¹ÀÌ¾îÀÇ Ä³¸¯ÅÍ¸¦ º¸ÀÌ´Â ÆĞ³ÎÀÌ´Ù.
  */
 public class UserCharacterPanel extends CharacterPanel {
 
@@ -14,7 +14,7 @@ public class UserCharacterPanel extends CharacterPanel {
 	}
 	
 	/**
-	 * @return ìºë¦­í„°ì˜ ì˜¤ë¥¸ìª½ ëì˜ ìœ„ì¹˜ë¥¼ ë°˜í™˜í•œë‹¤.
+	 * @return Ä³¸¯ÅÍÀÇ ¿À¸¥ÂÊ ³¡ÀÇ À§Ä¡¸¦ ¹İÈ¯ÇÑ´Ù.
 	 */
 	public int getRightX() {
 		return getX() + getWidth();

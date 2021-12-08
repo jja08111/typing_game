@@ -28,20 +28,20 @@ import view.component.CharacterPanel;
 import view.component.TitlePanel;
 
 /**
- * ê²Œì„ ê¸°ë¡ì„ í™•ì¸í•  ìˆ˜ ìˆëŠ” í™”ë©´ì„ ë³´ì´ëŠ” íŒ¨ë„ì´ë‹¤.
+ * °ÔÀÓ ±â·ÏÀ» È®ÀÎÇÒ ¼ö ÀÖ´Â È­¸éÀ» º¸ÀÌ´Â ÆĞ³ÎÀÌ´Ù.
  */
 public class RecordPanel extends TitlePanel {
 
 	Vector<RecordItem> records;
 	
 	public RecordPanel(MainFrame mainFrame) {
-		super(mainFrame, "ê¸°ë¡", true);
+		super(mainFrame, "±â·Ï", true);
 
 		try {
 			records = RecordHandler.readAll();
 			records.sort(RecordItem.getComparator());
 		} catch (IOException e) {
-			System.out.println("ê¸°ë¡ íŒŒì¼ì„ ì½ëŠ” ë„ì¤‘ì— íŒŒì¼ì´ ì—†ëŠ” ë“±ì˜ ë¬¸ì œê°€ ë°œìƒí–ˆìŠµë‹ˆë‹¤. ì½˜ì†” ë¡œê·¸ë¥¼ í™•ì¸í•´ë³´ì„¸ìš”.");
+			System.out.println("±â·Ï ÆÄÀÏÀ» ÀĞ´Â µµÁß¿¡ ÆÄÀÏÀÌ ¾ø´Â µîÀÇ ¹®Á¦°¡ ¹ß»ıÇß½À´Ï´Ù. ÄÜ¼Ö ·Î±×¸¦ È®ÀÎÇØº¸¼¼¿ä.");
 			e.printStackTrace();
 			return;
 		}
@@ -51,7 +51,7 @@ public class RecordPanel extends TitlePanel {
 	}
 
 	private void initTable() {
-		DefaultTableModel model = new DefaultTableModel(new String[]{"ì´ë¦„", "ì ìˆ˜", "ë‹¨ê³„"}, 0) {
+		DefaultTableModel model = new DefaultTableModel(new String[]{"ÀÌ¸§", "Á¡¼ö", "´Ü°è"}, 0) {
 			@Override
 			public Class getColumnClass(int column) {
 				switch (column) {

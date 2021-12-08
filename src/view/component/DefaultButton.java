@@ -11,7 +11,7 @@ import handler.SoundController;
 import model.Sounds;
 
 /**
- * ë²„íŠ¼ í´ë¦­ íš¨ê³¼ìŒì„ ê°€ì¡Œìœ¼ë©° {@link JButton}ì„ ìƒì†ë°›ì€ ë²„íŠ¼ì´ë‹¤.
+ * ¹öÆ° Å¬¸¯ È¿°úÀ½À» °¡Á³À¸¸ç {@link JButton}À» »ó¼Ó¹ŞÀº ¹öÆ°ÀÌ´Ù.
  */
 public class DefaultButton extends JButton {
 

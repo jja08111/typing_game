@@ -11,7 +11,7 @@ import view.game.InformationPanel;
 import view.game.UserCharacterPanel;
 
 /**
- * ì£½ëŠ” ê²½ìš° í˜„ì¬ ë³´ì´ëŠ” ëª¨ë“  ì ë“¤ì„ ì ì‹œë™ì•ˆ ë©ˆì¶”ëŠ” ì•„ì´í…œ ì ì´ë‹¤.
+ * Á×´Â °æ¿ì ÇöÀç º¸ÀÌ´Â ¸ğµç ÀûµéÀ» Àá½Ãµ¿¾È ¸ØÃß´Â ¾ÆÀÌÅÛ ÀûÀÌ´Ù.
  */
 public class StopItemEnemyPanel extends ItemEnemyPanel {
 
