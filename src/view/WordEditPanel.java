@@ -130,6 +130,8 @@ public class WordEditPanel extends TitlePanel {
 				TextSourceHandler.getInstance().remove(selectedValue);
 				model.removeElement(selectedValue);
 				Toast.show("단어 '" + selectedValue + "'이(가) 삭제됨", WordEditPanel.this);
+				
+				removeButton.setEnabled(false);
 			}
 		});
 		// 리스트에서 아무것도 선택하지 않은 초기에는 비활성화한다.
