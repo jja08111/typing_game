@@ -115,6 +115,7 @@ public class WordEditPanel extends TitlePanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				addWord();
+				addButton.setEnabled(false);
 			}
 		});
 		// 초기에는 공백을 입력하지 못하도록 비활성화한다.
