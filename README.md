@@ -21,7 +21,7 @@
 
 # 스크린샷
 
-![](assets/screenshots/indro.png)
+![](assets/screenshots/intro.png)
 
 ![](assets/screenshots/game_panel_ready.png)
 
